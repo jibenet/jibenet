@@ -11,4 +11,15 @@ public partial class _Default : System.Web.UI.Page
     {
 
     }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Response.Redirect("Agent/ListProperty.aspx?add=" + txtSearch.Text, false);
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.Message.ToString());
+        }
+    }
 }

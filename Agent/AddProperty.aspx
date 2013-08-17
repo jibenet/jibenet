@@ -41,7 +41,7 @@
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
         function initialize() {
-            var input = document.getElementById('searchTextField');
+            var input = document.getElementById('txtSearch');
             var autocomplete = new google.maps.places.Autocomplete(input);
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -58,7 +58,7 @@
                 componentRestrictions: { country: "BR" }
             };
 
-            var input = document.getElementById('searchTextField');
+            var input = document.getElementById('txtSearch');
             var autocomplete = new google.maps.places.Autocomplete(input, options);
         }
     </script>
@@ -84,10 +84,9 @@
                                 <img src="images/escritoria-inner.png" alt="escritoria"></a><a href="#"><img src="images/loja-inner.png" alt="escritoria"></a>
                         </div>
                         <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                            <input name="search" type="button" value="" class="searchbtn-inner">
-                            <input id="searchTextField" name="search" type="text" autocomplete="on" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
-
-
+<%--                                              <asp:Button ID="btnSearch" runat="server" Text="" CssClass="searchbtn-inner" OnClick="btnSearch_Click" />--%>
+<%--                                        <asp:TextBox ID="txtSearch" runat="server" Style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;"></asp:TextBox>--%>
+                         
                         </div>
 
                         <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">

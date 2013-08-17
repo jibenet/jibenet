@@ -17,8 +17,16 @@ public partial class Agent_ListProperty : System.Web.UI.Page
         {
             if (Page.IsPostBack == false)
             {
-                oPropertyBO.address = string.Empty;
-                FindProperty();            
+                if (Request.QueryString["add"] != null)
+                {
+                    oPropertyBO.address = Request.QueryString["add"].ToString();
+                    FindProperty();
+                }                    
+                else
+                {
+                    oPropertyBO.address = string.Empty;
+                    FindProperty();
+                }                    
             }
         }
         catch (Exception ex)

@@ -110,6 +110,7 @@ public partial class Agent_AddProperty : System.Web.UI.Page
             }
             Session["filename"] = string.Empty;
             Clear();
+            Response.Redirect("ListProperty.aspx", false);
         }
         catch(Exception ex)
         {
@@ -162,6 +163,17 @@ public partial class Agent_AddProperty : System.Web.UI.Page
                 CheckBox chk = (CheckBox)controls;
                 chk.Checked = false;
             }
+        }
+    }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //Response.Redirect("ListProperty.aspx?add=" + txtSearch.Text, false);  
+        }
+        catch (Exception ex)
+        {
+            Response.Write(ex.Message.ToString());
         }
     }
 }

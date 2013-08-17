@@ -11,7 +11,7 @@
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
         function initialize() {
-            var input = document.getElementById('searchTextField');
+            var input = document.getElementById('txtSearch');
             var autocomplete = new google.maps.places.Autocomplete(input);
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -28,7 +28,7 @@
                 componentRestrictions: { country: "BR" }
             };
 
-            var input = document.getElementById('searchTextField');
+            var input = document.getElementById('txtSearch');
             var autocomplete = new google.maps.places.Autocomplete(input, options);
         }
     </script>
@@ -67,14 +67,14 @@
                         <span>Para Imovies Comercias</span></h1>
                     <br>
                     <br>
-                    <form action="inner.html" method="po" style="margin: 0px; padding: 0px; float: left;">
+                    <form style="margin: 0px; padding: 0px; float: left;" runat="server" >
                         <div style="width: 100%; float: left; margin-left: 20px; height: 31px;">
                             <a href="#">
                                 <img src="images/escritoria.png" alt="escritoria"></a><a href="#"><img src="images/loja.png" alt="escritoria"></a>
                         </div>
                         <div style="width: 612px; float: left; background-image: url(images/searchbg.png); background-repeat: no-repeat; height: 44px; padding: 4px;">
-                            <input name="search" type="submit" value="" class="searchbtn" />
-                            <input id="searchTextField" name="search" type="text" autocomplete="on" placeholder="Digite Um Bairro" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;" />
+                               <asp:Button ID="btnSearch" runat="server" Text="" CssClass="searchbtn-inner" OnClick="btnSearch_Click" />
+                                        <asp:TextBox ID="txtSearch" runat="server" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;"></asp:TextBox>                        
                         </div>
                         <div class="ddmenu" style="width: 128px; float: right;">
                             <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">

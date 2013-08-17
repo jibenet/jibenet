@@ -13,7 +13,7 @@
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
         function initialize() {
-            var input = document.getElementById('searchTextField');
+            var input = document.getElementById('txtSearch');
             var autocomplete = new google.maps.places.Autocomplete(input);
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -30,7 +30,7 @@
                 componentRestrictions: { country: "BR" }
             };
 
-            var input = document.getElementById('searchTextField');
+            var input = document.getElementById('txtSearch');
             var autocomplete = new google.maps.places.Autocomplete(input, options);
         }
     </script>
