@@ -4,15 +4,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Jibe Net</title>
 <link href="style/default.css" rel="stylesheet" type="text/css">
+<script src="js/tabcontent.js" type="text/javascript"></script>
+<link href="style/tabcontent-index.css" rel="stylesheet" type="text/css" /> 
 </head>
 
 <body>
 <!-- Header Starts -->
 <header>
-<div id="header"><div>
+<div id="header">
+
+<div class="header-index">
 
 <a href="index.html"><img src="images/jibenet.png" alt="Jibenet" border="0" style="float:left;"></a>
-<div class="right"><a href="#"><img src="images/entre.png" alt="Entre"></a> <a href="#"><img src="images/ajudar.png" alt="Ajudar"></a> <a href="form.html"><img src="images/listar.png" alt="Listar" border="0"></a></div>
+<div class="right">
+	<span>
+    	<select name="select" id="select">
+    	  <option value="Entre">Entre</option>
+          <option value="Entre">Option 1</option>
+          <option value="Entre">Option 2</option>
+          <option value="Entre">Option 3</option>
+    	</select>
+	</span>
+	<span>
+    	<select name="select" id="select">
+    	  <option value="Entre">Ajudar</option>
+          <option value="Entre">Option 1</option>
+          <option value="Entre">Option 2</option>
+          <option value="Entre">Option 3</option>
+    	</select>
+	</span>
+	<div class="green-tab">
+    	<p><a href="">Listar Sua Properiedade</a></p>
+    </div>
+    </div>
 </div></div>
 </header>
 <!-- Header Ends -->
@@ -26,7 +50,41 @@
   <h1>Platforma Numero Um do Brasil <br>
   <span>Para Imovies Comercias</span></h1><br>
   <br>
-<form action="inner.html" method="po" style="margin:0px; padding:0px; float:left;">
+  <div>
+            <ul class="tabs" persist="true">
+                <li><a href="#" rel="view1">Escritoria</a></li>
+                <li><a href="#" rel="view2">Loja</a></li>
+            </ul>
+         <div class="tabcontents">
+            <div id="view1" class="tabcontent">
+            <form action="inner.html" method="po" style="margin:0px; padding:0px; float:left;">
+              <div style="width:612px; float:left; background-image:url(images/searchbg.png); margin-right: 10px; background-repeat:no-repeat; height:44px; padding:4px;">
+              <input name="search" type="submit" value="" class="searchbtn"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:4px 4px; width:88%; margin-top:8px; border:0px; background:none; ">  </div>
+            <div class="ddmenu" style="width:128px; float:right;">
+              <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
+                    <option>Alugar</option>
+                    <option>Option 1</option>
+                     <option>Option 2</option>
+                 </select>
+             </div>
+            </form>
+            </div>
+            <div id="view2" class="tabcontent">
+             <form action="inner.html" method="po" style="margin:0px; padding:0px; float:left;">
+              <div style="width:612px; float:left; background-image:url(images/searchbg.png);  margin-right: 10px; background-repeat:no-repeat; height:44px; padding:4px;">
+              <input name="search" type="submit" value="" class="searchbtn"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:4px 4px; width:88%; margin-top:8px; border:0px; background:none;">  </div>
+            <div class="ddmenu" style="width:128px; float:right;">
+              <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
+                    <option>Alugar</option>
+                    <option>Option 1</option>
+                     <option>Option 2</option>
+                 </select>
+             </div>
+            </form>                                 
+            </div>
+       </div>
+      </div>
+<!--<form action="inner.html" method="po" style="margin:0px; padding:0px; float:left;">
   <div style="width:100%; float:left; margin-left:20px; height:31px;"><a href="#"><img src="images/escritoria.png" alt="escritoria"></a><a href="#"><img src="images/loja.png" alt="escritoria"></a></div>
   <div style="width:612px; float:left; background-image:url(images/searchbg.png); background-repeat:no-repeat; height:44px; padding:4px;">
   <input name="search" type="submit" value="" class="searchbtn"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:4px 4px; width:88%; margin-top:8px; border:0px; background:none;">  </div>
@@ -45,7 +103,7 @@
 <a href="#">Sao Paulo</a><br>
 <a href="#">Italim Bibi</a><br>
 <a href="#">Vila Olimpia</a><br>
-<a href="#">Morumbi </a></h3>
+<a href="#">Morumbi </a></h3>-->
 </div>
 </div>
 <!-- Search Panel Ends -->

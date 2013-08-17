@@ -1,18 +1,20 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddProperty.aspx.cs" Inherits="Agent_AddProperty" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Jibe Net</title>
-    <link href="style/default.css" rel="stylesheet" type="text/css">
+    <link href="style/default.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
 
     <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
     <script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js"></script>
-    <script language="javascript">
+    <script type="javascript">
         $(function () {
             $('#form').jqTransform({ imgPath: 'jqtransformplugin/img/' });
         });
@@ -62,6 +64,12 @@
     </script>
 </head>
 <body class="innerpage">
+    <p>
+        <br />
+    </p>
+    <p>
+        &nbsp;
+    </p>
     <!-- Header Starts -->
     <header>
         <div id="header">
@@ -121,25 +129,27 @@
                         <h3 style="font-size: 20px; line-height: 50px; margin-top: 20px; border-top: 1px solid #ccc;">Promocao por Tempo Limitado: Lista de Graca!</h3>
                     </div>
 
-                    <form action="" name="" runat="server" onsubmit="return check()" id="form">
+                    <form id="form" runat="server">
 
                         <div style="width: 96%; float: left; border: 1px solid #ccc; border-radius: 10px; padding: 2%;">
                             <label>Endereço</label>
                             <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rvalAddress" runat="server" ErrorMessage="" ControlToValidate="txtAddress" ValidationGroup="property">*</asp:RequiredFieldValidator>
-                            <%--<input name="fname" type="text" id="fname"  />--%>
+
                             <asp:RegularExpressionValidator ID="revalAddress" runat="server" ErrorMessage="" ControlToValidate="txtAddress" ValidationGroup="property"></asp:RegularExpressionValidator>
+
+                            <%--<input name="fname" type="text" id="fname"  />--%>
                             <br />
                             <br />
                             <label>CEP</label>
-                            <asp:TextBox ID="txtZipCode" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+                            <asp:TextBox ID="txtZipCode" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
                             <asp:RegularExpressionValidator ID="revalZipCode" runat="server" ErrorMessage="" ControlToValidate="txtZipCode" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                             <%--<input name="lname" type="text" id="lname" style="width: 250px;" size="28" placeholder="00000 - 000" />--%>
                             <br />
                             <br />
                             <label>Propriedade</label>
-                            <asp:DropDownList ID="dropType" runat="server" Style="width: 260px;"  CssClass="formstyle">
+                            <asp:DropDownList ID="dropType" runat="server" Style="width: 260px;" CssClass="formstyle">
                                 <asp:ListItem Value="Escritorio"></asp:ListItem>
                                 <asp:ListItem Value="Loja"></asp:ListItem>
 
@@ -152,25 +162,31 @@
                             <br />
                             <br />
                             <label>Disponivel a Partir</label>
-                            <asp:TextBox ID="txtAvailableDate" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>(dd-MM-yyyy)
-                            <asp:RegularExpressionValidator ID="revalDate" runat="server" ErrorMessage="" ControlToValidate="txtAvailableDate" ValidationGroup="property"></asp:RegularExpressionValidator>
+                            <asp:TextBox ID="txtAvailableDate" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+                            <asp:CalendarExtender ID="txtAvailableDate_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtAvailableDate" Format="dd-MM-yyyy">
+                            </asp:CalendarExtender>
                             <asp:RequiredFieldValidator ID="rvalDate" runat="server" ErrorMessage="" ControlToValidate="txtAvailableDate" ValidationGroup="property">*</asp:RequiredFieldValidator>
+
+                            (dd-MM-yyyy)
+                            <asp:RegularExpressionValidator ID="revalDate" runat="server" ErrorMessage="" ControlToValidate="txtAvailableDate" ValidationGroup="property"></asp:RegularExpressionValidator>
                             <%--                            <input name="phone" type="text" id="phone" onkeyup="checkNum(this)" style="width: 250px;" size="28" placeholder="dd / mm / yyyy" />--%>
                             <br />
                             <br />
                             <label>Area</label>
-                            <asp:TextBox ID="txtArea" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>m2
-                            <asp:RegularExpressionValidator ID="revalArea" runat="server" ErrorMessage="" ControlToValidate="txtArea" ValidationGroup="property"></asp:RegularExpressionValidator>
+                            <asp:TextBox ID="txtArea" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rvalArea" runat="server" ErrorMessage="" ControlToValidate="txtArea" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                            m2
+                            <asp:RegularExpressionValidator ID="revalArea" runat="server" ErrorMessage="" ControlToValidate="txtArea" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                             <%--                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
 
                             <br />
                             <br />
                             <label>Rate</label>
-                            <asp:TextBox ID="txtRate" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>/mês
-                            <asp:RegularExpressionValidator ID="revalRate" runat="server" ErrorMessage="" ControlToValidate="txtRate" ValidationGroup="property"></asp:RegularExpressionValidator>
+                            <asp:TextBox ID="txtRate" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rvalRate" runat="server" ErrorMessage="" ControlToValidate="txtRate" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                            /mês
+                            <asp:RegularExpressionValidator ID="revalRate" runat="server" ErrorMessage="" ControlToValidate="txtRate" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                             <%--                            <input name="phone2" type="text" id="Text1" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
 
@@ -178,93 +194,107 @@
                             <br />
                             <label>Fotos</label>
                             <div>
-                                <asp:FileUpload ID="FileUpload1" runat="server" />&nbsp;                                 <a class="upl" href="javascript:$('#<%=FileUpload1.ClientID%>').fileUploadStart()">Upload</a>
+                                <asp:FileUpload ID="FileUpload1" runat="server" />&nbsp;            
+                            </div>
+                            <div class="green-butt-small">
+                                <p>
+                                    <a class="upl" href="javascript:$('#<%=FileUpload1.ClientID%>').fileUploadStart()">Upload</a>
+                                </p>
                             </div>
                             <%--<a href="javascript:$('#<%=FileUpload1.ClientID%>').fileUploadClearQueue()">Clear</a>--%>
                             <%--                            <input name="" type="file">--%>
                             <br>
                             <br>
-                            <label>Recursos</label>
-                            <label>Lugarer de Estacionamento</label>
-                            <asp:TextBox ID="txtParkings" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="revalParkings" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property"></asp:RegularExpressionValidator>
+                            <div class="head">
+                                <label>Recursos</label>
+                                <label>Lugarer de Estacionamento</label>
+                                <asp:TextBox ID="txtParkings" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revalParkings" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                            <%--                            <input name="phone2" type="text" id="Text2" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Banheiros</label>
-                            <asp:TextBox ID="txtToilets" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="revalToilets" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property"></asp:RegularExpressionValidator>
+                                <%--                            <input name="phone2" type="text" id="Text2" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
+                                <br>
+                                <br>
+                                <label>&nbsp;</label>
+                                <label>Banheiros</label>
+                                <asp:TextBox ID="txtToilets" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revalToilets" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property"></asp:RegularExpressionValidator>
 
 
-                            <%--                            <input name="phone3" type="text" id="phone3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Cozinha </label>
-                            <asp:TextBox ID="txtKitchens" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="revalKitchen" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property"></asp:RegularExpressionValidator>
+                                <%--                            <input name="phone3" type="text" id="phone3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
+                                <br>
+                                <br>
+                                <label>&nbsp;</label>
+                                <label>Cozinha </label>
+                                <asp:TextBox ID="txtKitchens" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revalKitchen" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                            <%--                            <input name="phone3" type="text" id="Text3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Area de Recepcao</label>
-                            <asp:CheckBox ID="chkReception" runat="server" size="28" />
-                            <%--                            <input name="" type="checkbox" value="" size="28">--%>
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Mobiliado</label>
-                            <asp:CheckBox ID="chkFurnished" runat="server" size="28" />
-                            <%--                            <input name="" type="checkbox" value="" size="28">--%>
-                            <br>
-                            <br>
-                            <label>Detalhes</label>
-                            <asp:TextBox ID="txtDetail" runat="server" Style="width: 250px;" TextMode="MultiLine" CssClass="formstyle"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="revalDetail" runat="server" ErrorMessage="" ControlToValidate="txtDetail" ValidationGroup="property"></asp:RegularExpressionValidator>
+                                <%--                            <input name="phone3" type="text" id="Text3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
+                                <br>
+                                <br>
+                                <label>&nbsp;</label>
+                                <label>Area de Recepcao</label>
+                                <asp:CheckBox ID="chkReception" runat="server" size="28" />
+                                <%--                            <input name="" type="checkbox" value="" size="28">--%>
+                                <br>
+                                <br>
+                                <label>&nbsp;</label>
+                                <label>Mobiliado</label>
+                                <asp:CheckBox ID="chkFurnished" runat="server" size="28" />
+                                <%--                            <input name="" type="checkbox" value="" size="28">--%>
+                                <br>
+                                <br>
+                                <label>Detalhes</label>
+                                <asp:TextBox ID="txtDetail" runat="server" Style="width: 430px;" Height="116px" TextMode="MultiLine" CssClass="formstyle"></asp:TextBox>&nbsp;
+                                <asp:RegularExpressionValidator ID="revalDetail" runat="server" ErrorMessage="" ControlToValidate="txtDetail" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                            <%--                            <textarea name="phone2" cols="35" rows="3" id="Textarea1" onkeyup="checkNum(this)" style="width: 280px;"></textarea>--%>
-                        </div>
-                        <div style="width: 96%; float: left; border: 1px solid #ccc; border-radius: 10px; padding: 2%; margin-top: 10px;">
-                         <%--   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>--%>
-                                    <label>Nome</label>
-                                    <asp:TextBox ID="txtName" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RequiredFieldValidator ID="rvalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property">*</asp:RequiredFieldValidator>
-                                    <%--                            <input name="phone2" type="text" id="Text4" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                    <br>
-                                    <br>
-                                    <label>Empresa</label>
-                                    <asp:TextBox ID="txtBusiness" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revalBusiness" runat="server" ErrorMessage="" ControlToValidate="txtBusiness" ValidationGroup="property"></asp:RegularExpressionValidator>
+                                <%--                            <textarea name="phone2" cols="35" rows="3" id="Textarea1" onkeyup="checkNum(this)" style="width: 280px;"></textarea>--%>
+                            </div>
+                            <div style="width: 96%; float: left; border: 1px solid #ccc; border-radius: 10px; padding: 2%; margin-top: 10px;">
+                                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
+                                        <label>Email</label>
+                                        <asp:TextBox ID="txtEmail" runat="server" Style="width: 250px;" size="28" OnTextChanged="txtEmail_TextChanged" CausesValidation="false" AutoPostBack="True" CssClass="formstyle"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rvalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
-                                    <%--                            <input name="phone2" type="text" id="Text5" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                    <br>
-                                    <br>
-                                    <label>Email</label>
-                                    <asp:TextBox ID="txtEmail" runat="server" Style="width: 250px;" size="28" OnTextChanged="txtEmail_TextChanged" AutoPostBack="True" CssClass="formstyle"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RequiredFieldValidator ID="rvalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property">*</asp:RequiredFieldValidator>
-                                    <%--                            <input name="phone2" type="text" id="Text6" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                    <br>
-                                    <br>
-                                    <label>Telefone</label>
-                                    <asp:TextBox ID="txtPhone" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revalPhone" runat="server" ErrorMessage="" ControlToValidate="txtPhone" ValidationGroup="property"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="revalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property"></asp:RegularExpressionValidator>
+                                        <%--                            <input name="phone2" type="text" id="Text6" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
+                                        <br>
+                                        <br>
+                                        <label>Nome</label>
+                                        <asp:TextBox ID="txtName" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rvalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
-                                    <%--                            <input name="phone2" type="text" id="Text7" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                    <br>
-                                    <br>
-                                    <label>&nbsp;</label>
-                            <%--    </ContentTemplate>
-                            </asp:UpdatePanel>--%>
-                            <asp:Button ID="btnsubmit" runat="server" Text="Enviar imóvel" CssClass="buttonwe" OnClick="btnsubmit_Click" CausesValidation="true" ValidationGroup="property" />
-                            <%--                            <input name="submit" type="submit" value="" />--%>
-                        </div>
+                                        <asp:RegularExpressionValidator ID="revalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property"></asp:RegularExpressionValidator>
+                                        <%--                            <input name="phone2" type="text" id="Text4" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
+                                        <br>
+                                        <br>
+                                        <label>Empresa</label>
+                                        <asp:TextBox ID="txtBusiness" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
+                                        <asp:RegularExpressionValidator ID="revalBusiness" runat="server" ErrorMessage="" ControlToValidate="txtBusiness" ValidationGroup="property"></asp:RegularExpressionValidator>
+
+                                        <%--                            <input name="phone2" type="text" id="Text5" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
+                                        <br>
+                                        <br>
+
+                                        <label>Telefone</label>
+                                        <asp:TextBox ID="txtPhone" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
+                                        <asp:RegularExpressionValidator ID="revalPhone" runat="server" ErrorMessage="" ControlToValidate="txtPhone" ValidationGroup="property"></asp:RegularExpressionValidator>
+
+                                        <%--                            <input name="phone2" type="text" id="Text7" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
+                                        <br>
+                                        <br>
+                                        <label>&nbsp;</label>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                                <div class="green-butt">
+                                    <p>
+                                        <asp:Button ID="btnsubmit" runat="server" Text="Enviar imóvel" BackColor="Transparent" OnClick="btnsubmit_Click" CausesValidation="true" ValidationGroup="property" />
+                                    </p>
+                                </div>
+                                <%--                            <input name="submit" type="submit" value="" />--%>
+                            </div>
                     </form>
                 </div>
 

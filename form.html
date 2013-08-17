@@ -1,189 +1,195 @@
-﻿<!doctype html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Jibe Net</title>
-    <link href="style/default.css" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
-
-    <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
-    <script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js"></script>
-    <script language="javascript">
-        $(function () {
-            $('#form').jqTransform({ imgPath: 'jqtransformplugin/img/' });
-        });
-    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jibe Net</title>
+<link href="style/default.css" rel="stylesheet" type="text/css">
+<script src="js/tabcontent.js" type="text/javascript"></script>
+<link href="style/tabcontent.css" rel="stylesheet" type="text/css" />  
+<link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
+	<script type="text/javascript" src="jqtransformplugin/jquery.js" ></script>
+	<script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js" ></script>
+	<script language="javascript">
+		$(function(){
+			$('#form').jqTransform({imgPath:'jqtransformplugin/img/'});
+		});
+	</script>
 </head>
 
 <body class="innerpage">
-    <!-- Header Starts -->
-    <header>
-        <div id="header">
-            <div>
-
-                <a href="index.html">
-                    <img src="images/jibenet.png" alt="Jibenet" border="0" style="float: left;"></a>
-                <div style="width: 500px; float: left; padding-left: 1%; border-left: 1px solid #aaa; margin-left: 10px;">
-                    <form action="" method="post">
-                        <div style="width: 90%; float: left; height: 19px; margin-left: 20px;"><a href="#">
-                            <img src="images/escritoria-inner.png" alt="escritoria"></a><a href="#"><img src="images/loja-inner.png" alt="escritoria"></a></div>
-                        <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                            <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
-                        </div>
-
-                        <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
-                            <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
-                                <option>Alugar</option>
-                                <option>Option 1</option>
-                                <option>Option 1</option>
-                            </select>
-                        </div>
-
-
-                    </form>
-
-                </div>
-
-
-                <div class="right"><a href="#">
-                    <img src="images/entre.png" alt="Entre"></a> <a href="#">
-                        <img src="images/ajudar.png" alt="Ajudar"></a> <a href="form.html">
-                            <img src="images/listar.png" alt="Listar" border="0"></a></div>
-            </div>
+<!-- Header Starts -->
+<header>
+<div id="header">
+	<div class="header">
+        <div class="logo"> <a href="index.html"><img src="images/jibenet.png" width="175" height="64"></a>
         </div>
-    </header>
-    <!-- Header Ends -->
-
-
-    <!-- Section Starts -->
-    <section>
-        <div id="txtcontainer">
+        <div class="header-middle">
             <div>
-                <!-- Mid Text -->
-                <div style="background-color: #fff; width: 96%; float: left; border-radius: 10px; box-shadow: 2px 2px 4px #E9E9E9; padding: 2%;">
-
-                    <div style="width: 100%; float: left; text-align: center;">
-                        <h3>Aumento Leads a Sua Propriedade Hoje.<br>
-                            Publicar a Centenas de Inquilinos Qualificados</h3>
-
-                        <h3 style="font-size: 20px; line-height: 50px; margin-top: 20px; border-top: 1px solid #ccc;">Promocao por Tempo Limitado: Lista de Graca!</h3>
-                    </div>
-
-                    <form action="" name="" method="post" onsubmit="return check()" id="form">
-
-                        <div style="width: 96%; float: left; border: 1px solid #ccc; border-radius: 10px; padding: 2%;">
-                            <label>Endereço</label>
-                            <input name="fname" type="text" id="fname" style="width: 250px;" size="28" />
-                            <br />
-                            <br />
-                            <label>CEP</label>
-                            <input name="lname" type="text" id="lname" style="width: 250px;" size="28" placeholder="00000 - 000" />
-                            <br />
-                            <br />
-                            <label>Propriedade</label>
-                            <select name="subject2" id="subject2" style="width: 260px;">
-                                <option value="escritoria">escritoria</option>
-                                <option value="loja">loja</option>
-                            </select>
-                            <br />
-                            <br />
-                            <label>Disponivel a Partir</label>
-                            <input name="phone" type="text" id="phone" onkeyup="checkNum(this)" style="width: 250px;" size="28" placeholder="dd / mm / yyyy" />
-                            <br />
-                            <br />
-                            <label>Area</label>
-                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />
-                            m2
-                            <br />
-                            <br />
-                            <label>Rate</label>
-                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />
-                            / mês
-                            <br />
-                            <br />
-                            <label>Fotos</label>
-                            <input name="" type="file">
-                            <br>
-                            <br>
-                            <label>Recursos</label>
-                            <label>Lugarer de Estacionamento</label>
-                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 180px;" size="16" />
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Banheiros</label>
-                            <input name="phone3" type="text" id="phone3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Cozinha </label>
-                            <input name="phone3" type="text" id="phone3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Area de Recepcao</label>
-                            <input name="" type="checkbox" value="" size="28">
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <label>Mobiliado</label>
-                            <input name="" type="checkbox" value="" size="28">
-                            <br>
-                            <br>
-                            <label>Detalhes</label>
-                            <textarea name="phone2" cols="35" rows="3" id="phone2" onkeyup="checkNum(this)" style="width: 280px;"></textarea>
-                        </div>
-
-                        <div style="width: 96%; float: left; border: 1px solid #ccc; border-radius: 10px; padding: 2%; margin-top: 10px;">
-
-                            <label>Nome</label>
-                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />
-                            <br>
-                            <br>
-                            <label>Empresa</label>
-                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />
-                            <br>
-                            <br>
-                            <label>Email</label>
-                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />
-                            <br>
-                            <br>
-                            <label>Telefone</label>
-                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />
-                            <br>
-                            <br>
-                            <label>&nbsp;</label>
-                            <input name="submit" type="submit" value="enviar imóvel" />
-                    </form>
-                </div>
-
-
-
+            <ul class="tabs" persist="true">
+                <li><a href="#" rel="view1">Escritoria</a></li>
+                <li><a href="#" rel="view2">Loja</a></li>
+            </ul>
+         <div class="tabcontents">
+            <div id="view1" class="tabcontent">
+             <form action="" method="post">
+              <div style="width:392px; float:left; background-image:url(images/searchbg-inner.png); background-repeat:no-repeat; height:26px; padding:4px;">
+              <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:2px 4px; width:88%; margin-top:2px; border:0px; background:none;">  </div>
+            
+            <div class="ddmenu-inner" style="width:88px; float:left; margin-left:4px;">
+              <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
+                    <option>Alugar</option>
+                    <option>Option 1</option>
+                     <option>Option 1</option>
+                 </select>
+             </div>
+           </form>
             </div>
-        </div>
-    </section>
-
-    <!-- Section Ends -->
-
-
-    <!-- Footer Starts -->
-    <footer>
-        <div id="footerbg">&nbsp;</div>
-        <div id="footer">
-            <div>
-
-                <div class="right"><a href="#">
-                    <img src="images/fb.png" alt="Facebook"></a> <a href="#">
-                        <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a></div>
-                <a href="#">Sobre</a> |  <a href="#">FAQ</a> |  <a href="#">Imprensa</a> |  <a href="#">Blog</a> |  <a href="#">Mobile</a> |  <a href="#">Contato.</a><br>
-                © JibeNet 2013 Termos de Uso
-
-
+            <div id="view2" class="tabcontent">
+            <form action="" method="post">
+              <div style="width:392px; float:left; background-image:url(images/searchbg-inner.png); background-repeat:no-repeat; height:26px; padding:4px;">
+              <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:2px 4px; width:88%; margin-top:2px; border:0px; background:none;">  </div>
+            
+            <div class="ddmenu-inner" style="width:88px; float:left; margin-left:4px;">
+              <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
+                    <option>Alugar</option>
+                    <option>Option 1</option>
+                     <option>Option 1</option>
+                 </select>
+             </div>
+           </form>                                    
             </div>
+       </div>
+      </div>
         </div>
-    </footer>
-    <!-- Footer Ends -->
+       <div class="right">
+        <span>
+            <select name="select" id="select">
+              <option value="Entre">Entre</option>
+              <option value="Entre">Option 1</option>
+              <option value="Entre">Option 2</option>
+              <option value="Entre">Option 3</option>
+            </select>
+        </span>
+        <span>
+            <select name="select" id="select">
+              <option value="Entre">Ajudar</option>
+              <option value="Entre">Option 1</option>
+              <option value="Entre">Option 2</option>
+              <option value="Entre">Option 3</option>
+            </select>
+        </span>
+        <div class="green-tab">
+            <p><a href="">Listar Sua Properiedade</a></p>
+        </div>
+        </div>
+	</div>
+</div>
+</header>
+<!-- Header Ends -->
+
+
+<!-- Section Starts -->
+<section>
+<div id="txtcontainer"><div>
+  <!-- Mid Text -->
+<div style="background-color:#fff; width:96%; float:left; border-radius:10px; box-shadow:2px 2px 4px #E9E9E9; padding:2%;">
+
+<div style="width:100%; float:left; text-align:center;">
+<h3>Aumento Leads a Sua Propriedade Hoje.<br>
+Publicar a Centenas de Inquilinos Qualificados</h3>
+
+<h3 style="font-size:20px; line-height:50px; margin-top:20px; border-top:1px solid #ccc;">Promocao por Tempo Limitado: Lista de Graca!</h3>
+</div>
+
+<form action="" name="" method="post" onSubmit="return check()" id="form">
+
+<div style="width:96%; float:left; border:1px solid #ccc; border-radius:10px; padding:2%;">
+<label>Endereço</label> 
+<input name="fname" type="text" id="fname" style="width:250px;" size="28"  />
+<br /><br />
+<label>CEP</label> 
+<input name="lname" type="text" id="lname" style="width:250px;" size="28" placeholder="00000 - 000"  />
+<br /><br />
+<label>Propriedade</label>
+<select name="subject2" id="subject2" style="width:260px;" >
+  <option value="escritoria">escritoria</option>
+  <option value="loja">loja</option>
+</select>
+<br /><br />
+<label>Disponivel a Partir</label> 
+<input name="phone" type="text" id="phone" onKeyUp="checkNum(this)" style="width:250px;" size="28" placeholder="dd / mm / yyyy"  />
+<br /><br />
+<label>Area</label>
+<input name="phone2" type="text" id="phone2" onKeyUp="checkNum(this)" style="width:250px;" size="28"/> m2
+<br /><br />
+<label>Rate</label> 
+<input name="phone2" type="text" id="phone2" onKeyUp="checkNum(this)" style="width:250px;" size="28"/> 
+/ mês
+<br />
+<br />
+<label>Fotos</label> 
+<input name="" type="file">
+<br><br>
+<label>Recursos</label> 
+<label>Lugarer de Estacionamento</label> <input name="phone2" type="text" id="phone2" onKeyUp="checkNum(this)" style="width:180px;" size="16"/>
+<br><br>
+<label>&nbsp;</label> 
+<label>Banheiros</label> <input name="phone3" type="text" id="phone3" onKeyUp="checkNum(this)" style="width:180px;" size="16"/>
+<br><br>
+<label>&nbsp;</label> 
+<label>Cozinha </label> <input name="phone3" type="text" id="phone3" onKeyUp="checkNum(this)" style="width:180px;" size="16"/>
+<br><br>
+<label>&nbsp;</label> 
+<label>Area de Recepcao</label> <input name="" type="checkbox" value="" size="28">
+<br><br>
+<label>&nbsp;</label> 
+<label>Mobiliado</label> 
+<input name="" type="checkbox" value="" size="28">
+<br><br>
+<label>Detalhes</label>
+<textarea name="phone2" cols="35" rows="3" id="phone2" onKeyUp="checkNum(this)"style="width:280px;"></textarea>
+</div>
+
+<div style="width:96%; float:left; border:1px solid #ccc; border-radius:10px; padding:2%; margin-top:10px;">
+
+<label>Nome</label> 
+<input name="phone2" type="text" id="phone2" onKeyUp="checkNum(this)" style="width:250px;" size="28"/>
+<br><br>
+<label>Empresa</label> 
+<input name="phone2" type="text" id="phone2" onKeyUp="checkNum(this)" style="width:250px;" size="28"/>
+<br><br>
+<label>Email</label> 
+<input name="phone2" type="text" id="phone2" onKeyUp="checkNum(this)" style="width:250px;" size="28"/>
+<br><br>
+<label>Telefone</label> 
+<input name="phone2" type="text" id="phone2" onKeyUp="checkNum(this)" style="width:250px;" size="28"/>
+<br><br>
+<label>&nbsp;</label> <input name="submit" type="submit" value="enviar imóvel"/>
+</form>
+</div>
+
+
+
+</div></div>
+</section>
+
+<!-- Section Ends -->
+
+
+<!-- Footer Starts -->
+<footer>
+<div id="footerbg">&nbsp;</div>
+<div id="footer">
+  <div>
+  
+<div class="right"><a href="#"><img src="images/fb.png" alt="Facebook"></a> <a href="#"><img src="images/twitt.png" width="30" height="30" alt="Twitter"></a></div>
+<a href="#">Sobre</a> |  <a href="#">FAQ</a> |  <a href="#">Imprensa</a> |  <a href="#">Blog</a> |  <a href="#">Mobile</a> |  <a href="#">Contato.</a><br>
+© JibeNet 2013 Termos de Uso
+
+
+</div></div>
+</footer>
+<!-- Footer Ends -->
 
 
 

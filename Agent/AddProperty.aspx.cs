@@ -78,8 +78,7 @@ public partial class Agent_AddProperty : System.Web.UI.Page
             oPropertyBO.address = txtAddress.Text;
             oPropertyBO.zipCode = txtZipCode.Text;
             oPropertyBO.size = int.Parse(txtArea.Text);
-            oPropertyBO.rate = int.Parse(txtRate.Text);
-            oPropertyBO.totalImages = 0;
+            oPropertyBO.rate = int.Parse(txtRate.Text);         
             oPropertyBO.parkings = int.Parse(txtParkings.Text);
             oPropertyBO.toilets = int.Parse(txtToilets.Text);
             oPropertyBO.kitchens = int.Parse(txtKitchens.Text);
@@ -88,6 +87,14 @@ public partial class Agent_AddProperty : System.Web.UI.Page
             if (Session["filename"] != null && Session["filename"].ToString().Length != 0)
             {
                 images = Session["filename"].ToString().Substring(0, Session["filename"].ToString().Length - 1);
+                oPropertyImageBO.image = images;
+                string[] imageCount = images.Split(',');
+                oPropertyBO.totalImages = imageCount.Length;   
+            }
+            else
+            {
+                oPropertyBO.totalImages = 0;
+                oPropertyImageBO.image = images;
             }
             oPropertyImageBO.image = images;
             oAgentBO.name = txtName.Text;
@@ -127,7 +134,10 @@ public partial class Agent_AddProperty : System.Web.UI.Page
                 txtPhone.Enabled = false;
             }
             else 
-            {              
+            {
+                txtName.Text = string.Empty;
+                txtBusiness.Text = string.Empty;
+                txtPhone.Text = string.Empty;
                 txtName.Enabled = true;
                 txtBusiness.Enabled = true;
                 txtPhone.Enabled = true;

@@ -7,23 +7,23 @@ using System.Text;
 /// </summary>
 public class ValidationMessages
 {
-    public static readonly string Url = "* Please enter a valid URL.<br>Valid " +
-           "characters are all alphanumeric characters and .?" +
-           "&_=-$<br> example: home.aspx?id=5&name=$my_name";
-    public static readonly string Email = "* Please enter a valid Email.";
+    public static readonly string Url = "* Por favor insira um URL válido. <br> Valid " +
+            "personagens são todos os caracteres alfanuméricos e.?" +
+            "& _ = - $ <br> exemplo:? home.aspx id = 5 & name = $ my_name";
+    public static readonly string Email = "* Por favor insira um e-mail válido.";
     public static readonly string Required = "*";
     public static readonly string Date =
-       "* Please enter a valid date in dd-MM-yyyy format.";
+       "* Por favor insira uma data válida no formato dd-MM-yyyy.";
     public static readonly string Time =
-       "* Please enter a valid time in hh:mm:ss am format.";
-    public static readonly string Digit = "* Must be a valid number.";    
-    public static readonly string NonNegative = "* Must be a non-negative number.";
-    public static readonly string ZipCode = "* Please enter a valid zip code in ##### or #####-#### format.";
-    public static readonly string String = "* Please enter a characters and space.";
+       "* Por favor insira um tempo válido em hh: mm: ss am.";
+    public static readonly string Digit = "* Deve ser um número válido.";
+    public static readonly string NonNegative = "* Deve ser um número não-negativo.";
+    public static readonly string ZipCode = "* Por favor insira um CEP válido em # # # # # ou # # # # # - # # # # formato.";
+    public static readonly string String = "* Por favor insira um caracteres e espaço.";
 
     public static string MaxLength(int len)
     {
-        return "* Maximum " + len.ToString() +
-               " characters are allowed.";
+        return "* máximo " + len.ToString() +
+               " caracteres são permitidos.";
     }
 }
