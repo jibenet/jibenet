@@ -167,7 +167,7 @@
                             </asp:CalendarExtender>
                             <asp:RequiredFieldValidator ID="rvalDate" runat="server" ErrorMessage="" ControlToValidate="txtAvailableDate" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
-                            (dd-MM-yyyy)
+
                             <asp:RegularExpressionValidator ID="revalDate" runat="server" ErrorMessage="" ControlToValidate="txtAvailableDate" ValidationGroup="property"></asp:RegularExpressionValidator>
                             <%--                            <input name="phone" type="text" id="phone" onkeyup="checkNum(this)" style="width: 250px;" size="28" placeholder="dd / mm / yyyy" />--%>
                             <br />
