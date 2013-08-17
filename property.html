@@ -24,80 +24,38 @@ animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is
 }
 animatedcollapse.init()
 </script>
-
-<script src="js/tabcontent.js" type="text/javascript"></script>
-<link href="style/tabcontent.css" rel="stylesheet" type="text/css" />  
+  
   
 </head>
 
 <body class="innerpage">
 <!-- Header Starts -->
 <header>
-<div id="header">
-	<div class="header">
-        <div class="logo"> <a href="index.html"><img src="images/jibenet.png" width="175" height="64"></a>
-        </div>
-        <div class="header-middle">
-            <div>
-            <ul class="tabs" persist="true">
-                <li><a href="#" rel="view1">Escritoria</a></li>
-                <li><a href="#" rel="view2">Loja</a></li>
-            </ul>
-         <div class="tabcontents">
-            <div id="view1" class="tabcontent">
-             <form action="" method="post">
-              <div style="width:392px; float:left; background-image:url(images/searchbg-inner.png); background-repeat:no-repeat; height:26px; padding:4px;">
-              <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:2px 4px; width:88%; margin-top:2px; border:0px; background:none;">  </div>
-            
-            <div class="ddmenu-inner" style="width:88px; float:left; margin-left:4px;">
-              <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
-                    <option>Alugar</option>
-                    <option>Option 1</option>
-                     <option>Option 1</option>
-                 </select>
-             </div>
-           </form>
-            </div>
-            <div id="view2" class="tabcontent">
-            <form action="" method="post">
-              <div style="width:392px; float:left; background-image:url(images/searchbg-inner.png); background-repeat:no-repeat; height:26px; padding:4px;">
-              <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:2px 4px; width:88%; margin-top:2px; border:0px; background:none;">  </div>
-            
-            <div class="ddmenu-inner" style="width:88px; float:left; margin-left:4px;">
-              <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
-                    <option>Alugar</option>
-                    <option>Option 1</option>
-                     <option>Option 1</option>
-                 </select>
-             </div>
-           </form>                                    
-            </div>
-       </div>
-      </div>
-        </div>
-       <div class="right">
-        <span>
-            <select name="select" id="select">
-              <option value="Entre">Entre</option>
-              <option value="Entre">Option 1</option>
-              <option value="Entre">Option 2</option>
-              <option value="Entre">Option 3</option>
-            </select>
-        </span>
-        <span>
-            <select name="select" id="select">
-              <option value="Entre">Ajudar</option>
-              <option value="Entre">Option 1</option>
-              <option value="Entre">Option 2</option>
-              <option value="Entre">Option 3</option>
-            </select>
-        </span>
-        <div class="green-tab">
-            <p><a href="">Listar Sua Properiedade</a></p>
-        </div>
-        </div>
-	</div>
+<div id="header"><div>
+
+  <a href="index.html"><img src="images/jibenet.png" alt="Jibenet" border="0" style="float:left;"></a>
+<div style="width:500px; float:left; padding-left:1%; border-left:1px solid #aaa; margin-left:10px;">
+<form action="" method="post">
+  <div style="width:90%; float:left; height:19px; margin-left:20px;"><a href="#"><img src="images/escritoria-inner.png" alt="escritoria"></a><a href="#"><img src="images/loja-inner.png" alt="escritoria"></a></div>
+  <div style="width:392px; float:left; background-image:url(images/searchbg-inner.png); background-repeat:no-repeat; height:26px; padding:4px;">
+  <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:2px 4px; width:88%; margin-top:2px; border:0px; background:none;">  </div>
+
+<div class="ddmenu-inner" style="width:88px; float:left; margin-left:4px;">
+  <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
+        <option>Alugar</option>
+        <option>Option 1</option>
+         <option>Option 1</option>
+     </select>
+ </div>
+
+
+</form>
+
 </div>
+
+
+<div class="right"><a href="#"><img src="images/entre.png" alt="Entre"></a> <a href="#"><img src="images/ajudar.png" alt="Ajudar"></a> <a href="form.html"><img src="images/listar.png" alt="Listar" border="0"></a></div>
+</div></div>
 </header>
 <!-- Header Ends -->
 
@@ -117,15 +75,12 @@ animatedcollapse.init()
 
 <!-- Mid Text -->
 <div style="background-color:#fff; width:96%; margin-bottom:3%; float:left; border-radius:10px; box-shadow:2px 2px 4px #E9E9E9; padding:2%;">
+
+
 <div style="width:60%; float:left;">
-<div>
-            <ul class="tabs tabs_new" persist="true">
-                <li><a class="new_selected" href="#" rel="gallery">Image</a></li>
-                <li><a class="new_selected" href="#" rel="map">Map View</a></li>
-            </ul>
-         <div class="tabcontents">
-            <div id="gallery" class="tabcontent">
-            <div id="container map" class="cf">
+
+<img src="images/images.jpg" width="110" height="32" alt="Images"> <img src="images/mapview.jpg" alt="Map View">
+<div id="container" class="cf">
 
 	<div id="main" role="main">
       <section class="slider">
@@ -165,15 +120,6 @@ animatedcollapse.init()
     </div>
   
   </div>
-            </div>
-            <div id="map" class="tabcontent">
-            	<div class="galley_map">
-             		 <iframe width="100%" height="505" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Rua+Frei+Galv%C3%A3o,+135,+Sorocaba+-+S%C3%A3o+Paulo,+Brazil&amp;aq=0&amp;oq=Rua+Frei+Galvao,+135&amp;sll=37.0625,-95.677068&amp;sspn=36.452734,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Frei+Galv%C3%A3o,+135+-+Vila+Santana,+Sorocaba+-+S%C3%A3o+Paulo,+18080-070,+Brazil&amp;ll=-23.486768,-47.45305&amp;spn=0.010312,0.021136&amp;t=m&amp;z=14&amp;output=embed"></iframe>
-              </div>
-            </div>
-       </div>
-      </div>
-
   
   </div>
   
@@ -286,7 +232,7 @@ Price</p>
       $('#carousel').flexslider({
         animation: "slide",
         controlNav: false,
-        animationLoop: true,
+        animationLoop: false,
         slideshow: false,
         itemWidth: 210,
         itemMargin: 5,
@@ -296,7 +242,7 @@ Price</p>
       $('#slider').flexslider({
         animation: "slide",
         controlNav: false,
-        animationLoop: true,
+        animationLoop: false,
         slideshow: false,
         sync: "#carousel",
         start: function(slider){

@@ -42,6 +42,7 @@ public class PropertyDAL
             }
             cmd.Parameters.AddWithValue("@description", oPropertyBO.description);
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            cmd.Parameters.AddWithValue("@zipCode", oPropertyBO.zipCode);
             cmd.Parameters.AddWithValue("@size", oPropertyBO.size);
             cmd.Parameters.AddWithValue("@rate", oPropertyBO.rate);
             cmd.Parameters.AddWithValue("@totalImages", oPropertyBO.totalImages);

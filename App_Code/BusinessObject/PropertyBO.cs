@@ -35,6 +35,11 @@ public class PropertyBO
         get;
         set;
     }
+    public string zipCode
+    {
+        get;
+        set;
+    }
     public long size
     {
         get;

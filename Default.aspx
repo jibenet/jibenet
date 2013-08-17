@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,7 +33,8 @@
         }
     </script>
     <style>
-        .pac-container:after {
+        .pac-container:after
+        {
             content: none !important;
         }
     </style>
@@ -133,11 +135,10 @@
         <div id="footerbg">&nbsp;</div>
         <div id="footer">
             <div>
-                <div class="right">
-                    <a href="#">
-                        <img src="images/fb.png" alt="Facebook"></a> <a href="#">
-                            <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a>
-                </div>
+
+                <div class="right"><a href="#">
+                    <img src="images/fb.png" alt="Facebook"></a> <a href="#">
+                        <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a></div>
                 <a href="#">Sobre</a> |  <a href="#">FAQ</a> |  <a href="#">Imprensa</a> |  <a href="#">Blog</a> |  <a href="#">Mobile</a> |  <a href="#">Contato.</a><br>
                 © JibeNet 2013 Termos de Uso
 
