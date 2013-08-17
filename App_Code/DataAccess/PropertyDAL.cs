@@ -71,5 +71,33 @@ public class PropertyDAL
         {
             con.Close();
         }
+    }
+    public DataTable FindProperty(PropertyBO oPropertyBO)
+    {
+        try
+        {
+            cmd = new SqlCommand("SearchProperty", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            SqlParameter message = cmd.Parameters.Add("@message", SqlDbType.VarChar, 500);
+            message.Direction = ParameterDirection.Output;
+
+            dad = new SqlDataAdapter(cmd);
+            dt = new DataTable();
+            dad.Fill(dt);
+            return dt;
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            con.Close();
+        }
     }    
 }

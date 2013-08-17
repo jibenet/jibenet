@@ -217,7 +217,8 @@
                                 <br>
                                 <label>&nbsp;</label>
                                 <label>Banheiros</label>
-                                <asp:TextBox ID="txtToilets" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtToilets" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revalToilets" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property"></asp:RegularExpressionValidator>
 
 
@@ -226,7 +227,8 @@
                                 <br>
                                 <label>&nbsp;</label>
                                 <label>Cozinha </label>
-                                <asp:TextBox ID="txtKitchens" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtKitchens" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revalKitchen" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                                 <%--                            <input name="phone3" type="text" id="Text3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
