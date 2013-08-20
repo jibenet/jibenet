@@ -47,10 +47,25 @@
 
                 <img src="images/jibenet.png" alt="Jibenet" style="float: left;">
                 <div class="right">
-                    <a href="#">
-                        <img src="images/entre.png" alt="Entre"></a> <a href="#">
-                            <img src="images/ajudar.png" alt="Ajudar"></a> <a href="#">
-                                <img src="images/listar.png" alt="Listar"></a>
+                    <span>
+                        <select name="select" id="select">
+                            <option value="Entre">Entre</option>
+                            <option value="Entre">Option 1</option>
+                            <option value="Entre">Option 2</option>
+                            <option value="Entre">Option 3</option>
+                        </select>
+                    </span>
+                    <span>
+                        <select name="select" id="select2">
+                            <option value="Entre">Ajudar</option>
+                            <option value="Entre">Option 1</option>
+                            <option value="Entre">Option 2</option>
+                            <option value="Entre">Option 3</option>
+                        </select>
+                    </span>
+                    <div class="green-tab">
+                        <p><a href="ListProperty.aspx">Listar Sua Properiedade</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,14 +82,14 @@
                         <span>Para Imovies Comercias</span></h1>
                     <br>
                     <br>
-                    <form style="margin: 0px; padding: 0px; float: left;" runat="server" >
+                    <form style="margin: 0px; padding: 0px; float: left;" runat="server">
                         <div style="width: 100%; float: left; margin-left: 20px; height: 31px;">
                             <a href="#">
                                 <img src="images/escritoria.png" alt="escritoria"></a><a href="#"><img src="images/loja.png" alt="escritoria"></a>
                         </div>
                         <div style="width: 612px; float: left; background-image: url(images/searchbg.png); background-repeat: no-repeat; height: 44px; padding: 4px;">
-                               <asp:Button ID="btnSearch" runat="server" Text="" CssClass="searchbtn-inner" OnClick="btnSearch_Click" />
-                                        <asp:TextBox ID="txtSearch" runat="server" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;"></asp:TextBox>                        
+                            <asp:Button ID="btnSearch" runat="server" Text="" CssClass="searchbtn-inner" OnClick="btnSearch_Click" />
+                            <asp:TextBox ID="txtSearch" runat="server" Style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;"></asp:TextBox>
                         </div>
                         <div class="ddmenu" style="width: 128px; float: right;">
                             <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
@@ -136,9 +151,11 @@
         <div id="footer">
             <div>
 
-                <div class="right"><a href="#">
-                    <img src="images/fb.png" alt="Facebook"></a> <a href="#">
-                        <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a></div>
+                <div class="right">
+                    <a href="#">
+                        <img src="images/fb.png" alt="Facebook"></a> <a href="#">
+                            <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a>
+                </div>
                 <a href="#">Sobre</a> |  <a href="#">FAQ</a> |  <a href="#">Imprensa</a> |  <a href="#">Blog</a> |  <a href="#">Mobile</a> |  <a href="#">Contato.</a><br>
                 © JibeNet 2013 Termos de Uso
 

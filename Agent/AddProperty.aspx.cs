@@ -71,11 +71,14 @@ public partial class Agent_AddProperty : System.Web.UI.Page
     protected void btnsubmit_Click(object sender, EventArgs e)
     {
         try
-        {
+        {           
             string images = string.Empty;
                        
             oPropertyBO.description = txtDetail.Text;
             oPropertyBO.address = txtAddress.Text;
+            string[] latLng = txtLocation.Text.Split(',');
+            oPropertyBO.latitude = latLng[0];
+            oPropertyBO.longitude = latLng[1]; 
             oPropertyBO.zipCode = txtZipCode.Text;
             oPropertyBO.size = int.Parse(txtArea.Text);
             oPropertyBO.rate = int.Parse(txtRate.Text);         
@@ -143,6 +146,7 @@ public partial class Agent_AddProperty : System.Web.UI.Page
                 txtBusiness.Enabled = true;
                 txtPhone.Enabled = true;
             }
+            txtName.Focus(); 
         }
         catch (Exception ex)
         {
@@ -175,5 +179,5 @@ public partial class Agent_AddProperty : System.Web.UI.Page
         {
             Response.Write(ex.Message.ToString());
         }
-    }
+    }   
 }

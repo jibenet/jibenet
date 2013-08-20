@@ -10,7 +10,7 @@
     <script src="js/tabcontent.js" type="text/javascript"></script>
     <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
     <%--GOOGLE API--%>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places,geometry" type="text/javascript"></script>
     <script type="text/javascript">
         function initialize() {
             var input = document.getElementById('txtSearch');
@@ -34,9 +34,127 @@
             var autocomplete = new google.maps.places.Autocomplete(input, options);
         }
     </script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="JS/Map.js"></script>
+    <script type="text/javascript" src="JS/Marker.js"></script>
+    <script type="text/javascript">
+
+        var markersArray = [];
+
+    </script>
+    <script type="text/javascript">
+        function DefaultList(list) {
+            try {
+                if (list != null) {
+                    var oJSON = eval("(" + list + ")");
+                    var oHTMLTABLE = document.createElement("table");
+                    oHTMLTABLE.border = 0;
+                    oHTMLTABLE.width = "100%";
+                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length;
+                    markersArray = new Array(oJSON.Head.length);
+                    for (var i = 0; i < oJSON.Head.length; i++) {
+                        var oTR = oHTMLTABLE.insertRow(i);
+                        var oTD0 = oTR.insertCell(0);
+                        var myLatLng = new google.maps.LatLng(oJSON.Head[i].latitude, oJSON.Head[i].longitude);
+                        map.setCenter(myLatLng);
+
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: myLatLng
+                        });
+                        marker.setMap(map);
+                        oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
+                                            '<img id="ibtnProperty" src="uploads/' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" />' +
+                                                '<div style="width: 40%;" class="proptxt">' +
+                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;' + oJSON.Head[i].rate + ' &#36;' + '</h4>' +
+                                                        '</br>' +
+                                                                +oJSON.Head[i].description +
+                                                '</div>' +
+                                            '</div>';
+                        while (document.getElementById('divPropertyList').hasChildNodes()) {
+                            document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
+                        }
+                    }
+                    document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
+                }
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+        function BoundList(list) {
+            try {
+                if (list != null) {
+                    var oJSON = eval("(" + list + ")");
+                    var oHTMLTABLE = document.createElement("table");
+                    oHTMLTABLE.border = 0;
+                    oHTMLTABLE.width = "100%";
+                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length;
+                    markersArray = new Array(oJSON.Head.length);
+                    for (var i = 0; i < oJSON.Head.length; i++) {
+                        var oTR = oHTMLTABLE.insertRow(i);
+                        var oTD0 = oTR.insertCell(0);
+                        var myLatLng = new google.maps.LatLng(oJSON.Head[i].latitude, oJSON.Head[i].longitude);
+
+                        if (map.getBounds().contains(myLatLng)) {
+                            //code for showing your object, associated with markers[i]
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: myLatLng
+                            });
+                            marker.setMap(map);
+                            oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
+                                                '<img id="ibtnProperty" src="uploads/' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /> <div style="width: 40%;" class="proptxt">' +
+                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;' + oJSON.Head[i].rate + ' &#36;' + '</h4>' +
+                                                        '</br>' +
+                                                                +oJSON.Head[i].description +
+                                                '</div>' +
+                                                '</div>';
+                        }
+                        else {
+
+                        }
+                        while (document.getElementById('divPropertyList').hasChildNodes()) {
+                            document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
+                        }
+                    }
+                    document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
+                }
+                else {
+                    while (document.getElementById('divPropertyList').hasChildNodes()) {
+                        document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
+                    }
+                }
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+    </script>
+
+    <%--SLIDER--%>
+    <link rel="stylesheet" type="text/css" href="jquery-ui.css" />
+    <style>
+        #area-range
+        {
+            width: 200px;
+        }
+
+        #rate-range
+        {
+            width: 200px;
+        }
+    </style>
+
+
 </head>
-<body class="innerpage">
+<body class="innerpage" onload="initialize()">
     <form id="Form1" runat="server" method="post">
+        <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
+            <Services>
+                <asp:ServiceReference Path="../WebService.asmx" />
+            </Services>
+        </asp:ScriptManager>
         <!-- Header Starts -->
         <header>
             <div id="header">
@@ -69,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div id="view2" class="tabcontent">
-
+                                    <input id="Text1" type="text" />
                                     <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                         <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
                                     </div>
@@ -90,21 +208,17 @@
                         <span>
                             <select name="select" id="select">
                                 <option value="Entre">Entre</option>
-                                <option value="Entre">Option 1</option>
-                                <option value="Entre">Option 2</option>
-                                <option value="Entre">Option 3</option>
+
                             </select>
                         </span>
                         <span>
                             <select name="select" id="select2">
                                 <option value="Entre">Ajudar</option>
-                                <option value="Entre">Option 1</option>
-                                <option value="Entre">Option 2</option>
-                                <option value="Entre">Option 3</option>
+
                             </select>
                         </span>
                         <div class="green-tab">
-                            <p><a href="">Listar Sua Properiedade</a></p>
+                            <p><a href="ListProperty.aspx">Listar Sua Properiedade</a></p>
                         </div>
                     </div>
                 </div>
@@ -122,33 +236,90 @@
 
                     <!-- Left Div -->
                     <div style="float: left; width: 20%;" id="leftdiv">
-                        <iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Rua+Frei+Galv%C3%A3o,+135,+Sorocaba+-+S%C3%A3o+Paulo,+Brazil&amp;aq=0&amp;oq=Rua+Frei+Galvao,+135&amp;sll=37.0625,-95.677068&amp;sspn=36.452734,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Frei+Galv%C3%A3o,+135+-+Vila+Santana,+Sorocaba+-+S%C3%A3o+Paulo,+18080-070,+Brazil&amp;ll=-23.486768,-47.45305&amp;spn=0.010312,0.021136&amp;t=m&amp;z=14&amp;output=embed"></iframe>
+                        <div id="map_canvas" style="width: 100%; height: 200px;">
+                        </div>
                         <br />
 
-                        <h3>Area</h3>
-                        <div style="width: 90%; padding: 0px 10px;">
-                            <img src="images/area.jpg" width="217" height="28" alt="Area"><br>
-                            0 sqft <span style="padding-left: 55%">50,000 sqft</span>
-                        </div>
-                        <h3>Rate</h3>
-                        <div style="width: 90%; padding: 0px 10px;">
-                            <img src="images/area.jpg" width="217" height="28" alt="Area"><br>
-                            0 sqft <span style="padding-left: 55%">50,000 sqft</span>
-                        </div>
+                        <h3>área</h3>
 
+                        <div style="padding-left: 20px;">
+                            <div id="area-range"></div>
+                            <span id="startArea">0</span>m<sup>2</sup><span id="endArea" style="padding-left: 60%">50000</span>m<sup>2</sup>
+                        </div>
+                        <h3>taxa</h3>
+                        <div style="padding-left: 20px;">
+                            <div id="rate-range"></div>
+                            <span id="startRate">0</span>$<span id="endRate" style="padding-left: 70%">100000</span>$       
+                        </div>
+                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+                        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+                        <script type="text/javascript">
+                            $("#area-range").slider({
+                                range: true,
+                                min: 0,
+                                max: 50000,
+                                values: [0, 50000],
+                                slide: slideArea,
+                                stop: slideStop
+                            });
+                            function slideArea(event, ui) {
+                                var val0 = $("#area-range").slider("values", 0),
+                                    val1 = $("#area-range").slider("values", 1),
+                                    startArea = val0;
+                                endArea = val1;
+                                $("#startArea").text(startArea);
+                                $("#endArea").text(endArea);
+                            }
+                            function slideStop(event, ui) {
+                                var address = document.getElementById("txtSearch").value;
+                                var startArea = document.getElementById("startArea").innerHTML;
+                                var startRate = document.getElementById("startRate").innerHTML;
+                                var endArea = document.getElementById("endArea").innerHTML;
+                                var endRate = document.getElementById("endRate").innerHTML;
+                                WebService.PropertyListI(address, startArea, startRate, endArea, endRate, BoundList);
+                            }
+                            slideArea();
+                        </script>
+                        <script type="text/javascript">
+                            $("#rate-range").slider({
+                                range: true,
+                                min: 0,
+                                max: 100000,
+                                values: [0, 100000],
+                                slide: slideRate,
+                                stop: slideStop
+                            });
+                            function slideRate(event, ui) {
+                                var val0 = $("#rate-range").slider("values", 0),
+                                    val1 = $("#rate-range").slider("values", 1),
+                                    startRate = val0;
+                                endRate = val1;
+                                $("#startRate").text(startRate);
+                                $("#endRate").text(endRate);
+                            }
+                            function slideStop(event, ui) {
+                                var address = document.getElementById("txtSearch").value;
+                                var startArea = document.getElementById("startArea").innerHTML;
+                                var startRate = document.getElementById("startRate").innerHTML;
+                                var endArea = document.getElementById("endArea").innerHTML;
+                                var endRate = document.getElementById("endRate").innerHTML;
+                                WebService.PropertyListI(address, startArea, startRate, endArea, endRate, BoundList);
+                            }
+                            slideRate();
+                        </script>
 
-                        <h3>Filter By</h3>
+                        <h3>Filtrar por cidade</h3>
 
                         <div style="width: 90%; padding: 0px 10px;">
                             <form action="" method="get">
                                 <input name="" type="checkbox" value="">
-                                <label style="padding-left: 10px;">Bairro</label><br>
+                                <label style="padding-left: 10px;">Bairro Sombra</label><br>
                                 <input name="" type="checkbox" value="">
-                                <label style="padding-left: 10px;">Itain Bibi</label><br>
+                                <label style="padding-left: 10px;">São Paulo</label><br>
                                 <input name="" type="checkbox" value="">
-                                <label style="padding-left: 10px;">Bairro</label><br>
+                                <label style="padding-left: 10px;">Bairro dos Telles</label><br>
                                 <input name="" type="checkbox" value="">
-                                <label style="padding-left: 10px;">Itain Bibi</label><br>
+                                <label style="padding-left: 10px;">Manaus - Amazonas</label><br>
                             </form>
                         </div>
 
@@ -216,12 +387,14 @@
                     <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef;">
 
                         <div style="width: 90%; float: left; padding: 10px 20px;">
-                            <h3 style="font-size: 16px; line-height: 25px;">1-20 de 63.452 listagens </h3>
+                            <h3 style="font-size: 16px; line-height: 25px;">
+                                <span id="totalRecords"></span>
+                                registros encontrados.</h3>
                         </div>
 
 
-                        <div style="width: 100%; float: left; height: 550px; overflow: scroll;">
-                            <asp:DataList ID="dlstProperty" runat="server" Width="100%" RepeatColumns="1">
+                        <div id="divPropertyList" style="width: 100%; float: left; height: 550px; overflow: scroll;">
+                            <%--<asp:DataList ID="dlstProperty" runat="server" Width="100%" RepeatColumns="1">
                                 <ItemTemplate>
                                     <div style="width: 100%; float: left; padding-bottom: 20px;">
                                         <asp:ImageButton ID="ibtnProperty" runat="server" ImageUrl='<%# "uploads/" + Eval("image") %>' alt="Property" Width="382px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" />
@@ -238,7 +411,7 @@
                                         </div>
                                     </div>
                                 </ItemTemplate>
-                            </asp:DataList>
+                            </asp:DataList>--%>
 
 
 

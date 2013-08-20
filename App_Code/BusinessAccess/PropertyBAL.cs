@@ -53,5 +53,20 @@ public class PropertyBAL
         {
 
         }
+    }
+    public DataTable FindProperty(PropertyBO oPropertyBO, PropertyBO oIPropertyBO)
+    {
+        try
+        {
+            return oPropertyDAL.FindProperty(oPropertyBO, oIPropertyBO);
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+
+        }
     }    
 }

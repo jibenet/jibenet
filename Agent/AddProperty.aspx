@@ -84,9 +84,8 @@
                                 <img src="images/escritoria-inner.png" alt="escritoria"></a><a href="#"><img src="images/loja-inner.png" alt="escritoria"></a>
                         </div>
                         <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-<%--                                              <asp:Button ID="btnSearch" runat="server" Text="" CssClass="searchbtn-inner" OnClick="btnSearch_Click" />--%>
-<%--                                        <asp:TextBox ID="txtSearch" runat="server" Style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;"></asp:TextBox>--%>
-                         
+                            <%--                                              <asp:Button ID="btnSearch" runat="server" Text="" CssClass="searchbtn-inner" OnClick="btnSearch_Click" />--%>
+                            <%--                                        <asp:TextBox ID="txtSearch" runat="server" Style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;"></asp:TextBox>--%>
                         </div>
 
                         <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
@@ -104,10 +103,25 @@
 
 
                 <div class="right">
-                    <a href="#">
-                        <img src="images/entre.png" alt="Entre"></a> <a href="#">
-                            <img src="images/ajudar.png" alt="Ajudar"></a> <a href="form.html">
-                                <img src="images/listar.png" alt="Listar" border="0"></a>
+                    <span>
+                        <select name="select" id="select">
+                            <option value="Entre">Entre</option>
+                            <option value="Entre">Option 1</option>
+                            <option value="Entre">Option 2</option>
+                            <option value="Entre">Option 3</option>
+                        </select>
+                    </span>
+                    <span>
+                        <select name="select" id="select2">
+                            <option value="Entre">Ajudar</option>
+                            <option value="Entre">Option 1</option>
+                            <option value="Entre">Option 2</option>
+                            <option value="Entre">Option 3</option>
+                        </select>
+                    </span>
+                    <div class="green-tab">
+                        <p><a href="ListProperty.aspx">Listar Sua Properiedade</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,7 +152,15 @@
                             <asp:RegularExpressionValidator ID="revalAddress" runat="server" ErrorMessage="" ControlToValidate="txtAddress" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                             <%--<input name="fname" type="text" id="fname"  />--%>
+                            &nbsp;<br />
                             <br />
+                            <label>A localização no mapa</label>
+                            <asp:TextBox ID="txtLocation" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="" ControlToValidate="txtLocation" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                            <i><u>
+                                <asp:HyperLink ID="yhpLocation" runat="server" NavigateUrl="Coordinates.html" Target="_blank">Encontre a localização no mapa</asp:HyperLink></i></u>
+                            <%--<input name="fname" type="text" id="fname"  />--%>
+                            &nbsp;<br />
                             <br />
                             <label>CEP</label>
                             <asp:TextBox ID="txtZipCode" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;

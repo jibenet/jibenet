@@ -35,6 +35,16 @@ public class PropertyBO
         get;
         set;
     }
+    public string latitude
+    {
+        get;
+        set;
+    }
+    public string longitude
+    {
+        get;
+        set;
+    }
     public string zipCode
     {
         get;

@@ -17,15 +17,16 @@ public partial class Agent_ListProperty : System.Web.UI.Page
         {
             if (Page.IsPostBack == false)
             {
-                if (Request.QueryString["add"] != null)
+                if (Request.QueryString["address"] != null)
                 {
-                    oPropertyBO.address = Request.QueryString["add"].ToString();
-                    FindProperty();
+                    txtSearch.Text = Request.QueryString["address"].ToString();
+                    oPropertyBO.address = Request.QueryString["address"].ToString();
+                    //FindProperty();
                 }                    
                 else
                 {
                     oPropertyBO.address = string.Empty;
-                    FindProperty();
+                    //FindProperty();
                 }                    
             }
         }
@@ -36,17 +37,17 @@ public partial class Agent_ListProperty : System.Web.UI.Page
     }
     public void FindProperty()
     {        
-        DataTable dt = new DataTable();
-        dt = oPropertyBAL.FindProperty(oPropertyBO);
-        dlstProperty.DataSource = dt;
-        dlstProperty.DataBind();
+        //DataTable dt = new DataTable();
+        //dt = oPropertyBAL.FindProperty(oPropertyBO);
+        //dlstProperty.DataSource = dt;
+        //dlstProperty.DataBind();
     }
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         try
         {
             oPropertyBO.address = txtSearch.Text;
-            FindProperty();
+            //FindProperty();
         }
         catch (Exception ex)
         {

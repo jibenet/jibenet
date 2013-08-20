@@ -15,7 +15,7 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            Response.Redirect("Agent/ListProperty.aspx?add=" + txtSearch.Text, false);
+            Response.Redirect("Agent/ListProperty.aspx?address=" + txtSearch.Text, false);
         }
         catch (Exception ex)
         {

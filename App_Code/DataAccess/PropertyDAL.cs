@@ -42,6 +42,8 @@ public class PropertyDAL
             }
             cmd.Parameters.AddWithValue("@description", oPropertyBO.description);
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            cmd.Parameters.AddWithValue("@latitude", oPropertyBO.latitude);
+            cmd.Parameters.AddWithValue("@longitude", oPropertyBO.longitude);
             cmd.Parameters.AddWithValue("@zipCode", oPropertyBO.zipCode);
             cmd.Parameters.AddWithValue("@size", oPropertyBO.size);
             cmd.Parameters.AddWithValue("@rate", oPropertyBO.rate);
@@ -83,6 +85,38 @@ public class PropertyDAL
                 con.Open();
             }
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            SqlParameter message = cmd.Parameters.Add("@message", SqlDbType.VarChar, 500);
+            message.Direction = ParameterDirection.Output;
+
+            dad = new SqlDataAdapter(cmd);
+            dt = new DataTable();
+            dad.Fill(dt);
+            return dt;
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+    public DataTable FindProperty(PropertyBO oPropertyBO, PropertyBO oIPropertyBO)
+    {
+        try
+        {
+            cmd = new SqlCommand("SearchPropertyI", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            cmd.Parameters.AddWithValue("@startArea", oPropertyBO.size);
+            cmd.Parameters.AddWithValue("@startRate", oPropertyBO.rate);
+            cmd.Parameters.AddWithValue("@endArea", oIPropertyBO.size);
+            cmd.Parameters.AddWithValue("@endRate", oIPropertyBO.rate);
             SqlParameter message = cmd.Parameters.Add("@message", SqlDbType.VarChar, 500);
             message.Direction = ParameterDirection.Output;
 
