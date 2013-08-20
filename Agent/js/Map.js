@@ -25,6 +25,7 @@ function initialize()
             }           
         });
         WebService.PropertyList(address, DefaultList);
+        WebService.AgentList(fAgentList);
         
         google.maps.event.addListener(map, 'zoom_changed', function () {
             var address = document.getElementById("txtSearch").value;

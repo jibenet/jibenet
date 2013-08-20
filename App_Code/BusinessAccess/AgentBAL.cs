@@ -24,6 +24,21 @@ public class AgentBAL
         // TODO: Add constructor logic here
         //
     }
+    public DataTable SelectAgent()
+    {
+        try
+        {
+            return oAgentDAL.SelectAgent();
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+
+        }
+    }    
     public DataTable FindAgent(AgentBO oAgentBO)
     {
         try

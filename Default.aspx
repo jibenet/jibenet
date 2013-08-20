@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Jibenet</title>
+    <title>Clipas</title>
     <link href="style/default.css" rel="stylesheet" type="text/css" />
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
@@ -45,7 +45,8 @@
         <div id="header">
             <div>
 
-                <img src="images/jibenet.png" alt="Jibenet" style="float: left;">
+                <a href="Default.aspx">
+                    <img src="images/jibenet.png" alt="Jibenet" style="float: left;"></a>
                 <div class="right">
                     <span>
                         <select name="select" id="select">

@@ -63,5 +63,15 @@ public class WebService : System.Web.Services.WebService {
         {
             return string.Empty;
         }
-    }    
+    }
+    [WebMethod]
+    [ScriptMethod]
+    public string AgentList()
+    {
+        AgentBAL oAgentBAL = new AgentBAL();        
+        DataTable dt = new DataTable();
+        dt = oAgentBAL.SelectAgent();
+        JSONClass objJSONClass = new JSONClass();
+        return objJSONClass.CreateJSONParameters(dt);
+    }
 }

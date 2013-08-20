@@ -28,6 +28,29 @@ public class AgentDAL
 		// TODO: Add constructor logic here
 		//
 	}
+    public DataTable SelectAgent()
+    {
+        try
+        {
+            query = "SELECT TOP 3 name, business, phone FROM Agent";
+            dad = new SqlDataAdapter(query, con);
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }            
+            dt = new DataTable();
+            dad.Fill(dt);
+            return dt;
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }    
     public DataTable FindAgent(AgentBO oAgentBO)
     {
         try

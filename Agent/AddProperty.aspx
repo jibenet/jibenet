@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Jibe Net</title>
+    <title>Clipas</title>
     <link href="style/default.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
@@ -75,7 +75,7 @@
         <div id="header">
             <div>
 
-                <a href="index.html">
+                <a href="../Default.aspx">
                     <img src="images/jibenet.png" alt="Jibenet" border="0" style="float: left;"></a>
                 <div style="width: 500px; float: left; padding-left: 1%; border-left: 1px solid #aaa; margin-left: 10px;">
                     <form action="" method="post">

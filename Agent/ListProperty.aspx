@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Jibe Net</title>
+    <title>Clipas</title>
     <link href="style/default.css" rel="stylesheet" type="text/css" />
     <script src="js/tabcontent.js" type="text/javascript"></script>
     <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
@@ -66,9 +66,9 @@
                         oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
                                             '<img id="ibtnProperty" src="uploads/' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" />' +
                                                 '<div style="width: 40%;" class="proptxt">' +
-                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;' + oJSON.Head[i].rate + ' &#36;' + '</h4>' +
+                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;&#36;R: ' + oJSON.Head[i].rate + '</h4>' +
                                                         '</br>' +
-                                                                +oJSON.Head[i].description +
+                                                                oJSON.Head[i].description +
                                                 '</div>' +
                                             '</div>';
                         while (document.getElementById('divPropertyList').hasChildNodes()) {
@@ -105,9 +105,9 @@
                             marker.setMap(map);
                             oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
                                                 '<img id="ibtnProperty" src="uploads/' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /> <div style="width: 40%;" class="proptxt">' +
-                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;' + oJSON.Head[i].rate + ' &#36;' + '</h4>' +
+                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;&#36;R: ' + oJSON.Head[i].rate + ' &#36;' + '</h4>' +
                                                         '</br>' +
-                                                                +oJSON.Head[i].description +
+                                                                oJSON.Head[i].description +
                                                 '</div>' +
                                                 '</div>';
                         }
@@ -124,6 +124,62 @@
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
+                }
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function fAgentList(list) {
+            try {
+                if (list != null) {
+                    var oJSON = eval("(" + list + ")");
+                    var oHTMLTABLE = document.createElement("table");
+                    oHTMLTABLE.border = 0;
+                    oHTMLTABLE.width = "100%";
+                    for (var i = 0; i < oJSON.Head.length; i++) {
+                        var oTR = oHTMLTABLE.insertRow(i);
+                        var oTD0 = oTR.insertCell(0);
+                        oTD0.innerHTML = '<div style="width: 100%; float: left; padding: 12px 0px">' +
+                                            '<img src="images/person.jpg" width="69" height="74" alt="No image" style="float: left; padding-right: 6px;"/>' +
+                                            oJSON.Head[i].name + '</br></br>' +
+                                            oJSON.Head[i].business + '</br>' +
+                                            'T: ' + oJSON.Head[i].phone + '</div>';
+                        while (document.getElementById('divAgentList').hasChildNodes()) {
+                            document.getElementById('divAgentList').removeChild(document.getElementById('divAgentList').lastChild);
+                        }
+                    }
+                    document.getElementById('divAgentList').appendChild(oHTMLTABLE);
+                }
+                WebService.AgentList(fAgentListI);
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+
+        function fAgentListI(list) {
+            try {
+                if (list != null) {
+                    var oJSON = eval("(" + list + ")");
+                    var oHTMLTABLE = document.createElement("table");
+                    oHTMLTABLE.border = 0;
+                    oHTMLTABLE.width = "100%";
+                    for (var i = 0; i < oJSON.Head.length; i++) {
+                        var oTR = oHTMLTABLE.insertRow(i);
+                        var oTD0 = oTR.insertCell(0);
+                        oTD0.innerHTML = '<div style="width: 100%; float: left; padding: 12px 0px; border-bottom: 1px solid #ccc;">' +
+                                            oJSON.Head[i].name + '</br>' +
+                                            oJSON.Head[i].business + '</br>' +
+                                            'T: ' + oJSON.Head[i].phone + '</div>';
+                        while (document.getElementById('divAgentListI').hasChildNodes()) {
+                            document.getElementById('divAgentListI').removeChild(document.getElementById('divAgentListI').lastChild);
+                        }
+                    }
+                    document.getElementById('divAgentListI').appendChild(oHTMLTABLE);
                 }
             }
             catch (e) {
@@ -160,7 +216,7 @@
             <div id="header">
                 <div class="header">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="../Default.aspx">
                             <img src="images/jibenet.png" width="175" height="64"></a>
                     </div>
                     <div class="header-middle">
@@ -329,54 +385,15 @@
                     <div style="float: right; width: 20%;" id="rightdiv">
                         <div class="grybox">
                             <h2>Agents No Bairro</h2>
-                            <div style="width: 100%; float: left; padding: 12px 0px">
-                                <img src="images/person.jpg" width="69" height="74" alt="No Person" style="float: left; padding-right: 6px;">
-                                Dummy Text, Joao Pinbeiro
-                            <br>
-                                <br>
-                                Local Impvei's<br>
-                                T: 0900 62900
+                            <div id="divAgentList">
                             </div>
 
-                            <div style="width: 100%; float: left; padding: 12px 0px">
-                                <img src="images/person.jpg" width="69" height="74" alt="No Person" style="float: left; padding-right: 6px;">
-                                Dummy Text, Joao Pinbeiro
-                            <br>
-                                <br>
-                                Local Impvei's<br>
-                                T: 0900 62900
-                            </div>
-
-                            <div style="width: 100%; float: left; padding: 12px 0px">
-                                <img src="images/person.jpg" width="69" height="74" alt="No Person" style="float: left; padding-right: 6px;">
-                                Dummy Text, Joao Pinbeiro
-                            <br>
-                                <br>
-                                Local Impvei's<br>
-                                T: 0900 62900
-                            </div>
 
                         </div>
 
                         <div class="grybox">
                             <h2>Agents No Bairro</h2>
-                            <div style="width: 100%; float: left; padding: 12px 0px; border-bottom: 1px solid #ccc;">
-                                Dummy Text, Joao Pinbeiro
-                            <br>
-                                Local Impvei's<br>
-                                T: 0900 62900
-                            </div>
-                            <div style="width: 100%; float: left; padding: 12px 0px; border-bottom: 1px solid #ccc;">
-                                Dummy Text, Joao Pinbeiro
-                            <br>
-                                Local Impvei's<br>
-                                T: 0900 62900
-                            </div>
-                            <div style="width: 100%; float: left; padding: 12px 0px; border-bottom: 1px solid #ccc;">
-                                Dummy Text, Joao Pinbeiro
-                            <br>
-                                Local Impvei's<br>
-                                T: 0900 62900
+                            <div id="divAgentListI">
                             </div>
 
                         </div>
