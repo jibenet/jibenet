@@ -32,7 +32,7 @@ public class AgentDAL
     {
         try
         {
-            query = "SELECT TOP 3 name, business, phone FROM Agent";
+            query = "SELECT TOP 3 name, business, phone FROM Agent ORDER BY RAND()";
             dad = new SqlDataAdapter(query, con);
             if (con.State == ConnectionState.Closed)
             {

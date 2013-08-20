@@ -43,16 +43,20 @@
 
     </script>
     <script type="text/javascript">
-        function DefaultList(list) {
-            try {
-                if (list != null) {
+        function DefaultList(list)
+        {
+            try
+            {
+                if (list != null)
+                {
                     var oJSON = eval("(" + list + ")");
                     var oHTMLTABLE = document.createElement("table");
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
                     document.getElementById('totalRecords').innerHTML = oJSON.Head.length;
                     markersArray = new Array(oJSON.Head.length);
-                    for (var i = 0; i < oJSON.Head.length; i++) {
+                    for (var i = 0; i < oJSON.Head.length; i++)
+                    {
                         var oTR = oHTMLTABLE.insertRow(i);
                         var oTD0 = oTR.insertCell(0);
                         var myLatLng = new google.maps.LatLng(oJSON.Head[i].latitude, oJSON.Head[i].longitude);
@@ -71,15 +75,17 @@
                                                                 oJSON.Head[i].description +
                                                 '</div>' +
                                             '</div>';
-                        while (document.getElementById('divPropertyList').hasChildNodes()) {
+                        while (document.getElementById('divPropertyList').hasChildNodes())
+                        {
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
                     }
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                 }
             }
-            catch (e) {
-                alert(e);
+            catch (e)
+            {
+                alert('DefaultList():' + e);
             }
         }
         function BoundList(list) {
@@ -127,7 +133,7 @@
                 }
             }
             catch (e) {
-                alert(e);
+                alert('BoundList():' + e);
             }
         }
     </script>
@@ -157,7 +163,7 @@
                 WebService.AgentList(fAgentListI);
             }
             catch (e) {
-                alert(e);
+                alert('fAgentList():' + e);
             }
         }
 
@@ -183,7 +189,7 @@
                 }
             }
             catch (e) {
-                alert(e);
+                alert('fAgentListI():' + e);
             }
         }
     </script>
