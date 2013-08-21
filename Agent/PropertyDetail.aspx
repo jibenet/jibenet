@@ -96,7 +96,7 @@
             </select>
         </span>
         <div class="green-tab">
-            <p><a href="ListProperty.aspx">Listar Sua Properiedade</a></p>
+            <p><a href="AddProperty.aspx">Listar Sua Properiedade</a></p>
         </div>
         </div>
 	</div>

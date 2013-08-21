@@ -75,8 +75,12 @@ public partial class Agent_AddProperty : System.Web.UI.Page
             string images = string.Empty;
                        
             oPropertyBO.description = txtDetail.Text;
-            oPropertyBO.address = txtAddress.Text;
-            string[] latLng = txtLocation.Text.Split(',');
+            oPropertyBO.address = iAddress.Value;
+            if (hdLocation.Value.Length == 0)
+            {
+                hdLocation.Value = "0,0";
+            }
+            string[] latLng = hdLocation.Value.Split(',');
             oPropertyBO.latitude = latLng[0];
             oPropertyBO.longitude = latLng[1]; 
             oPropertyBO.zipCode = txtZipCode.Text;

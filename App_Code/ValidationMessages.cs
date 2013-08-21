@@ -18,7 +18,7 @@ public class ValidationMessages
        "* Por favor insira um tempo válido em hh: mm: ss am.";
     public static readonly string Digit = "* Deve ser um número válido.";
     public static readonly string NonNegative = "* Deve ser um número não-negativo.";
-    public static readonly string ZipCode = "* Por favor insira um CEP válido em # # # # # ou # # # # # - # # # # formato.";
+    public static readonly string ZipCode = "* CEP válido é # # # # # ou # # # # # - # # # # formato.";
     public static readonly string String = "* Por favor insira um caracteres e espaço.";
 
     public static string MaxLength(int len)
