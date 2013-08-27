@@ -50,6 +50,11 @@ public class PropertyBO
         get;
         set;
     }
+    public string type
+    {
+        get;
+        set;
+    }
     public long size
     {
         get;

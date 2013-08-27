@@ -54,6 +54,37 @@ public class PropertyBAL
 
         }
     }
+    public DataTable FindPropertyByID(PropertyBO oPropertyBO)
+    {
+        try
+        {
+            return oPropertyDAL.FindPropertyByID(oPropertyBO);
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+
+        }
+    }
+
+    public DataTable FindImagesByPropertyID(PropertyBO oPropertyBO)
+    {
+        try
+        {
+            return oPropertyDAL.FindImagesByPropertyID(oPropertyBO);
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+
+        }
+    }
     public DataTable FindProperty(PropertyBO oPropertyBO, PropertyBO oIPropertyBO)
     {
         try

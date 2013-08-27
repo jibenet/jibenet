@@ -11,12 +11,14 @@ ul.tabs{
 ul.tabs li{
     display: inline;
     margin: 0;
-    margin-right:-1px; /*distance between tabs*/
+    margin-right: -5px; /*distance between tabs*/
+	margin-left: 4px;
 }
         
 ul.tabs li a{
-	font-family:Arial, Helvetica, sans-serif;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size:11px;
+	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
     text-decoration: none;
     position: relative;
@@ -84,3 +86,49 @@ div.tabcontents{
     background-color:#FFF;
     border-radius: 0 2px 2px 2px;*/
 }
+#txtcontainer .tabs_new
+{
+	margin-bottom:5px;
+}
+ul.tabs li .new_selected{
+	background:#d1d1d1;
+	padding:8px 35px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+}
+ul.tabs li .new_selected:hover
+{
+	background:#fff;
+	color:#333;
+}
+
+ul.tabs li.selected .new_selected
+{
+	border: 1px solid #CCC;
+	background:#a2bb5d;
+	color:#fff;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+}
+ul.tabs li .new_active {
+    background: linear-gradient(to bottom, #F9FDFE 0%, #D1E8F7 100%) repeat scroll 0 0 transparent;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 10px;
+    position: relative;
+    top: 3px;
+}
+ul.tabs li.selected .new_active
+{
+    background: none repeat scroll 0 0 #A2BB5D;
+    border: 1px solid #CCCCCC;
+    color: #FFFFFF;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 7px 18px;
+}
+

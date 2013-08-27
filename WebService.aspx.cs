@@ -18,6 +18,10 @@ public partial class WebService : System.Web.UI.Page
                 Response.Write(PropertyList(Request.QueryString["address"].ToString()));
             }
         }
+        else
+        {
+            Response.Write("Enter valid parameters.");
+        }
     }
     public string PropertyList(string address)
     {
@@ -27,6 +31,6 @@ public partial class WebService : System.Web.UI.Page
         DataTable dt = new DataTable();
         dt = oPropertyBAL.FindProperty(oPropertyBO);
         JSONClass objJSONClass = new JSONClass();
-        return objJSONClass.CreateJSONParameters(dt);
+        return objJSONClass.CreateJSONParameters(dt);        
     }
 }

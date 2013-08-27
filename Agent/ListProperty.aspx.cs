@@ -17,41 +17,20 @@ public partial class Agent_ListProperty : System.Web.UI.Page
         {
             if (Page.IsPostBack == false)
             {
-                if (Request.QueryString["address"] != null)
+                if (Request.QueryString["type"] != null)
                 {
-                    txtSearch.Text = Request.QueryString["address"].ToString();
-                    oPropertyBO.address = Request.QueryString["address"].ToString();
-                    //FindProperty();
-                }                    
+                    hdType.Value = Request.QueryString["type"].ToString();
+                    txtSearch.Value = Request.QueryString["address"].ToString();
+                }
                 else
                 {
-                    oPropertyBO.address = string.Empty;
-                    //FindProperty();
-                }                    
+                    hdType.Value = "Escritório";
+                }
             }
         }
         catch (Exception ex)
         {
             Response.Write(ex.Message.ToString()); 
         }
-    }
-    public void FindProperty()
-    {        
-        //DataTable dt = new DataTable();
-        //dt = oPropertyBAL.FindProperty(oPropertyBO);
-        //dlstProperty.DataSource = dt;
-        //dlstProperty.DataBind();
-    }
-    protected void btnSearch_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            oPropertyBO.address = txtSearch.Text;
-            //FindProperty();
-        }
-        catch (Exception ex)
-        {
-            Response.Write(ex.Message.ToString());
-        }
-    }
+    }   
 }

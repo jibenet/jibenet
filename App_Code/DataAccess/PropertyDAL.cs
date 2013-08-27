@@ -40,11 +40,13 @@ public class PropertyDAL
             {
                 con.Open();
             }
+            cmd.Parameters.AddWithValue("@pName", oPropertyBO.name);
             cmd.Parameters.AddWithValue("@description", oPropertyBO.description);
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
             cmd.Parameters.AddWithValue("@latitude", oPropertyBO.latitude);
             cmd.Parameters.AddWithValue("@longitude", oPropertyBO.longitude);
             cmd.Parameters.AddWithValue("@zipCode", oPropertyBO.zipCode);
+            cmd.Parameters.AddWithValue("@type", oPropertyBO.type);
             cmd.Parameters.AddWithValue("@size", oPropertyBO.size);
             cmd.Parameters.AddWithValue("@rate", oPropertyBO.rate);
             cmd.Parameters.AddWithValue("@totalImages", oPropertyBO.totalImages);
@@ -85,8 +87,63 @@ public class PropertyDAL
                 con.Open();
             }
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            cmd.Parameters.AddWithValue("@type", oPropertyBO.type);
             SqlParameter message = cmd.Parameters.Add("@message", SqlDbType.VarChar, 500);
             message.Direction = ParameterDirection.Output;
+            dad = new SqlDataAdapter(cmd);
+            dt = new DataTable();
+            dad.Fill(dt);
+            return dt;
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+    public DataTable FindPropertyByID(PropertyBO oPropertyBO)
+    {
+        try
+        {
+            query = "SELECT * FROM Property WHERE propertyID = @propertyID";
+            cmd = new SqlCommand(query, con);            
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            cmd.Parameters.AddWithValue("@propertyID", oPropertyBO.propertyID);
+            SqlParameter message = cmd.Parameters.Add("@message", SqlDbType.VarChar, 500);
+            message.Direction = ParameterDirection.Output;
+
+            dad = new SqlDataAdapter(cmd);
+            dt = new DataTable();
+            dad.Fill(dt);
+            return dt;
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public DataTable FindImagesByPropertyID(PropertyBO oPropertyBO)
+    {
+        try
+        {
+            query = "SELECT * FROM PropertyImage WHERE propertyID = @propertyID";
+            cmd = new SqlCommand(query, con);
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            cmd.Parameters.AddWithValue("@propertyID", oPropertyBO.propertyID);        
 
             dad = new SqlDataAdapter(cmd);
             dt = new DataTable();
@@ -112,7 +169,9 @@ public class PropertyDAL
             {
                 con.Open();
             }
+            cmd.Parameters.AddWithValue("@type", oPropertyBO.type);
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            cmd.Parameters.AddWithValue("@cities", oIPropertyBO.address);
             cmd.Parameters.AddWithValue("@startArea", oPropertyBO.size);
             cmd.Parameters.AddWithValue("@startRate", oPropertyBO.rate);
             cmd.Parameters.AddWithValue("@endArea", oIPropertyBO.size);

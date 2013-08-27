@@ -30,26 +30,29 @@ public class WebService : System.Web.Services.WebService {
 
     [WebMethod]
     [ScriptMethod]
-    public string PropertyList(string address)
+    public string PropertyList(string type, string address)
     {
         PropertyBAL oPropertyBAL = new PropertyBAL();
         PropertyBO oPropertyBO = new PropertyBO();
-        oPropertyBO.address = address; 
+        oPropertyBO.address = address;
+        oPropertyBO.type = type;
         DataTable dt = new DataTable();
-        dt = oPropertyBAL.FindProperty(oPropertyBO);
+        dt = oPropertyBAL.FindProperty(oPropertyBO);     
         JSONClass objJSONClass = new JSONClass();
-        return objJSONClass.CreateJSONParameters(dt);
+        return objJSONClass.CreateJSONParameters(dt);        
     }
     [WebMethod]
     [ScriptMethod]
-    public string PropertyListI(string address, string startArea, string startRate, string endArea, string endRate)
+    public string PropertyListI(string type, string address, string cities, string startArea, string startRate, string endArea, string endRate)
     {
         try
         {
             PropertyBAL oPropertyBAL = new PropertyBAL();
             PropertyBO oPropertyBO = new PropertyBO();
             PropertyBO oIPropertyBO = new PropertyBO();
+            oPropertyBO.type = type;
             oPropertyBO.address = address;
+            oIPropertyBO.address = cities;
             oPropertyBO.size = long.Parse(startArea);
             oPropertyBO.rate = long.Parse(startRate);
             oIPropertyBO.size = long.Parse(endArea);
@@ -59,11 +62,11 @@ public class WebService : System.Web.Services.WebService {
             JSONClass objJSONClass = new JSONClass();
             return objJSONClass.CreateJSONParameters(dt);
         }
-        catch (Exception ex)
+        catch
         {
             return string.Empty;
         }
-    }
+    }    
     [WebMethod]
     [ScriptMethod]
     public string AgentList()

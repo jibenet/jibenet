@@ -6,22 +6,35 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
+    <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" />
     <link href="style/default.css" rel="stylesheet" type="text/css" />
+    <link href="style/defaultASP.css" rel="stylesheet" type="text/css" />
     <script src="js/tabcontent.js" type="text/javascript"></script>
     <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
+    <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
+    <script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js"></script>
+    <script type="javascript">
+	    $(function () {
+	        $('#form').jqTransform({ imgPath: 'jqtransformplugin/img/' });
+	    });
+    </script>
     <%--GOOGLE API--%>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places,geometry" type="text/javascript"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
         function initialize() {
-            var input = document.getElementById('txtSearch');
-            var autocomplete = new google.maps.places.Autocomplete(input);
+            var inputE = document.getElementById('eSearch');
+            var inputL = document.getElementById('lSearch');
+            var autocompleteE = new google.maps.places.Autocomplete(inputE);
+            var autocompleteL = new google.maps.places.Autocomplete(inputL);
         }
         google.maps.event.addDomListener(window, 'load', initialize);
 
         var options = {
             types: ['geocode'] //this should work !
         };
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
+        var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
 
         function initialize() {
 
@@ -30,10 +43,34 @@
                 componentRestrictions: { country: "BR" }
             };
 
-            var input = document.getElementById('txtSearch');
-            var autocomplete = new google.maps.places.Autocomplete(input, options);
+            var inputE = document.getElementById('eSearch');
+            var inputL = document.getElementById('lSearch');
+            var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
+            var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
         }
     </script>
+    <style>
+        .pac-container:after
+        {
+            content: none !important;
+        }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnEclick").click(function () {
+                var url = 'ListProperty.aspx?type=Escritório&address=' + $('#eSearch').val();
+                $(location).attr('href', url);
+            })
+        });
+        $(function () {
+            $("#btnLclick").click(function () {
+                var url = 'ListProperty.aspx?type=Loja&address=' + $('#lSearch').val();
+                $(location).attr('href', url);
+            })
+        });
+    </script>
+
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="JS/Map.js"></script>
     <script type="text/javascript" src="JS/Marker.js"></script>
@@ -43,20 +80,15 @@
 
     </script>
     <script type="text/javascript">
-        function DefaultList(list)
-        {
-            try
-            {
-                if (list != null)
-                {
+        function DefaultList(list) {
+            try {
+                if (list != null) {
                     var oJSON = eval("(" + list + ")");
                     var oHTMLTABLE = document.createElement("table");
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
-                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length;
                     markersArray = new Array(oJSON.Head.length);
-                    for (var i = 0; i < oJSON.Head.length; i++)
-                    {
+                    for (var i = 0; i < oJSON.Head.length; i++) {
                         var oTR = oHTMLTABLE.insertRow(i);
                         var oTD0 = oTR.insertCell(0);
                         var myLatLng = new google.maps.LatLng(oJSON.Head[i].latitude, oJSON.Head[i].longitude);
@@ -68,23 +100,26 @@
                         });
                         marker.setMap(map);
                         oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
-                                            '<img id="ibtnProperty" src="uploads/' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" />' +
-                                                '<div style="width: 40%;" class="proptxt">' +
-                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;&#36;R: ' + oJSON.Head[i].rate + '</h4>' +
-                                                        '</br>' +
+                                            '<a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                                '<div style="width: 40%;" class="proptxt"><a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                                    '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
+                                                           '<p class="listagens-text">' +
                                                                 oJSON.Head[i].description +
-                                                '</div>' +
+                                                '</p></div>' +
                                             '</div>';
-                        while (document.getElementById('divPropertyList').hasChildNodes())
-                        {
+                        while (document.getElementById('divPropertyList').hasChildNodes()) {
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
+                        document.getElementById('totalRecords').innerHTML = 0;
                     }
+                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length;
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                 }
+                else {
+                    document.getElementById('totalRecords').innerHTML = 0;
+                }
             }
-            catch (e)
-            {
+            catch (e) {
                 alert('DefaultList():' + e);
             }
         }
@@ -95,7 +130,7 @@
                     var oHTMLTABLE = document.createElement("table");
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
-                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length;
+                    var j = 0;
                     markersArray = new Array(oJSON.Head.length);
                     for (var i = 0; i < oJSON.Head.length; i++) {
                         var oTR = oHTMLTABLE.insertRow(i);
@@ -110,12 +145,14 @@
                             });
                             marker.setMap(map);
                             oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
-                                                '<img id="ibtnProperty" src="uploads/' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /> <div style="width: 40%;" class="proptxt">' +
-                                                    '<h2>' + oJSON.Head[i].address + '</h2></br><h4>' + oJSON.Head[i].size + ' m<sup>2</sup>&nbsp;&#36;R: ' + oJSON.Head[i].rate + ' &#36;' + '</h4>' +
-                                                        '</br>' +
+                                                '<a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                                '<div style="width: 40%;" class="proptxt"><a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                                    '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
+                                                        '<p class="listagens-text">' +
                                                                 oJSON.Head[i].description +
-                                                '</div>' +
+                                                '</p></div>' +
                                                 '</div>';
+                            j += 1;
                         }
                         else {
 
@@ -124,12 +161,14 @@
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
                     }
+                    document.getElementById('totalRecords').innerHTML = j;
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                 }
                 else {
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
+                    document.getElementById('totalRecords').innerHTML = 0;
                 }
             }
             catch (e) {
@@ -228,40 +267,39 @@
                     <div class="header-middle">
                         <div>
                             <ul class="tabs" persist="true">
-                                <li><a href="#" rel="view1">Escritoria</a></li>
-                                <li><a href="#" rel="view2">Loja</a></li>
+                                <li><a class="new_active" href="#" rel="view1">Escritório</a></li>
+                                <li><a class="new_active" href="#" rel="view2">Loja</a></li>
                             </ul>
                             <div class="tabcontents">
                                 <div id="view1" class="tabcontent">
+                                    <form action="" method="post">
+                                        <input id="txtSearch" type="hidden" runat="server" />
+                                        <input id="hdType" type="hidden" runat="server" />
+                                        <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
+                                            <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
+                                        </div>
 
-                                    <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                        <asp:Button ID="btnSearch" runat="server" Text="" CssClass="searchbtn-inner" OnClick="btnSearch_Click" />
-                                        <asp:TextBox ID="txtSearch" runat="server" Style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;"></asp:TextBox>
+                                        <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
+                                            <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
+                                                <option>Alugar</option>
 
-                                    </div>
-
-                                    <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
-                                        <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
-                                            <option>Alugar</option>
-                                            <option>Option 1</option>
-                                            <option>Option 1</option>
-                                        </select>
-                                    </div>
+                                            </select>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div id="view2" class="tabcontent">
-                                    <input id="Text1" type="text" />
-                                    <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                        <input name="search" type="button" value="" class="searchbtn-inner"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
-                                    </div>
+                                    <form action="" method="post">
+                                        <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
+                                            <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" n name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
+                                        </div>
 
-                                    <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
-                                        <select name="jumpMenu" id="Select1" onchange="MM_jumpMenu('parent',this,0)">
-                                            <option>Alugar</option>
-                                            <option>Option 1</option>
-                                            <option>Option 1</option>
-                                        </select>
-                                    </div>
+                                        <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
+                                            <select name="jumpMenu" id="Select1" onchange="MM_jumpMenu('parent',this,0)">
+                                                <option>Alugar</option>
 
+                                            </select>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -285,9 +323,9 @@
                     </div>
                 </div>
             </div>
-
         </header>
         <!-- Header Ends -->
+
 
 
         <!-- Section Starts -->
@@ -302,86 +340,109 @@
                         </div>
                         <br />
 
-                        <h3>área</h3>
+                        <h3>Area - <span style="font-size: 14px">m<sup>2</sup></span></h3>
 
-                        <div style="padding-left: 20px;">
+                        <div style="padding-left: 15px;">
                             <div id="area-range"></div>
-                            <span id="startArea">0</span>m<sup>2</sup><span id="endArea" style="padding-left: 60%">50000</span>m<sup>2</sup>
+                            <span id="startArea">0</span><span id="endArea" style="padding-left: 60%">5000</span>
                         </div>
-                        <h3>taxa</h3>
-                        <div style="padding-left: 20px;">
+                        <h3>Taxa - <span style="font-size: 14px">R$</span></h3>
+                        <div style="padding-left: 15px;">
                             <div id="rate-range"></div>
-                            <span id="startRate">0</span>$<span id="endRate" style="padding-left: 70%">100000</span>$       
+                            <span id="startRate">0</span><span id="endRate" style="padding-left: 60%">50000</span>
                         </div>
-                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-                        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
-                        <script type="text/javascript">
-                            $("#area-range").slider({
-                                range: true,
-                                min: 0,
-                                max: 50000,
-                                values: [0, 50000],
-                                slide: slideArea,
-                                stop: slideStop
+                        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+                        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+                        <script>
+                            $(function () {
+                                $("#area-range").slider({
+                                    range: true,
+                                    min: 0,
+                                    max: 5000,
+                                    values: [0, 5000],
+                                    slide: function (event, ui) {
+                                        $("#startArea").text(ui.values[0]);
+                                        $("#endArea").text(ui.values[1]);
+                                    },
+                                    stop: slideStop
+                                });
+
+                                function slideStop(event, ui) {
+                                    var inputs = document.getElementsByTagName('input');
+                                    var cities = '';
+
+                                    for (var i = 0; i < inputs.length; i++) {
+                                        if (inputs[i].type == 'checkbox') {
+                                            if (inputs[i].checked) {
+                                                cities += inputs[i].value + ',';
+                                            }
+                                        }
+                                    }
+                                    if (cities.length != 0) {
+                                        cities = cities.substring(0, (cities.length - 1));
+                                    }
+                                    var type = document.getElementById("hdType").value;
+                                    var address = document.getElementById("txtSearch").value;
+                                    var startArea = document.getElementById("startArea").innerHTML;
+                                    var startRate = document.getElementById("startRate").innerHTML;
+                                    var endArea = document.getElementById("endArea").innerHTML;
+                                    var endRate = document.getElementById("endRate").innerHTML;
+                                    WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                                }
                             });
-                            function slideArea(event, ui) {
-                                var val0 = $("#area-range").slider("values", 0),
-                                    val1 = $("#area-range").slider("values", 1),
-                                    startArea = val0;
-                                endArea = val1;
-                                $("#startArea").text(startArea);
-                                $("#endArea").text(endArea);
-                            }
-                            function slideStop(event, ui) {
-                                var address = document.getElementById("txtSearch").value;
-                                var startArea = document.getElementById("startArea").innerHTML;
-                                var startRate = document.getElementById("startRate").innerHTML;
-                                var endArea = document.getElementById("endArea").innerHTML;
-                                var endRate = document.getElementById("endRate").innerHTML;
-                                WebService.PropertyListI(address, startArea, startRate, endArea, endRate, BoundList);
-                            }
-                            slideArea();
                         </script>
-                        <script type="text/javascript">
-                            $("#rate-range").slider({
-                                range: true,
-                                min: 0,
-                                max: 100000,
-                                values: [0, 100000],
-                                slide: slideRate,
-                                stop: slideStop
+                        <script>
+                            $(function () {
+                                $("#rate-range").slider({
+                                    range: true,
+                                    min: 0,
+                                    max: 50000,
+                                    values: [0, 50000],
+                                    slide: function (event, ui) {
+                                        $("#startRate").text(ui.values[0]);
+                                        $("#endRate").text(ui.values[1]);
+                                    },
+                                    stop: slideStop
+                                });
+
+                                function slideStop(event, ui) {
+                                    var inputs = document.getElementsByTagName('input');
+                                    var cities = '';
+
+                                    for (var i = 0; i < inputs.length; i++) {
+                                        if (inputs[i].type == 'checkbox') {
+                                            if (inputs[i].checked) {
+                                                cities += inputs[i].value + ',';
+                                            }
+                                        }
+                                    }
+                                    if (cities.length != 0) {
+                                        cities = cities.substring(0, (cities.length - 1));
+                                    }
+                                    var type = document.getElementById("hdType").value;
+                                    var address = document.getElementById("txtSearch").value;
+                                    var startArea = document.getElementById("startArea").innerHTML;
+                                    var startRate = document.getElementById("startRate").innerHTML;
+                                    var endArea = document.getElementById("endArea").innerHTML;
+                                    var endRate = document.getElementById("endRate").innerHTML;
+                                    WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                                }
                             });
-                            function slideRate(event, ui) {
-                                var val0 = $("#rate-range").slider("values", 0),
-                                    val1 = $("#rate-range").slider("values", 1),
-                                    startRate = val0;
-                                endRate = val1;
-                                $("#startRate").text(startRate);
-                                $("#endRate").text(endRate);
-                            }
-                            function slideStop(event, ui) {
-                                var address = document.getElementById("txtSearch").value;
-                                var startArea = document.getElementById("startArea").innerHTML;
-                                var startRate = document.getElementById("startRate").innerHTML;
-                                var endArea = document.getElementById("endArea").innerHTML;
-                                var endRate = document.getElementById("endRate").innerHTML;
-                                WebService.PropertyListI(address, startArea, startRate, endArea, endRate, BoundList);
-                            }
-                            slideRate();
                         </script>
+
 
                         <h3>Filtrar por cidade</h3>
 
                         <div style="width: 90%; padding: 0px 10px;">
                             <form action="" method="get">
-                                <input name="" type="checkbox" value="">
+                                <input id="chk1" name="" type="checkbox" value="Bairro Sombra" onclick="filter();">
                                 <label style="padding-left: 10px;">Bairro Sombra</label><br>
-                                <input name="" type="checkbox" value="">
+                                <input id="chk2" name="" type="checkbox" value="São Paulo" onclick="filter();">
                                 <label style="padding-left: 10px;">São Paulo</label><br>
-                                <input name="" type="checkbox" value="">
+                                <input id="chk3" name="" type="checkbox" value="Bairro dos Telles" onclick="filter();">
                                 <label style="padding-left: 10px;">Bairro dos Telles</label><br>
-                                <input name="" type="checkbox" value="">
-                                <label style="padding-left: 10px;">Manaus - Amazonas</label><br>
+                                <input name="" type="checkbox" value="Manaus-Amazonas" onclick="filter();">
+                                <label id="chk4" style="padding-left: 10px;">Manaus-Amazonas</label><br>
                             </form>
                         </div>
 
@@ -410,7 +471,7 @@
                     <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef;">
 
                         <div style="width: 90%; float: left; padding: 10px 20px;">
-                            <h3 style="font-size: 16px; line-height: 25px;">
+                            <h3 class="list_heading">
                                 <span id="totalRecords"></span>
                                 registros encontrados.</h3>
                         </div>
@@ -521,7 +582,7 @@
                                 <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a>
                     </div>
                     <a href="#">Sobre</a> |  <a href="#">FAQ</a> |  <a href="#">Imprensa</a> |  <a href="#">Blog</a> |  <a href="#">Mobile</a> |  <a href="#">Contato.</a><br>
-                    © JibeNet 2013 Termos de Uso
+                    © Clipas 2013 Termos de Uso
 
 
                 </div>

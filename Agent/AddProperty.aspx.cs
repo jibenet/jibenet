@@ -16,6 +16,11 @@ public partial class Agent_AddProperty : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        revalPName.ValidationExpression = RegExp.MaxLength(200);
+        revalPName.ErrorMessage = ValidationMessages.MaxLength(200);
+        revalPName.ValidationExpression = RegExp.String;
+        revalPName.ErrorMessage = ValidationMessages.String;       
+
         revalAddress.ValidationExpression = RegExp.MaxLength(500);
         revalAddress.ErrorMessage = ValidationMessages.MaxLength(500);
 
@@ -60,8 +65,8 @@ public partial class Agent_AddProperty : System.Web.UI.Page
 
         revalPhone.ValidationExpression = RegExp.MaxLength(10);
         revalPhone.ErrorMessage = ValidationMessages.MaxLength(10);
-        revalPhone.ValidationExpression = RegExp.Digit;
-        revalPhone.ErrorMessage = ValidationMessages.Digit;        
+        revalPhone.ValidationExpression = RegExp.Phone;
+        revalPhone.ErrorMessage = ValidationMessages.Phone;        
 
         if(Page.IsPostBack == false)
         {
@@ -73,24 +78,26 @@ public partial class Agent_AddProperty : System.Web.UI.Page
         try
         {           
             string images = string.Empty;
-                       
+            oPropertyBO.name = txtPName.Value;             
             oPropertyBO.description = txtDetail.Text;
             oPropertyBO.address = iAddress.Value;
             if (hdLocation.Value.Length == 0)
             {
-                hdLocation.Value = "0,0";
+                hdLocation.Value = "0.0,0.0";
             }
             string[] latLng = hdLocation.Value.Split(',');
             oPropertyBO.latitude = latLng[0];
             oPropertyBO.longitude = latLng[1]; 
             oPropertyBO.zipCode = txtZipCode.Text;
-            oPropertyBO.size = int.Parse(txtArea.Text);
-            oPropertyBO.rate = int.Parse(txtRate.Text);         
+            oPropertyBO.type = dropType.SelectedValue.ToString();   
+            oPropertyBO.size = long.Parse(txtArea.Text);
+            oPropertyBO.rate = long.Parse(txtRate.Text);         
             oPropertyBO.parkings = int.Parse(txtParkings.Text);
             oPropertyBO.toilets = int.Parse(txtToilets.Text);
             oPropertyBO.kitchens = int.Parse(txtKitchens.Text);
             oPropertyBO.hasReception = chkReception.Checked;
             oPropertyBO.isFurnished = chkFurnished.Checked;
+          
             if (Session["filename"] != null && Session["filename"].ToString().Length != 0)
             {
                 images = Session["filename"].ToString().Substring(0, Session["filename"].ToString().Length - 1);
@@ -172,16 +179,5 @@ public partial class Agent_AddProperty : System.Web.UI.Page
                 chk.Checked = false;
             }
         }
-    }
-    protected void btnSearch_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            //Response.Redirect("ListProperty.aspx?add=" + txtSearch.Text, false);  
-        }
-        catch (Exception ex)
-        {
-            Response.Write(ex.Message.ToString());
-        }
-    }   
+    }  
 }
