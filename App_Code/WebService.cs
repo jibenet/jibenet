@@ -26,8 +26,7 @@ public class WebService : System.Web.Services.WebService {
     [WebMethod]
     public string HelloWorld() {
         return "Hello World";
-    }
-
+    }  
     [WebMethod]
     [ScriptMethod]
     public string PropertyList(string type, string address)
@@ -38,7 +37,7 @@ public class WebService : System.Web.Services.WebService {
         oPropertyBO.type = type;
         DataTable dt = new DataTable();
         dt = oPropertyBAL.FindProperty(oPropertyBO);     
-        JSONClass objJSONClass = new JSONClass();
+        JSONClass objJSONClass = new JSONClass();        
         return objJSONClass.CreateJSONParameters(dt);        
     }
     [WebMethod]

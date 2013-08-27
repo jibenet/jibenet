@@ -12,7 +12,7 @@ public partial class Agent_ListProperty : System.Web.UI.Page
     PropertyBAL oPropertyBAL = new PropertyBAL();
 
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {        
         try
         {
             if (Page.IsPostBack == false)

@@ -25,13 +25,14 @@ function initialize()
                 });
             }           
         });
+        $('#preloader').show();
         WebService.PropertyList(type, address, DefaultList);
         WebService.AgentList(fAgentList);
         
-        google.maps.event.addListener(map, 'zoom_changed', function () {
+        google.maps.event.addListener(map, 'zoom_changed', function () {            
             filter();
         });
-        google.maps.event.addListener(map, 'dragend', function () {
+        google.maps.event.addListener(map, 'dragend', function () {            
             filter();
         });
     }
@@ -62,6 +63,7 @@ function initialize()
             var startRate = document.getElementById("startRate").innerHTML;
             var endArea = document.getElementById("endArea").innerHTML;
             var endRate = document.getElementById("endRate").innerHTML;
+            $('#preloader').show();
             WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
         }
         catch (e)

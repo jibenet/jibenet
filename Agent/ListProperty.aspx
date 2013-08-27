@@ -83,7 +83,7 @@
         function DefaultList(list) {
             try {
                 if (list != null) {
-                    var oJSON = eval("(" + list + ")");
+                    var oJSON = eval("(" + list + ")");                    
                     var oHTMLTABLE = document.createElement("table");
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
@@ -110,10 +110,11 @@
                         while (document.getElementById('divPropertyList').hasChildNodes()) {
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
-                        document.getElementById('totalRecords').innerHTML = 0;
+                        document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados.';
                     }
-                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length;
+                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados.';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
+                    $('#preloader').hide();
                 }
                 else {
                     document.getElementById('totalRecords').innerHTML = 0;
@@ -161,14 +162,15 @@
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
                     }
-                    document.getElementById('totalRecords').innerHTML = j;
+                    document.getElementById('totalRecords').innerHTML = j + ' registros encontrados.';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
+                    $('#preloader').hide();
                 }
                 else {
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
-                    document.getElementById('totalRecords').innerHTML = 0;
+                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados.';
                 }
             }
             catch (e) {
@@ -246,8 +248,12 @@
             width: 200px;
         }
     </style>
-
-
+    <style>
+        #preloader
+        {
+            display: none;
+        }
+    </style>
 </head>
 <body class="innerpage" onload="initialize()">
     <form id="Form1" runat="server" method="post">
@@ -387,6 +393,7 @@
                                     var startRate = document.getElementById("startRate").innerHTML;
                                     var endArea = document.getElementById("endArea").innerHTML;
                                     var endRate = document.getElementById("endRate").innerHTML;
+                                    $('#preloader').show();
                                     WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
                                 }
                             });
@@ -425,6 +432,7 @@
                                     var startRate = document.getElementById("startRate").innerHTML;
                                     var endArea = document.getElementById("endArea").innerHTML;
                                     var endRate = document.getElementById("endRate").innerHTML;
+                                    $('#preloader').show();
                                     WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
                                 }
                             });
@@ -473,10 +481,12 @@
                         <div style="width: 90%; float: left; padding: 10px 20px;">
                             <h3 class="list_heading">
                                 <span id="totalRecords"></span>
-                                registros encontrados.</h3>
+                                </h3>
                         </div>
-
-
+                        <div id="preloader" style="display:none;">
+                            <div style="float: left; margin: 50px 0px 0px 350px;">
+                                <img src="http://preloaders.net/images/ajax-loader.gif" alt="AJAX loader" title="AJAX loader"></div>
+                        </div>
                         <div id="divPropertyList" style="width: 100%; float: left; height: 550px; overflow: scroll;">
                             <%--<asp:DataList ID="dlstProperty" runat="server" Width="100%" RepeatColumns="1">
                                 <ItemTemplate>
