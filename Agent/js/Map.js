@@ -15,7 +15,16 @@ function initialize()
         mapOptions);
 
         var type = document.getElementById("hdType").value;
-        var address = document.getElementById("txtSearch").value;
+        if (type == 'Escritório') {
+            document.getElementById('Escritório').className = "selected";
+            document.getElementById('Loja').className = "";            
+        }
+        else
+        {
+            document.getElementById('Loja').className = "selected";
+            document.getElementById('Escritório').className = "";            
+        }
+        var address = document.getElementById("hdSearch").value;        
         geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
@@ -43,7 +52,7 @@ function initialize()
     function filter()
     {
         try
-        {
+        {            
             var inputs = document.getElementsByTagName('input');
             var cities = '';
 
@@ -58,7 +67,7 @@ function initialize()
                 cities = cities.substring(0, (cities.length - 1));
             }
             var type = document.getElementById("hdType").value;
-            var address = document.getElementById("txtSearch").value;
+            var address = document.getElementById("hdSearch").value;
             var startArea = document.getElementById("startArea").innerHTML;
             var startRate = document.getElementById("startRate").innerHTML;
             var endArea = document.getElementById("endArea").innerHTML;

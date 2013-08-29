@@ -68,7 +68,7 @@
                 var url = 'ListProperty.aspx?type=Loja&address=' + $('#lSearch').val();
                 $(location).attr('href', url);
             })
-        });
+        });        
     </script>
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -83,7 +83,7 @@
         function DefaultList(list) {
             try {
                 if (list != null) {
-                    var oJSON = eval("(" + list + ")");                    
+                    var oJSON = eval("(" + list + ")");
                     var oHTMLTABLE = document.createElement("table");
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
@@ -99,6 +99,15 @@
                             position: myLatLng
                         });
                         marker.setMap(map);
+                        if (oJSON.Head[i].size <= 1) {
+                            oJSON.Head[i].size = 'N/A';
+                        }
+                        if (oJSON.Head[i].rate <= 100) {
+                            oJSON.Head[i].rate = 'N/A';
+                        }
+                        if (oJSON.Head[i].image == '') {
+                            oJSON.Head[i].image = 'http://clipas.venturepact.com/agent/images/365x240.jpg';
+                        }
                         oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
                                             '<a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
                                                 '<div style="width: 40%;" class="proptxt"><a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
@@ -117,7 +126,8 @@
                     $('#preloader').hide();
                 }
                 else {
-                    document.getElementById('totalRecords').innerHTML = 0;
+                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados.';
+                    $('#preloader').hide();
                 }
             }
             catch (e) {
@@ -145,6 +155,15 @@
                                 position: myLatLng
                             });
                             marker.setMap(map);
+                            if (oJSON.Head[i].size == 1) {
+                                oJSON.Head[i].size = 'N/A';
+                            }
+                            if (oJSON.Head[i].rate <= 100) {
+                                oJSON.Head[i].rate = 'N/A';
+                            }
+                            if (oJSON.Head[i].image == '') {
+                                oJSON.Head[i].image = 'http://clipas.venturepact.com/agent/images/365x240.jpg';
+                            }
                             oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
                                                 '<a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
                                                 '<div style="width: 40%;" class="proptxt"><a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
@@ -171,6 +190,7 @@
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados.';
+                    $('#preloader').hide();
                 }
             }
             catch (e) {
@@ -254,6 +274,36 @@
             display: none;
         }
     </style>
+    <script>
+        function chkfilter() {
+            try {                
+                var inputs = document.getElementsByTagName('input');
+                var cities = '';
+
+                for (var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type == 'checkbox') {
+                        if (inputs[i].checked) {
+                            cities += inputs[i].value + ',';
+                        }
+                    }
+                }
+                if (cities.length != 0) {
+                    cities = cities.substring(0, (cities.length - 1));
+                }
+                var type = document.getElementById("hdType").value;
+                var address = document.getElementById("hdSearch").value;
+                var startArea = document.getElementById("startArea").innerHTML;
+                var startRate = document.getElementById("startRate").innerHTML;
+                var endArea = document.getElementById("endArea").innerHTML;
+                var endRate = document.getElementById("endRate").innerHTML;
+                $('#preloader').show();
+                WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+            }
+            catch (e) {
+                alert('filter():' + e);
+            }
+        }
+    </script>
 </head>
 <body class="innerpage" onload="initialize()">
     <form id="Form1" runat="server" method="post">
@@ -273,16 +323,16 @@
                     <div class="header-middle">
                         <div>
                             <ul class="tabs" persist="true">
-                                <li><a class="new_active" href="#" rel="view1">Escritório</a></li>
-                                <li><a class="new_active" href="#" rel="view2">Loja</a></li>
+                                <li id="Escritório"><a class="new_active" href="#" rel="view1">Escritório</a></li>
+                                <li id="Loja"><a class="new_active" href="#" rel="view2">Loja</a></li>
                             </ul>
                             <div class="tabcontents">
                                 <div id="view1" class="tabcontent">
-                                    <form action="" method="post">
-                                        <input id="txtSearch" type="hidden" runat="server" />
+                                    <div>
+                                        <input id="hdSearch" type="hidden" runat="server" />
                                         <input id="hdType" type="hidden" runat="server" />
                                         <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                            <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
+                                            <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
                                         </div>
 
                                         <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
@@ -291,12 +341,12 @@
 
                                             </select>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div id="view2" class="tabcontent">
-                                    <form action="" method="post">
+                                   <div>
                                         <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                            <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" n name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
+                                            <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
                                         </div>
 
                                         <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
@@ -305,7 +355,7 @@
 
                                             </select>
                                         </div>
-                                    </form>
+                                   </div>
                                 </div>
                             </div>
                         </div>
@@ -388,7 +438,7 @@
                                         cities = cities.substring(0, (cities.length - 1));
                                     }
                                     var type = document.getElementById("hdType").value;
-                                    var address = document.getElementById("txtSearch").value;
+                                    var address = document.getElementById("hdSearch").value;
                                     var startArea = document.getElementById("startArea").innerHTML;
                                     var startRate = document.getElementById("startRate").innerHTML;
                                     var endArea = document.getElementById("endArea").innerHTML;
@@ -427,7 +477,7 @@
                                         cities = cities.substring(0, (cities.length - 1));
                                     }
                                     var type = document.getElementById("hdType").value;
-                                    var address = document.getElementById("txtSearch").value;
+                                    var address = document.getElementById("hdSearch").value;
                                     var startArea = document.getElementById("startArea").innerHTML;
                                     var startRate = document.getElementById("startRate").innerHTML;
                                     var endArea = document.getElementById("endArea").innerHTML;
@@ -442,16 +492,16 @@
                         <h3>Filtrar por cidade</h3>
 
                         <div style="width: 90%; padding: 0px 10px;">
-                            <form action="" method="get">
-                                <input id="chk1" name="" type="checkbox" value="Bairro Sombra" onclick="filter();">
+                            <div>
+                                <input id="chk1" name="" type="checkbox" value="Bairro Sombra" onchange="chkfilter();">
                                 <label style="padding-left: 10px;">Bairro Sombra</label><br>
-                                <input id="chk2" name="" type="checkbox" value="São Paulo" onclick="filter();">
+                                <input id="chk2" name="" type="checkbox" value="São Paulo" onchange="chkfilter();">
                                 <label style="padding-left: 10px;">São Paulo</label><br>
-                                <input id="chk3" name="" type="checkbox" value="Bairro dos Telles" onclick="filter();">
+                                <input id="chk3" name="" type="checkbox" value="Bairro dos Telles" onchange="chkfilter();">
                                 <label style="padding-left: 10px;">Bairro dos Telles</label><br>
-                                <input name="" type="checkbox" value="Manaus-Amazonas" onclick="filter();">
+                                <input name="" type="checkbox" value="Manaus-Amazonas" onchange="chkfilter();">
                                 <label id="chk4" style="padding-left: 10px;">Manaus-Amazonas</label><br>
-                            </form>
+                            </div>
                         </div>
 
                     </div>
@@ -481,11 +531,12 @@
                         <div style="width: 90%; float: left; padding: 10px 20px;">
                             <h3 class="list_heading">
                                 <span id="totalRecords"></span>
-                                </h3>
+                            </h3>
                         </div>
-                        <div id="preloader" style="display:none;">
-                            <div style="float: left; margin: 50px 0px 0px 350px;">
-                                <img src="http://preloaders.net/images/ajax-loader.gif" alt="AJAX loader" title="AJAX loader"></div>
+                        <div id="preloader" style="display: none;">
+                            <div style="float: left; margin: 30px 0px 0px 340px;">
+                                <img src="images/ajax-loader.gif" alt="Loading..." title="">
+                            </div>
                         </div>
                         <div id="divPropertyList" style="width: 100%; float: left; height: 550px; overflow: scroll;">
                             <%--<asp:DataList ID="dlstProperty" runat="server" Width="100%" RepeatColumns="1">

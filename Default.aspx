@@ -125,10 +125,10 @@
                             <br>
                             <br>
                             <h3>
-                                <a href="Agent/ListProperty.aspx?type=Escritório&address=Sao Paulo">Sao Paulo</a><br>
+                                <a href="Agent/ListProperty.aspx?type=Escritório&address=São Paulo">São Paulo</a><br>
                                 <a href="Agent/ListProperty.aspx?type=Escritório&address=Italim Bibi" class="greenselect">Italim Bibi</a><br>
                                 <a href="Agent/ListProperty.aspx?type=Escritório&address=Vila Olimpia" class="greenselect">Vila Olimpia</a><br>
-                                <a href="Agent/ListProperty.aspx?type=Escritório&address=Morumbi" class="greenselect">Morumbi </a></h3>
+                                <a href="Agent/ListProperty.aspx?type=Escritório&address=Morumbi" class="greenselect">Morumbi</a></h3>
                         </div>
                         <div id="view2" class="tabcontent">
                             <form style="margin: 0px; padding: 0px; float: left;">

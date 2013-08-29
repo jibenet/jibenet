@@ -18,8 +18,6 @@ public partial class Agent_AddProperty : System.Web.UI.Page
     {
         revalPName.ValidationExpression = RegExp.MaxLength(200);
         revalPName.ErrorMessage = ValidationMessages.MaxLength(200);
-        revalPName.ValidationExpression = RegExp.String;
-        revalPName.ErrorMessage = ValidationMessages.String;       
 
         revalAddress.ValidationExpression = RegExp.MaxLength(500);
         revalAddress.ErrorMessage = ValidationMessages.MaxLength(500);

@@ -22,7 +22,8 @@
         function () {
             $("#<%=FileUpload1.ClientID %>").fileUpload({
                 'uploader': 'scripts/uploader.swf',
-                'cancelImg': 'images/cancel.png',
+                //'cancelImg': 'images/cancel.png',
+                'cancelImg': '',
                 'buttonText': 'Procurar arquivos',
                 'script': 'Upload.ashx',
                 'folder': 'uploads',

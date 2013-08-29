@@ -166,7 +166,7 @@
                             </div>
                             <img src="images/line.jpg" alt="Line" style="padding: 0px 12px; float: left;">
                             <div style="width: 25%; float: left; padding-top: 10px;">
-                                $
+                                R$
                                 <asp:Label ID="lblRate" runat="server" Text=""></asp:Label>
                             </div>
                         </h2>
@@ -311,8 +311,9 @@
 
                     <div style="width: 94%; padding: 2%; margin-top: 2%; float: left; border: 1px solid #e5e5e5; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px; -khtml-border-radius: 7px; background: #fff;">
                         <h3>Detalhes</h3>
-                        <div id="propertyDetail" runat="server"></div>
-
+                        <h5>
+                            <div id="propertyDetail" runat="server"></div>
+                        </h5>
                     </div>
 
                 </div>

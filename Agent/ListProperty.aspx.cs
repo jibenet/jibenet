@@ -20,7 +20,7 @@ public partial class Agent_ListProperty : System.Web.UI.Page
                 if (Request.QueryString["type"] != null)
                 {
                     hdType.Value = Request.QueryString["type"].ToString();
-                    txtSearch.Value = Request.QueryString["address"].ToString();
+                    hdSearch.Value = Request.QueryString["address"].ToString();
                 }
                 else
                 {

@@ -50,9 +50,16 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             DataTable dtable = new DataTable();
                             dtable = oPropertyBAL.FindImagesByPropertyID(oPropertyBO);
                             string sSlider = "<ul class='slides'>";
-                            for(int i = 0; i < dtable.Rows.Count; i++)
+                            if (dtable.Rows.Count == 0)
                             {
-                                sSlider += "<li><img src='" + dtable.Rows[i]["image"].ToString() + "' width='707px' height='530px'/></li>";
+                                sSlider += "<li><img src='http://clipas.venturepact.com/agent/images/707x530.jpg' width='707px' height='530px'/></li>";
+                            }
+                            else
+                            {
+                                for (int i = 0; i < dtable.Rows.Count; i++)
+                                {
+                                    sSlider += "<li><img src='" + dtable.Rows[i]["image"].ToString() + "' width='707px' height='530px'/></li>";
+                                }
                             }
                             sSlider += "</ul>";
                             slider.Visible = true;
@@ -63,7 +70,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                 string sCarousel = "<ul class='slides'>";
                                 for (int i = 0; i < dtable.Rows.Count; i++)
                                 {
-                                    sCarousel += "<li><img src='" + dtable.Rows[i]["image"].ToString() + "'></li>";
+                                    sCarousel += "<li><img src='" + dtable.Rows[i]["image"].ToString() + "' width='210px' height='150px'></li>";
                                 }
                                 sCarousel += "</ul>";
                                 carousel.Visible = true;

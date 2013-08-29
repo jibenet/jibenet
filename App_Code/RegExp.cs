@@ -23,7 +23,7 @@ public class RegExp
     public static readonly string NonNegative = "[+]?[0-9]*\\.?[0-9]*";
     public static readonly string ZipCode = "^[0-9]{5}(-[0-9]{3})?$";
     public static readonly string Phone = "^[0-9]{5}(-[0-9]{4})?$";
-    public static readonly string String = "^[a-zA-Z\\s]+$";    
+    public static readonly string String = "^[a-zA-Z\\s]+$";  
 
     public static string MaxLength(int len)
     {

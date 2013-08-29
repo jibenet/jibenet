@@ -246,7 +246,7 @@
                                 <asp:RegularExpressionValidator ID="revalArea" runat="server" ErrorMessage="" ControlToValidate="txtArea" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                                 <%--                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                <asp:RangeValidator ID="rvArea" runat="server" ControlToValidate="txtArea" ErrorMessage="1 e 32000" Type="Integer" MinimumValue="1" MaximumValue="5000"></asp:RangeValidator>
+                                <asp:RangeValidator ID="rvArea" runat="server" ControlToValidate="txtArea" ErrorMessage="1 e 5000" Type="Integer" MinimumValue="1" MaximumValue="5000" ValidationGroup="property"></asp:RangeValidator>
                                 <br />
                                 <br />
                                 <label>Rate</label>
@@ -256,12 +256,12 @@
                             <asp:RegularExpressionValidator ID="revalRate" runat="server" ErrorMessage="" ControlToValidate="txtRate" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                                 <%--                            <input name="phone2" type="text" id="Text1" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                <asp:RangeValidator ID="rvRate" runat="server" ControlToValidate="txtRate" ErrorMessage="1 e 32000" Type="Integer" MinimumValue="1" MaximumValue="50000"></asp:RangeValidator>
+                                <asp:RangeValidator ID="rvRate" runat="server" ControlToValidate="txtRate" ErrorMessage="1 e 50000" Type="Integer" MinimumValue="1" MaximumValue="50000" ValidationGroup="property"></asp:RangeValidator>
 
                                 <br />
                                 <br />
                                 <label>Fotos</label>
-                                <iframe src="AutoUpload.aspx" style="overflow: hidden; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
+                                <iframe src="AutoUpload.aspx" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
 
                                 <%--                            <input name="" type="file">--%>
                                 <br>
@@ -273,7 +273,7 @@
                                     <asp:TextBox ID="txtParkings" runat="server" Style="width: 200px;" size="28" CssClass="formstyle"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revalParkings" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtParkings" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>
+                                    <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtParkings" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
                                     <%--                            <input name="phone2" type="text" id="Text2" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
                                     <br>
                                     <br>
@@ -282,7 +282,7 @@
                                     <asp:TextBox ID="txtToilets" runat="server" Style="width: 200px;" size="28" CssClass="formstyle"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revalToilets" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtToilets" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>
+                                    <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtToilets" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
 
 
                                     <%--                            <input name="phone3" type="text" id="phone3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
@@ -293,7 +293,7 @@
                                     <asp:TextBox ID="txtKitchens" runat="server" Style="width: 200px;" size="28" CssClass="formstyle"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revalKitchen" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="txtKitchens" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>
+                                    <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="txtKitchens" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
 
                                     <%--                            <input name="phone3" type="text" id="Text3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
                                     <br>
