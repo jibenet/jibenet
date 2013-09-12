@@ -7,14 +7,17 @@ function initialize()
         geocoder = new google.maps.Geocoder();
         var mapOptions = {
             center: new google.maps.LatLng(-8.640660, -53.146848),
-            zoom: 10,
+            zoom: 3,
             mapTypeId: google.maps.MapTypeId.ROADMAP       
         };
 
         map = new google.maps.Map(document.getElementById('map_canvas'),
         mapOptions);
 
+        var buyorrent = document.getElementById("hdBuyOrRent").value;      
+             
         var type = document.getElementById("hdType").value;
+
         if (type == 'Escritório') {
             document.getElementById('Escritório').className = "selected";
             document.getElementById('Loja').className = "";            
@@ -24,7 +27,9 @@ function initialize()
             document.getElementById('Loja').className = "selected";
             document.getElementById('Escritório').className = "";            
         }
-        var address = document.getElementById("hdSearch").value;        
+
+        var address = document.getElementById("hdSearch").value;
+
         geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
@@ -34,15 +39,15 @@ function initialize()
                 });
             }           
         });
-        $('#preloader').show();
-        WebService.PropertyList(type, address, DefaultList);
+        $('#preloader').show();        
+        WebService.PropertyList(buyorrent, type, address, DefaultList);        
         WebService.AgentList(fAgentList);
         
         google.maps.event.addListener(map, 'zoom_changed', function () {            
-            filter();
+            chkfilter();
         });
         google.maps.event.addListener(map, 'dragend', function () {            
-            filter();
+            chkfilter();
         });
     }
     catch (e) {
@@ -66,6 +71,7 @@ function initialize()
             if (cities.length != 0) {
                 cities = cities.substring(0, (cities.length - 1));
             }
+            var buyorrent = document.getElementById("hdBuyOrRent").value;
             var type = document.getElementById("hdType").value;
             var address = document.getElementById("hdSearch").value;
             var startArea = document.getElementById("startArea").innerHTML;
@@ -73,7 +79,7 @@ function initialize()
             var endArea = document.getElementById("endArea").innerHTML;
             var endRate = document.getElementById("endRate").innerHTML;
             $('#preloader').show();
-            WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+            WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
         }
         catch (e)
         {

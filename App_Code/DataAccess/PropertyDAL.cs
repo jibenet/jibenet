@@ -43,10 +43,13 @@ public class PropertyDAL
             cmd.Parameters.AddWithValue("@pName", oPropertyBO.name);
             cmd.Parameters.AddWithValue("@description", oPropertyBO.description);
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
+            cmd.Parameters.AddWithValue("@city", oPropertyBO.city);
+            cmd.Parameters.AddWithValue("@neighborhood", oPropertyBO.neighborhood);
             cmd.Parameters.AddWithValue("@latitude", oPropertyBO.latitude);
             cmd.Parameters.AddWithValue("@longitude", oPropertyBO.longitude);
             cmd.Parameters.AddWithValue("@zipCode", oPropertyBO.zipCode);
             cmd.Parameters.AddWithValue("@type", oPropertyBO.type);
+            cmd.Parameters.AddWithValue("@buyorrent", oPropertyBO.buyorrent);
             cmd.Parameters.AddWithValue("@size", oPropertyBO.size);
             cmd.Parameters.AddWithValue("@rate", oPropertyBO.rate);
             cmd.Parameters.AddWithValue("@totalImages", oPropertyBO.totalImages);
@@ -86,8 +89,9 @@ public class PropertyDAL
             {
                 con.Open();
             }
+            cmd.Parameters.AddWithValue("@type", oPropertyBO.type);            
+            cmd.Parameters.AddWithValue("@buyorrent", oPropertyBO.buyorrent);
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
-            cmd.Parameters.AddWithValue("@type", oPropertyBO.type);
             SqlParameter message = cmd.Parameters.Add("@message", SqlDbType.VarChar, 500);
             message.Direction = ParameterDirection.Output;
             dad = new SqlDataAdapter(cmd);
@@ -132,7 +136,6 @@ public class PropertyDAL
             con.Close();
         }
     }
-
     public DataTable FindImagesByPropertyID(PropertyBO oPropertyBO)
     {
         try
@@ -170,6 +173,7 @@ public class PropertyDAL
                 con.Open();
             }
             cmd.Parameters.AddWithValue("@type", oPropertyBO.type);
+            cmd.Parameters.AddWithValue("@buyorrent", oPropertyBO.buyorrent);            
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
             cmd.Parameters.AddWithValue("@cities", oIPropertyBO.address);
             cmd.Parameters.AddWithValue("@startArea", oPropertyBO.size);
@@ -192,5 +196,43 @@ public class PropertyDAL
         {
             con.Close();
         }
-    }    
+    }
+    public DataTable FindSimilarPropertyByAddress(PropertyBO oPropertyBO)
+    {
+        try
+        {
+            query = @"SELECT TOP 2 [Property].propertyID, SUBSTRING ([Property].description, 0 , 100) + '..' AS description, [Property].size, [Property].rate, RTRIM(LTRIM([PropertyImage].image)) AS image
+	                    FROM [dbo].[Property]
+	                    LEFT JOIN [dbo].[PropertyImage]
+	                    ON [Property].propertyID = [PropertyImage].propertyID	
+	                    AND
+	                    [PropertyImage].ID IN (SELECT MIN(ID) FROM [PropertyImage] GROUP BY [PropertyImage].propertyID)
+	                    WHERE [Property].address LIKE @address
+	                    AND [Property].type = (SELECT type FROM property WHERE propertyID = @propertyID)	
+	                    AND [Property].buyorrent = (SELECT buyorrent FROM property WHERE propertyID = @propertyID)
+                        AND [Property].propertyID != @propertyID ORDER BY RAND()";
+            cmd = new SqlCommand(query, con);
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            cmd.Parameters.AddWithValue("@propertyID", oPropertyBO.propertyID);
+            cmd.Parameters.AddWithValue("@address", "%" + oPropertyBO.address + "%");
+            SqlParameter message = cmd.Parameters.Add("@message", SqlDbType.VarChar, 500);
+            message.Direction = ParameterDirection.Output;
+
+            dad = new SqlDataAdapter(cmd);
+            dt = new DataTable();
+            dad.Fill(dt);
+            return dt;
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
 }

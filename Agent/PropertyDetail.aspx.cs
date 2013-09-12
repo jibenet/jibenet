@@ -28,24 +28,58 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                         {
                             lblName.Text = dt.Rows[0]["name"].ToString();
                             lblAddress.Text = dt.Rows[0]["address"].ToString();
-                            lblArea.Text = dt.Rows[0]["size"].ToString();
-                            lblRate.Text = dt.Rows[0]["rate"].ToString();
-                            propertyDetail.InnerHtml = dt.Rows[0]["description"].ToString();
-                            lblAreaI.Text = dt.Rows[0]["size"].ToString();
-                            lblRateI.Text = dt.Rows[0]["rate"].ToString();
-                            hdLatitude.Value = dt.Rows[0]["latitude"].ToString();
-                            hdLongitude.Value = dt.Rows[0]["longitude"].ToString();
-                            lblParking.Text = dt.Rows[0]["parkings"].ToString();
-                            lblToilet.Text = dt.Rows[0]["toilets"].ToString();
-                            lblKitchen.Text = dt.Rows[0]["kitchens"].ToString();
-                            if (bool.Parse(dt.Rows[0]["hasReception"].ToString()))
+                            if (dt.Rows[0]["size"].ToString() == "1")
                             {
-                                lblReception.Text = "1";
+                                lblArea.Text = "N/A";
+                                lblAreaI.Text = "N/A";
                             }
                             else
                             {
-                                lblReception.Text = "0";
+                                lblArea.Text = dt.Rows[0]["size"].ToString();
+                                lblAreaI.Text = dt.Rows[0]["size"].ToString();
                             }
+                            if (int.Parse(dt.Rows[0]["rate"].ToString()) <= 100)
+                            {
+                                lblRate.Text = "N/A";
+                                lblRateI.Text = "N/A";
+                            }
+                            else
+                            {
+                                lblRate.Text = dt.Rows[0]["rate"].ToString();
+                                lblRateI.Text = dt.Rows[0]["rate"].ToString();
+                            }                            
+                            propertyDetail.InnerHtml = dt.Rows[0]["description"].ToString();
+                            hdLatitude.Value = dt.Rows[0]["latitude"].ToString();
+                            hdLongitude.Value = dt.Rows[0]["longitude"].ToString();
+                            if ((dt.Rows[0]["parkings"].ToString() != string.Empty) && (dt.Rows[0]["parkings"].ToString() != "0"))
+                            {
+                                divParking.Visible = true;
+                                iParking.Visible = true;
+                                lblParking.Visible = true;
+                                lblParking.Text = dt.Rows[0]["parkings"].ToString() + " Estacionamento";
+                            }
+                            if ((dt.Rows[0]["toilets"].ToString() != string.Empty) && (dt.Rows[0]["toilets"].ToString() != "0"))
+                            {
+                                divToilet.Visible = true;
+                                iToilet.Visible = true;
+                                lblToilet.Visible = true;
+                                lblToilet.Text = dt.Rows[0]["toilets"].ToString() + " Banheiros";
+                            }
+                            if ((dt.Rows[0]["kitchens"].ToString() != string.Empty) && (dt.Rows[0]["kitchens"].ToString() != "0"))
+                            {
+                                divKitchen.Visible = true;
+                                iKitchen.Visible = true;
+                                lblKitchen.Visible = true;
+                                lblKitchen.Text = dt.Rows[0]["kitchens"].ToString() + " Cozinha";
+                            }
+                            if (bool.Parse(dt.Rows[0]["hasReception"].ToString()))
+                            {
+                                divReception.Visible = true;
+                                iReception.Visible = true;
+                                lblReception.Visible = true;
+                                lblReception.Text = "1 Area de Recepcao";
+                            }
+                           
                             oPropertyBO.propertyID = int.Parse(Request.QueryString["pID"].ToString());
                             DataTable dtable = new DataTable();
                             dtable = oPropertyBAL.FindImagesByPropertyID(oPropertyBO);
@@ -64,6 +98,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             sSlider += "</ul>";
                             slider.Visible = true;
                             slider.InnerHtml = sSlider;
+                            map.Visible = true;
 
                             if (dtable.Rows.Count > 1)
                             {
@@ -75,6 +110,76 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                 sCarousel += "</ul>";
                                 carousel.Visible = true;
                                 carousel.InnerHtml = sCarousel;
+                            }
+                            oPropertyBO.propertyID = int.Parse(Request.QueryString["pID"].ToString());
+                            oPropertyBO.address = dt.Rows[0]["address"].ToString().Substring(0, 5);
+                            DataTable dtbl = new DataTable();
+                            dtbl = oPropertyBAL.FindSimilarPropertyByAddress(oPropertyBO);
+                            if (dtbl.Rows.Count == 1)
+                            {
+                                divN1.Visible = true;
+                                ibtnImage1.PostBackUrl = "PropertyDetail.aspx?pID=" + dtbl.Rows[0]["propertyID"].ToString();
+                                ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
+                                lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
+                                if (dtbl.Rows[0]["size"].ToString() == "1")
+                                {
+                                    lblArea1.Text = "N/A";
+                                }
+                                else
+                                {
+                                    lblArea1.Text = dtbl.Rows[0]["size"].ToString();
+                                }
+                                if (int.Parse(dtbl.Rows[0]["rate"].ToString()) <= 100)
+                                {
+                                    lblRate1.Text = "N/A";
+                                }
+                                else
+                                {
+                                    lblRate1.Text = dtbl.Rows[0]["rate"].ToString();
+                                } 
+                            }
+                            if (dtbl.Rows.Count == 2)
+                            {
+                                divN1.Visible = true;
+                                ibtnImage1.PostBackUrl = "PropertyDetail.aspx?pID=" + dtbl.Rows[0]["propertyID"].ToString();
+                                ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
+                                lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
+                                if (dtbl.Rows[0]["size"].ToString() == "1")
+                                {
+                                    lblArea1.Text = "N/A";
+                                }
+                                else
+                                {
+                                    lblArea1.Text = dtbl.Rows[0]["size"].ToString();
+                                }
+                                if (int.Parse(dtbl.Rows[0]["rate"].ToString()) <= 100)
+                                {
+                                    lblRate1.Text = "N/A";
+                                }
+                                else
+                                {
+                                    lblRate1.Text = dtbl.Rows[0]["rate"].ToString();
+                                } 
+                                divN2.Visible = true;
+                                ibtnImage2.PostBackUrl = "PropertyDetail.aspx?pID=" + dtbl.Rows[0]["propertyID"].ToString();
+                                ibtnImage2.ImageUrl = dtbl.Rows[1]["image"].ToString();
+                                lblDescription2.Text = dtbl.Rows[1]["description"].ToString();
+                                if (dtbl.Rows[0]["size"].ToString() == "1")
+                                {
+                                    lblArea2.Text = "N/A";
+                                }
+                                else
+                                {
+                                    lblArea2.Text = dtbl.Rows[0]["size"].ToString();
+                                }
+                                if (int.Parse(dtbl.Rows[0]["rate"].ToString()) <= 100)
+                                {
+                                    lblRate2.Text = "N/A";
+                                }
+                                else
+                                {
+                                    lblRate2.Text = dtbl.Rows[0]["rate"].ToString();
+                                } 
                             }
                         }
                     }

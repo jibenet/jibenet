@@ -6,11 +6,17 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
-    <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" /> 
-
+    <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" />
     <link href="style/default.css" rel="stylesheet" type="text/css" />
-    <script src="js/tabcontent.js" type="text/javascript"></script>
     <link href="style/tabcontent-index.css" rel="stylesheet" type="text/css" />
+    <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
+    <link href="style/bootstrap.css" rel="stylesheet">
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/tabcontent.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/application.js"></script>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
@@ -45,18 +51,31 @@
         .pac-container:after {
             content: none !important;
         }
+
+        .ddmenu {
+            height: auto;
+        }
+
+        .select .btn .filter-option {
+            left: 8px;
+            top: 13px;
+        }
+
+        .open > .dropdown-arrow {
+            margin-top: 15px;
+        }
     </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                var url = 'Agent/ListProperty.aspx?type=Escritório&address=' + $('#eSearch').val();
+                var url = 'Agent/ListProperty.aspx?buyorrent=' + $('#jumpMenu :selected').val() + '&type=Escritório&address=' + $('#eSearch').val();
                 $(location).attr('href', url);
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                var url = 'Agent/ListProperty.aspx?type=Loja&address=' + $('#lSearch').val();
+                var url = 'Agent/ListProperty.aspx?buyorrent=' + $('#Select2 :selected').val() + '&type=Loja&address=' + $('#lSearch').val();
                 $(location).attr('href', url);
             })
         });
@@ -72,20 +91,20 @@
                 <a href="Default.aspx">
                     <img src="images/jibenet.png" alt="Jibenet" border="0" style="float: left;"></a>
                 <div class="right">
-                    <span>
+                    <div class="list">
                         <select name="select" id="select">
-                            <option value="Entre">Entre</option>
-
+                            <option value="Login">Login</option>
+                            <option value="Cadastre-se">Cadastre-se</option>
                         </select>
-                    </span>
+                    </div>
                     <span>
                         <select name="select" id="select1">
-                            <option value="Entre">Ajudar</option>
+                            <option value="Ajudar">Ajudar</option>
 
                         </select>
                     </span>
                     <div class="green-tab">
-                        <p><a href="Agent/AddProperty.aspx">Listar Sua Properiedade</a></p>
+                        <p><a href="Agent/AddProperty.aspx">Anuncie seu Imóvel</a></p>
                     </div>
                 </div>
             </div>
@@ -112,18 +131,21 @@
                     <div class="tabcontents">
                         <div id="view1" class="tabcontent">
                             <form style="margin: 0px; padding: 0px; float: left;">
-                                <div style="width: 612px; float: left; background-image: url(images/searchbg.png); margin-right: 10px; background-repeat: no-repeat; height: 44px; padding: 4px;">
-                                    <input id="btnEclick" type="button" value="" class="searchbtn"><input id="eSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;">
+                                <div style="width: 537px; float: left; background-image: url(images/searchbg.png); margin-right: 10px; background-repeat: no-repeat; height: 44px; padding: 4px;">
+                                    <input id="btnEclick" type="button" value="" class="searchbtn"><input id="eSearch" name="search" type="text" placeholder="Bairro" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;">
                                 </div>
                                 <div class="ddmenu" style="width: 128px; float: right;">
-                                    <select name="jumpMenu" id="jumpMenu">
-                                        <option>Alugar</option>
+                                    <div class="row demo-row">
+                                        <div class="span2" style="width: 128px;">
+                                            <select id="jumpMenu" name="herolist" value="À Venda" class="select-block span3" style="min-height: 75px;">
+                                                <option value="À Venda">À Venda</option>
+                                                <option value="Para Alugar">Para Alugar</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                                    </select>
                                 </div>
                             </form>
-                            <br>
-                            <br>
                             <h3>
                                 <a href="Agent/ListProperty.aspx?type=Escritório&address=São Paulo">São Paulo</a><br>
                                 <a href="Agent/ListProperty.aspx?type=Escritório&address=Italim Bibi" class="greenselect">Italim Bibi</a><br>
@@ -132,19 +154,22 @@
                         </div>
                         <div id="view2" class="tabcontent">
                             <form style="margin: 0px; padding: 0px; float: left;">
-                                <div style="width: 612px; float: left; background-image: url(images/searchbg.png); margin-right: 10px; background-repeat: no-repeat; height: 44px; padding: 4px;">
-                                    <input id="btnLclick" type="button" value="" class="searchbtn" /><input id="lSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;" />
+                                <div style="width: 537px; float: left; background-image: url(images/searchbg.png); margin-right: 10px; background-repeat: no-repeat; height: 44px; padding: 4px;">
+                                    <input id="btnLclick" type="button" value="" class="searchbtn" /><input id="lSearch" name="search" type="text" placeholder="Bairro" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;" />
                                 </div>
                                 <div class="ddmenu" style="width: 128px; float: right;">
-                                    <select name="jumpMenu" id="Select2">
-                                        <option>Alugar</option>
-
-                                    </select>
+                                    <div class="row demo-row">
+                                        <div class="span2" style="width: 128px;">
+                                            <select id="Select2" name="herolist" value="Para Alugar" class="select-block span3">
+                                                <option value="À Venda">À Venda</option>
+                                                <option value="Para Alugar">Para Alugar</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
-                            <br>
                             <h3>
-                                <a href="Agent/ListProperty.aspx?type=Loja&address=Sao Paulo">Sao Paulo</a><br>
+                                <a href="Agent/ListProperty.aspx?type=Loja&address=São Paulo">São Paulo</a><br>
                                 <a href="Agent/ListProperty.aspx?type=Loja&address=Italim Bibi" class="greenselect">Italim Bibi</a><br>
                                 <a href="Agent/ListProperty.aspx?type=Loja&address=Vila Olimpia" class="greenselect">Vila Olimpia</a><br>
                                 <a href="Agent/ListProperty.aspx?type=Loja&address=Morumbi" class="greenselect">Morumbi </a></h3>
@@ -155,7 +180,7 @@
                 <!--<form action="inner.html" method="po" style="margin:0px; padding:0px; float:left;">
   <div style="width:100%; float:left; margin-left:20px; height:31px;"><a href="#"><img src="images/escritoria.png" alt="escritoria"></a><a href="#"><img src="images/loja.png" alt="escritoria"></a></div>
   <div style="width:612px; float:left; background-image:url(images/searchbg.png); background-repeat:no-repeat; height:44px; padding:4px;">
-  <input name="search" type="submit" value="" class="searchbtn"><input name="search" type="text" placeholder="Digite Um Bairro" style="padding:4px 4px; width:88%; margin-top:8px; border:0px; background:none;">  </div>
+  <input name="search" type="submit" value="" class="searchbtn"><input name="search" type="text" placeholder="Bairro" style="padding:4px 4px; width:88%; margin-top:8px; border:0px; background:none;">  </div>
 <div class="ddmenu" style="width:128px; float:right;">
   <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
         <option>Alugar</option>
@@ -179,18 +204,18 @@
         <div id="txtcontainer">
             <div>
                 <div style="width: 28%; float: left; padding: 3% 14%;">
-                    <h1>Pesquisar Todo o Mercado Imobiliário</h1>
+                    <h1>Explore o mercado inteiro de imóveis comerciais</h1>
                     <img src="images/umlugar.jpg" alt="/Os detalhes" width="200" height="87">
                     <br>
-                    Visitar todos São Paulo com apenas alguns cliques. Nós consolidamos todas as propriedades comerciais aqui.
-              </div>
+                    Visite o mercado comercial de imóveis em São Paulo com apenas alguns cliques.
+                </div>
 
                 <div style="width: 33%; float: left; padding: 3% 0%;">
-                    <h1>Aumentar suas Leads com a Exposição Imediata</h1>
+                    <h1>Aumente seus leads qualificados com exposição imediata ao mercado</h1>
                     <img src="images/osdetalhes.jpg" alt="Facilmente">
                     <br>
                     A maneira mais rápida e mais fácil de comercializar o seu imóvel. 
-              </div>
+                </div>
 
 
 

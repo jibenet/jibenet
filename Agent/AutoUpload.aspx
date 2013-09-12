@@ -24,7 +24,7 @@
                 'uploader': 'scripts/uploader.swf',
                 //'cancelImg': 'images/cancel.png',
                 'cancelImg': '',
-                'buttonText': 'Procurar arquivos',
+                'buttonText': 'Procure arquivos',
                 'script': 'Upload.ashx',
                 'folder': 'uploads',
                 'fileDesc': 'Image Files',

@@ -35,6 +35,16 @@ public class PropertyBO
         get;
         set;
     }
+    public string city
+    {
+        get;
+        set;
+    }
+    public string neighborhood
+    {
+        get;
+        set;
+    }
     public string latitude
     {
         get;
@@ -119,7 +129,12 @@ public class PropertyBO
     {
         get;
         set;
-    }   
+    }
+    public string buyorrent
+    {
+        get;
+        set;
+    }
     public bool status
     {
         get;

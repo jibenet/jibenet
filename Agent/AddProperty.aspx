@@ -15,6 +15,16 @@
     <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
     <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
+
+
+    <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
+    <link href="style/bootstrap.css" rel="stylesheet">
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/tabcontent.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/application.js"></script>
     <script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js"></script>
     <script type="javascript">
 	    $(function () {
@@ -23,8 +33,7 @@
     </script>
 
     <style>
-        upl
-        {
+        upl {
             float: left;
             height: 30px;
             left: 300px;
@@ -65,8 +74,7 @@
         }
     </script>
     <style>
-        .pac-container:after
-        {
+        .pac-container:after {
             content: none !important;
         }
     </style>
@@ -74,13 +82,13 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                var url = 'ListProperty.aspx?type=Escritório&address=' + $('#eSearch').val();
+                var url = 'ListProperty.aspx?buyorrent=' + $('#jumpMenu :selected').val() + '&type=Escritório&address=' + $('#eSearch').val();
                 $(location).attr('href', url);
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                var url = 'ListProperty.aspx?type=Loja&address=' + $('#lSearch').val();
+                var url = 'ListProperty.aspx?buyorrent=' + $('#Select1 :selected').val() + '&type=Loja&address=' + $('#lSearch').val();
                 $(location).attr('href', url);
             })
         });
@@ -121,28 +129,36 @@
                             <div id="view1" class="tabcontent">
                                 <form action="" method="post">
                                     <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                        <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
+                                        <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
                                     </div>
 
-                                    <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
-                                        <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
-                                            <option>Alugar</option>
-
-                                        </select>
+                                    <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
+                                        <div class="row demo-row">
+                                            <div class="span2" style="width: 128px; min-height: 60px !important;">
+                                                <select id="jumpMenu" name="herolist" value="À Venda" class="select-block span3" style="min-height: 75px;">
+                                                    <option value="À Venda">À Venda</option>
+                                                    <option value="Para Alugar">Para Alugar</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                             <div id="view2" class="tabcontent">
                                 <form action="" method="post">
                                     <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                        <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" n name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
+                                        <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" n name="search" type="text" placeholder="Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
                                     </div>
 
-                                    <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
-                                        <select name="jumpMenu" id="Select1" onchange="MM_jumpMenu('parent',this,0)">
-                                            <option>Alugar</option>
-
-                                        </select>
+                                    <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
+                                        <div class="row demo-row">
+                                            <div class="span2" style="width: 128px; min-height: 60px !important;">
+                                                <select id="Select1" name="herolist" value="À Venda" class="select-block span3" style="min-height: 75px;">
+                                                    <option value="À Venda">À Venda</option>
+                                                    <option value="Para Alugar">Para Alugar</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -150,20 +166,20 @@
                     </div>
                 </div>
                 <div class="right">
-                    <span>
+                    <div class="list">
                         <select name="select" id="select">
-                            <option value="Entre">Entre</option>
-
+                            <option value="Login">Login</option>
+                            <option value="Cadastre-se">Cadastre-se</option>
                         </select>
-                    </span>
+                    </div>
                     <span>
                         <select name="select" id="select2">
-                            <option value="Entre">Ajudar</option>
+                            <option value="Ajudar">Ajudar</option>
 
                         </select>
                     </span>
                     <div class="green-tab">
-                        <p><a href="AddProperty.aspx">Listar Sua Properiedade</a></p>
+                        <p><a href="AddProperty.aspx">Anuncie seu Imóvel</a></p>
                     </div>
                 </div>
             </div>
@@ -179,17 +195,17 @@
                 <div style="background-color: #fff; width: 96%; float: left; border-radius: 10px; box-shadow: 2px 2px 4px #E9E9E9; padding: 2%;">
 
                     <div style="width: 100%; float: left; text-align: center;">
-                        <h3>Aumento Leads a Sua Propriedade Hoje.<br>
-                            Publicar a Centenas de Inquilinos Qualificados</h3>
+                        <h3>Aumente os leads do seu imóvel agora.<br>
+                            Publique a centenas de inquilinos qualificados.</h3>
 
-                        <h3 style="font-size: 20px; line-height: 50px; margin-top: 20px; border-top: 1px solid #ccc;">Promocao por Tempo Limitado: Lista de Graca!</h3>
+                        <h3 style="font-size: 20px; line-height: 50px; margin-top: 20px; border-top: 1px solid #ccc;"></h3>
                     </div>
 
                     <form id="form" runat="server">
 
                         <div style="width: 96%; float: left; border: 1px solid #ccc; border-radius: 10px; padding: 2%;">
                             <div style="float: left; width: 65%;">
-                                <label>Nome da propriedade</label>
+                                <label>Nome do Imóvel</label>
                                 <input id="txtPName" type="text" runat="server" style="width: 250px;" size="28" class="formstyle" />
                                 <%--                                <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>--%>
                                 <asp:RequiredFieldValidator ID="rvalPName" runat="server" ErrorMessage="" ControlToValidate="txtPName" ValidationGroup="property">*</asp:RequiredFieldValidator>
@@ -211,6 +227,26 @@
                             &nbsp;<br />
                                 <span style="padding-left: 16%; color: #FF0000; font-size: 11px">arrastar marcador no mapa para marcar exata localização da propriedade.</span>
                                 <br />
+                                <label>Cidade</label>
+                                <input id="txtCity" type="text" runat="server" style="width: 250px;" size="28" class="formstyle" />
+                                <%--                                <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>--%>
+                                <asp:RequiredFieldValidator ID="rvalCity" runat="server" ErrorMessage="" ControlToValidate="txtCity" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revalCity" runat="server" ErrorMessage="" ControlToValidate="txtCity" ValidationGroup="property"></asp:RegularExpressionValidator>
+
+                                <%--<input name="fname" type="text" id="fname"  />--%>
+                                <br />
+
+                                <br />
+                                <label>Bairro</label>
+                                <input id="txtNeighborhood" type="text" runat="server" style="width: 250px;" size="28" class="formstyle" />
+                                <%--                                <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>--%>
+                                <asp:RegularExpressionValidator ID="revalNeighborhood" runat="server" ErrorMessage="" ControlToValidate="txtNeighborhood" ValidationGroup="property"></asp:RegularExpressionValidator>
+
+                                <%--<input name="fname" type="text" id="fname"  />--%>
+                                <br />
+
+                                <br />
+
                                 <label>CEP</label>
                                 <asp:TextBox ID="txtZipCode" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
                             <asp:RegularExpressionValidator ID="revalZipCode" runat="server" ErrorMessage="" ControlToValidate="txtZipCode" ValidationGroup="property"></asp:RegularExpressionValidator>
@@ -218,12 +254,16 @@
                                 <%--<input name="lname" type="text" id="lname" style="width: 250px;" size="28" placeholder="00000 - 000" />--%>
                                 <br />
                                 <br />
-                                <label>Propriedade</label>
-                                <asp:DropDownList ID="dropType" runat="server" Style="width: 260px;" CssClass="formstyle">
+                                <label>Imóvel</label>
+                                <asp:DropDownList ID="dropType" runat="server" Style="width: 120px;" CssClass="formstyle">
                                     <asp:ListItem Value="Escritório"></asp:ListItem>
                                     <asp:ListItem Value="Loja"></asp:ListItem>
                                 </asp:DropDownList>
 
+                                <asp:DropDownList ID="dropBuyOrRent" runat="server" Style="width: 120px;" CssClass="formstyle">
+                                    <asp:ListItem Value="Para Alugar"></asp:ListItem>
+                                    <asp:ListItem Value="À Venda"></asp:ListItem>
+                                </asp:DropDownList>
                                 <%--<select name="subject2" id="subject2" style="width: 260px;">
                                 <option value="escritoria">Escritorio</option>
                                 <option value="loja">Loja</option>
@@ -239,24 +279,24 @@
                                 <%--                            <input name="phone" type="text" id="phone" onkeyup="checkNum(this)" style="width: 250px;" size="28" placeholder="dd / mm / yyyy" />--%>
                                 <br />
                                 <br />
-                                <label>Area</label>
+                                <label>Área</label>
                                 <asp:TextBox ID="txtArea" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rvalArea" runat="server" ErrorMessage="" ControlToValidate="txtArea" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                 m<sup>2</sup>
                                 <asp:RegularExpressionValidator ID="revalArea" runat="server" ErrorMessage="" ControlToValidate="txtArea" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                                 <%--                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                <asp:RangeValidator ID="rvArea" runat="server" ControlToValidate="txtArea" ErrorMessage="1 e 5000" Type="Integer" MinimumValue="1" MaximumValue="5000" ValidationGroup="property"></asp:RangeValidator>
+                                <asp:RangeValidator ID="rvArea" runat="server" ControlToValidate="txtArea" ErrorMessage="1 e 5000000" Type="Integer" MinimumValue="1" MaximumValue="5000000" ValidationGroup="property"></asp:RangeValidator>
                                 <br />
                                 <br />
-                                <label>Rate</label>
+                                <label>Preço</label>
                                 <asp:TextBox ID="txtRate" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rvalRate" runat="server" ErrorMessage="" ControlToValidate="txtRate" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                 R$
                             <asp:RegularExpressionValidator ID="revalRate" runat="server" ErrorMessage="" ControlToValidate="txtRate" ValidationGroup="property"></asp:RegularExpressionValidator>
 
                                 <%--                            <input name="phone2" type="text" id="Text1" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
-                                <asp:RangeValidator ID="rvRate" runat="server" ControlToValidate="txtRate" ErrorMessage="1 e 50000" Type="Integer" MinimumValue="1" MaximumValue="50000" ValidationGroup="property"></asp:RangeValidator>
+                                <asp:RangeValidator ID="rvRate" runat="server" ControlToValidate="txtRate" ErrorMessage="0 e 5000000000" Type="Double" MinimumValue="0" MaximumValue="5000000000" ValidationGroup="property"></asp:RangeValidator>
 
                                 <br />
                                 <br />
@@ -273,7 +313,7 @@
                                     <asp:TextBox ID="txtParkings" runat="server" Style="width: 200px;" size="28" CssClass="formstyle"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revalParkings" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtParkings" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
+                                    <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtParkings" ErrorMessage="Valor entre 0 e 100" Type="Integer" MinimumValue="0" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
                                     <%--                            <input name="phone2" type="text" id="Text2" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
                                     <br>
                                     <br>
@@ -282,7 +322,7 @@
                                     <asp:TextBox ID="txtToilets" runat="server" Style="width: 200px;" size="28" CssClass="formstyle"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revalToilets" runat="server" ErrorMessage="" ControlToValidate="txtToilets" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtToilets" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
+                                    <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtToilets" ErrorMessage="Valor entre 0 e 100" Type="Integer" MinimumValue="0" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
 
 
                                     <%--                            <input name="phone3" type="text" id="phone3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
@@ -293,13 +333,13 @@
                                     <asp:TextBox ID="txtKitchens" runat="server" Style="width: 200px;" size="28" CssClass="formstyle"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revalKitchen" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                    <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="txtKitchens" ErrorMessage="Valor entre 1 e 100" Type="Integer" MinimumValue="1" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
+                                    <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="txtKitchens" ErrorMessage="Valor entre 0 e 100" Type="Integer" MinimumValue="0" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
 
                                     <%--                            <input name="phone3" type="text" id="Text3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
                                     <br>
                                     <br>
                                     <label>&nbsp;</label>
-                                    <label>Recepcao</label>
+                                    <label>Recepção</label>
                                     <asp:CheckBox ID="chkReception" runat="server" size="28" />
                                     <%--                            <input name="" type="checkbox" value="" size="28">--%>
                                     <br>
@@ -357,7 +397,7 @@
                                     <div class="green-butt">
                                         <p>
                                             <a>
-                                                <asp:Button ID="btnsubmit" runat="server" Text="Enviar imóvel" BackColor="Transparent" CssClass="text" OnClick="btnsubmit_Click" CausesValidation="true" ValidationGroup="property" />
+                                                <asp:Button ID="btnsubmit" runat="server" Text="Envie imóvel" BackColor="Transparent" CssClass="text" OnClick="btnsubmit_Click" CausesValidation="true" ValidationGroup="property" />
                                             </a>
                                         </p>
                                     </div>

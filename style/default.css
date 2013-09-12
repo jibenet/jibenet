@@ -116,21 +116,42 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 #header .right {
 	float: right;
 	text-align: right;
-	width:340px;
+	width:385px;
 	margin-top: 1%;
 }
-#header .right span{
-	width:70px;
-	float: left;
-	margin-left:8px;
-	background-image: url(../images/list-top.png);
-	background-position:53px 11px;
-	background-repeat: no-repeat;
-	overflow: hidden;
+#header .right span {
+    background-image: url("../images/list-top.png");
+    background-position: 53px 11px;
+    background-repeat: no-repeat;
+    float: left;
+    margin-left: 19px;
+    overflow: hidden;
+    width: 70px;
+}
+#header .right .list {
+    background-image: url("../images/list-top.png");
+    background-position: 84px 11px;
+    background-repeat: no-repeat;
+    float: left;
+    margin-left: 45px;
+    overflow: hidden;
+    width: 95px;
+}
+.right .list select {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0 none;
+    color: #333333;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    outline: medium none;
+    padding-left: 3px;
+    padding-top: 5px;
+    width: 118px;
 }
 .right span select{
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	width:87px;
+	width:93px;
 	background-color: transparent;
 	border: 0;
 	font-size: 13px;
@@ -145,7 +166,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size:13px;
 	float:right;
-	width:170px;
+	width:137px;
 	height:28px;
 	text-align:center;
 	line-height:28px;
@@ -171,6 +192,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	color:#fff;
 	background: #ccc;
 	-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+	text-decoration: none;
 }
 /*------------ Home page Main Section ---------------------*/
 #mainbg {
@@ -187,10 +209,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	padding-top: 14%;
 }
 #mainbg>div h3 {
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: normal;
 	line-height: 24px;
-	margin-top:12px;
+	margin-top: 0px;
 	float: left;
 }
 #mainbg>div h3 a {
@@ -221,24 +243,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	line-height: 32px;
 }
 .searchbtn {
-	background:url(../images/searchbtn.png) no-repeat right;
+	background:url(../images/searchbtn.png) no-repeat right !important;
 	width: 48px;
 	height: 40px;
 	cursor: pointer;
 	float: right;
 }
 .ddmenu {
-	width: 148px;
+	width: 128px;
 	background-image: url(../images/ddmenu.png);
-	height: 52px;
-	line-height: 52px;
+	line-height: 53px;
 	background-repeat: no-repeat;
-	overflow: hidden;
 }
 .ddmenu select {
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size:14px;
-	width: 168px;
+	width: 145px;
 	background-color: transparent;
 	border: 0;
 	font-size: 12px;
@@ -286,6 +306,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 	width: 92%;
 	margin: 0 auto;
 }
+
+#txtcontainer h1 {
+    color: #333333;
+    font-family: 'Conv_calibri',Sans-Serif;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 26px;
+}
+
 #leftdiv {
 	background-color: #fff;
 	border: 1px solid #ccc;
@@ -461,4 +490,9 @@ ul.tabs li.selected .new_active
     font-size: 14px;
     font-weight: bold;
     padding: 7px 18px;
+}
+button
+{
+	outline:none!important;
+	border:none!important;
 }

@@ -29,12 +29,13 @@ public class WebService : System.Web.Services.WebService {
     }  
     [WebMethod]
     [ScriptMethod]
-    public string PropertyList(string type, string address)
+    public string PropertyList(string buyorrent, string type, string address)
     {
         PropertyBAL oPropertyBAL = new PropertyBAL();
         PropertyBO oPropertyBO = new PropertyBO();
         oPropertyBO.address = address;
         oPropertyBO.type = type;
+        oPropertyBO.buyorrent = buyorrent;
         DataTable dt = new DataTable();
         dt = oPropertyBAL.FindProperty(oPropertyBO);     
         JSONClass objJSONClass = new JSONClass();        
@@ -42,15 +43,16 @@ public class WebService : System.Web.Services.WebService {
     }
     [WebMethod]
     [ScriptMethod]
-    public string PropertyListI(string type, string address, string cities, string startArea, string startRate, string endArea, string endRate)
+    public string PropertyListI(string buyorrent, string type, string address, string cities, string startArea, string startRate, string endArea, string endRate)
     {
         try
         {
             PropertyBAL oPropertyBAL = new PropertyBAL();
             PropertyBO oPropertyBO = new PropertyBO();
             PropertyBO oIPropertyBO = new PropertyBO();
-            oPropertyBO.type = type;
             oPropertyBO.address = address;
+            oPropertyBO.type = type;
+            oPropertyBO.buyorrent = buyorrent;            
             oIPropertyBO.address = cities;
             oPropertyBO.size = long.Parse(startArea);
             oPropertyBO.rate = long.Parse(startRate);

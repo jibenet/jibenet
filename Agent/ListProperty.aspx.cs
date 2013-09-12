@@ -19,11 +19,13 @@ public partial class Agent_ListProperty : System.Web.UI.Page
             {
                 if (Request.QueryString["type"] != null)
                 {
+                    hdBuyOrRent.Value = Request.QueryString["buyorrent"].ToString();
                     hdType.Value = Request.QueryString["type"].ToString();
                     hdSearch.Value = Request.QueryString["address"].ToString();
                 }
                 else
                 {
+                    hdBuyOrRent.Value = "Para Alugar";
                     hdType.Value = "Escritório";
                 }
             }

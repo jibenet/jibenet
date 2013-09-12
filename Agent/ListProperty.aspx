@@ -12,6 +12,16 @@
     <script src="js/tabcontent.js" type="text/javascript"></script>
     <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
+
+    <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
+    <link href="style/bootstrap.css" rel="stylesheet" />
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/tabcontent.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/application.js"></script>
+
     <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
     <script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js"></script>
     <script type="javascript">
@@ -50,8 +60,7 @@
         }
     </script>
     <style>
-        .pac-container:after
-        {
+        .pac-container:after {
             content: none !important;
         }
     </style>
@@ -59,16 +68,22 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                var url = 'ListProperty.aspx?type=Escritório&address=' + $('#eSearch').val();
-                $(location).attr('href', url);
+                var buyorrent = document.getElementById("hdBuyOrRent").value;
+                var type = document.getElementById("hdType").value;
+                var address = document.getElementById("hdSearch").value;
+                $('#preloader').show();
+                WebService.PropertyList(buyorrent, type, address, DefaultList);
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                var url = 'ListProperty.aspx?type=Loja&address=' + $('#lSearch').val();
-                $(location).attr('href', url);
+                var buyorrent = document.getElementById("hdBuyOrRent").value;
+                var type = document.getElementById("hdType").value;
+                var address = document.getElementById("hdSearch").value;
+                $('#preloader').show();
+                WebService.PropertyList(buyorrent, type, address, DefaultList);
             })
-        });        
+        });
     </script>
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -119,19 +134,19 @@
                         while (document.getElementById('divPropertyList').hasChildNodes()) {
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
-                        document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados.';
+                        document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     }
-                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados.';
+                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                     $('#preloader').hide();
                 }
                 else {
-                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados.';
+                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     $('#preloader').hide();
                 }
             }
             catch (e) {
-                alert('DefaultList():' + e);
+                //alert('DefaultList():' + e);
             }
         }
         function BoundList(list) {
@@ -181,7 +196,7 @@
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
                     }
-                    document.getElementById('totalRecords').innerHTML = j + ' registros encontrados.';
+                    document.getElementById('totalRecords').innerHTML = j + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                     $('#preloader').hide();
                 }
@@ -189,12 +204,12 @@
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
-                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados.';
+                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     $('#preloader').hide();
                 }
             }
             catch (e) {
-                alert('BoundList():' + e);
+                //alert('BoundList():' + e);
             }
         }
     </script>
@@ -214,7 +229,8 @@
                                             '<img src="images/person.jpg" width="69" height="74" alt="No image" style="float: left; padding-right: 6px;"/>' +
                                             oJSON.Head[i].name + '</br></br>' +
                                             oJSON.Head[i].business + '</br>' +
-                                            'T: ' + oJSON.Head[i].phone + '</div>';
+                                            oJSON.Head[i].phone + '</br>' +
+                                            oJSON.Head[i].email + '</div>';
                         while (document.getElementById('divAgentList').hasChildNodes()) {
                             document.getElementById('divAgentList').removeChild(document.getElementById('divAgentList').lastChild);
                         }
@@ -224,7 +240,7 @@
                 WebService.AgentList(fAgentListI);
             }
             catch (e) {
-                alert('fAgentList():' + e);
+                //alert('fAgentList():' + e);
             }
         }
 
@@ -241,7 +257,8 @@
                         oTD0.innerHTML = '<div style="width: 100%; float: left; padding: 12px 0px; border-bottom: 1px solid #ccc;">' +
                                             oJSON.Head[i].name + '</br>' +
                                             oJSON.Head[i].business + '</br>' +
-                                            'T: ' + oJSON.Head[i].phone + '</div>';
+                                            oJSON.Head[i].phone + '</br>' +
+                                            oJSON.Head[i].email + '</div>';
                         while (document.getElementById('divAgentListI').hasChildNodes()) {
                             document.getElementById('divAgentListI').removeChild(document.getElementById('divAgentListI').lastChild);
                         }
@@ -250,7 +267,7 @@
                 }
             }
             catch (e) {
-                alert('fAgentListI():' + e);
+                //alert('fAgentListI():' + e);
             }
         }
     </script>
@@ -258,25 +275,22 @@
     <%--SLIDER--%>
     <link rel="stylesheet" type="text/css" href="jquery-ui.css" />
     <style>
-        #area-range
-        {
-            width: 200px;
+        #area-range {
+            width: 92%;
         }
 
-        #rate-range
-        {
-            width: 200px;
+        #rate-range {
+            width: 92%;
         }
     </style>
     <style>
-        #preloader
-        {
+        #preloader {
             display: none;
         }
     </style>
     <script>
         function chkfilter() {
-            try {                
+            try {
                 var inputs = document.getElementsByTagName('input');
                 var cities = '';
 
@@ -290,6 +304,7 @@
                 if (cities.length != 0) {
                     cities = cities.substring(0, (cities.length - 1));
                 }
+                var buyorrent = document.getElementById("hdBuyOrRent").value;
                 var type = document.getElementById("hdType").value;
                 var address = document.getElementById("hdSearch").value;
                 var startArea = document.getElementById("startArea").innerHTML;
@@ -297,16 +312,16 @@
                 var endArea = document.getElementById("endArea").innerHTML;
                 var endRate = document.getElementById("endRate").innerHTML;
                 $('#preloader').show();
-                WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
             }
             catch (e) {
-                alert('filter():' + e);
+                //alert('filter():' + e);
             }
         }
     </script>
 </head>
 <body class="innerpage" onload="initialize()">
-    <form id="Form1" runat="server" method="post">
+    <form id="form1" runat="server">
         <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
             <Services>
                 <asp:ServiceReference Path="../WebService.asmx" />
@@ -323,58 +338,67 @@
                     <div class="header-middle">
                         <div>
                             <ul class="tabs" persist="true">
-                                <li id="Escritório"><a class="new_active" href="#" rel="view1">Escritório</a></li>
-                                <li id="Loja"><a class="new_active" href="#" rel="view2">Loja</a></li>
+                                <li id="Escritório" onclick="$('#hdType').val('Escritório');"><a class="new_active" href="#" rel="view1">Escritório</a></li>
+                                <li id="Loja" onclick="$('#hdType').val('Loja');"><a class="new_active" href="#" rel="view2">Loja</a></li>
                             </ul>
                             <div class="tabcontents">
                                 <div id="view1" class="tabcontent">
                                     <div>
                                         <input id="hdSearch" type="hidden" runat="server" />
                                         <input id="hdType" type="hidden" runat="server" />
+                                        <input id="hdBuyOrRent" type="hidden" runat="server" />
                                         <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                            <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
+                                            <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Bairro" style="padding: 0px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
                                         </div>
 
-                                        <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
-                                            <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
-                                                <option>Alugar</option>
-
-                                            </select>
+                                        <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
+                                            <div class="row demo-row">
+                                                <div class="span2" style="width: 128px; min-height: 60px !important;">
+                                                    <select id="jumpMenu" name="herolist" class="select-block span3" style="min-height: 75px;" onchange="document.getElementById('hdBuyOrRent').value = this.value;">
+                                                        <option value="À Venda">À Venda</option>
+                                                        <option value="Para Alugar">Para Alugar</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="view2" class="tabcontent">
-                                   <div>
+                                    <div>
                                         <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
-                                            <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" name="search" type="text" placeholder="Digite Um Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
+                                            <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" name="search" type="text" placeholder="Bairro" style="padding: 0px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
                                         </div>
 
-                                        <div class="ddmenu-inner" style="width: 88px; float: left; margin-left: 4px;">
-                                            <select name="jumpMenu" id="Select1" onchange="MM_jumpMenu('parent',this,0)">
-                                                <option>Alugar</option>
-
-                                            </select>
+                                        <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
+                                            <div class="row demo-row">
+                                                <div class="span2" style="width: 128px; min-height: 60px !important;">
+                                                    <select id="Select1" name="herolist" class="select-block span3" style="min-height: 75px;" onchange="document.getElementById('hdBuyOrRent').value = this.value;">
+                                                        <option value="À Venda">À Venda</option>
+                                                        <option value="Para Alugar">Para Alugar</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                   </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="right">
-                        <span>
+                        <div class="list">
                             <select name="select" id="select">
-                                <option value="Entre">Entre</option>
-
+                                <option value="Login">Login</option>
+                                <option value="Cadastre-se">Cadastre-se</option>
                             </select>
-                        </span>
+                        </div>
                         <span>
                             <select name="select" id="select2">
-                                <option value="Entre">Ajudar</option>
+                                <option value="Ajudar">Ajudar</option>
 
                             </select>
                         </span>
                         <div class="green-tab">
-                            <p><a href="AddProperty.aspx">Listar Sua Properiedade</a></p>
+                            <p><a href="AddProperty.aspx">Anuncie seu Imóvel</a></p>
                         </div>
                     </div>
                 </div>
@@ -396,16 +420,16 @@
                         </div>
                         <br />
 
-                        <h3>Area - <span style="font-size: 14px">m<sup>2</sup></span></h3>
+                        <h3>Área - <span style="font-size: 14px">m<sup>2</sup></span></h3>
 
                         <div style="padding-left: 15px;">
                             <div id="area-range"></div>
-                            <span id="startArea">0</span><span id="endArea" style="padding-left: 60%">5000</span>
+                            <span id="startArea">0</span><span id="endArea" style="float: right; padding-right: 15px;">5000</span>
                         </div>
                         <h3>Taxa - <span style="font-size: 14px">R$</span></h3>
                         <div style="padding-left: 15px;">
                             <div id="rate-range"></div>
-                            <span id="startRate">0</span><span id="endRate" style="padding-left: 60%">50000</span>
+                            <span id="startRate">0</span><span id="endRate" style="float: right; padding-right: 15px;">5000000</span>
                         </div>
                         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
                         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -437,6 +461,7 @@
                                     if (cities.length != 0) {
                                         cities = cities.substring(0, (cities.length - 1));
                                     }
+                                    var buyorrent = document.getElementById("hdBuyOrRent").value;
                                     var type = document.getElementById("hdType").value;
                                     var address = document.getElementById("hdSearch").value;
                                     var startArea = document.getElementById("startArea").innerHTML;
@@ -444,7 +469,7 @@
                                     var endArea = document.getElementById("endArea").innerHTML;
                                     var endRate = document.getElementById("endRate").innerHTML;
                                     $('#preloader').show();
-                                    WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                                    WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
                                 }
                             });
                         </script>
@@ -453,8 +478,8 @@
                                 $("#rate-range").slider({
                                     range: true,
                                     min: 0,
-                                    max: 50000,
-                                    values: [0, 50000],
+                                    max: 5000000,
+                                    values: [0, 5000000],
                                     slide: function (event, ui) {
                                         $("#startRate").text(ui.values[0]);
                                         $("#endRate").text(ui.values[1]);
@@ -476,6 +501,7 @@
                                     if (cities.length != 0) {
                                         cities = cities.substring(0, (cities.length - 1));
                                     }
+                                    var buyorrent = document.getElementById("hdBuyOrRent").value;
                                     var type = document.getElementById("hdType").value;
                                     var address = document.getElementById("hdSearch").value;
                                     var startArea = document.getElementById("startArea").innerHTML;
@@ -483,13 +509,13 @@
                                     var endArea = document.getElementById("endArea").innerHTML;
                                     var endRate = document.getElementById("endRate").innerHTML;
                                     $('#preloader').show();
-                                    WebService.PropertyListI(type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                                    WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
                                 }
                             });
                         </script>
 
 
-                        <h3>Filtrar por cidade</h3>
+                        <h3>Cidade / Bairro</h3>
 
                         <div style="width: 90%; padding: 0px 10px;">
                             <div>
@@ -508,8 +534,8 @@
 
                     <!-- Rigth Div -->
                     <div style="float: right; width: 20%;" id="rightdiv">
-                        <div class="grybox">
-                            <h2>Agents No Bairro</h2>
+                        <div class="grybox" style="display: none;">
+                            <h2>Agentes no Bairro</h2>
                             <div id="divAgentList">
                             </div>
 
@@ -517,7 +543,7 @@
                         </div>
 
                         <div class="grybox">
-                            <h2>Agents No Bairro</h2>
+                            <h2>Agentes no Bairro</h2>
                             <div id="divAgentListI">
                             </div>
 
@@ -534,7 +560,7 @@
                             </h3>
                         </div>
                         <div id="preloader" style="display: none;">
-                            <div style="float: left; margin: 30px 0px 0px 340px;">
+                            <div style="float: left; margin: 30px 0px 0px 50%;">
                                 <img src="images/ajax-loader.gif" alt="Loading..." title="">
                             </div>
                         </div>

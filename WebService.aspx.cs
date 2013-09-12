@@ -15,7 +15,7 @@ public partial class WebService : System.Web.UI.Page
         {
             if (Request.QueryString["key"].ToString() == "pList")
             {
-                Response.Write(PropertyList(Request.QueryString["address"].ToString()));
+                Response.Write(PropertyList(Request.QueryString["buyorrent"].ToString(), Request.QueryString["type"].ToString(), Request.QueryString["address"].ToString()));
             }
         }
         else
@@ -23,14 +23,28 @@ public partial class WebService : System.Web.UI.Page
             Response.Write("Enter valid parameters.");
         }
     }
-    public string PropertyList(string address)
+    public string PropertyList(string buyorrent, string type, string address)
     {
         PropertyBAL oPropertyBAL = new PropertyBAL();
         PropertyBO oPropertyBO = new PropertyBO();
+        oPropertyBO.buyorrent = buyorrent;        
+        oPropertyBO.type = type;
         oPropertyBO.address = address;
         DataTable dt = new DataTable();
         dt = oPropertyBAL.FindProperty(oPropertyBO);
-        JSONClass objJSONClass = new JSONClass();
-        return objJSONClass.CreateJSONParameters(dt);        
+        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+        Dictionary<string, object> row = null;
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            row = new Dictionary<string, object>();
+            foreach (DataColumn col in dt.Columns)
+            {
+                row.Add(col.ColumnName.Trim(), dr[col]);
+            }
+            rows.Add(row);
+        }
+        return serializer.Serialize(rows);
     }
 }

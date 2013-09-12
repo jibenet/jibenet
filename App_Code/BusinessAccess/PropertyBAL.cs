@@ -69,7 +69,6 @@ public class PropertyBAL
 
         }
     }
-
     public DataTable FindImagesByPropertyID(PropertyBO oPropertyBO)
     {
         try
@@ -99,5 +98,20 @@ public class PropertyBAL
         {
 
         }
-    }    
+    }
+    public DataTable FindSimilarPropertyByAddress(PropertyBO oPropertyBO)
+    {
+        try
+        {
+            return oPropertyDAL.FindSimilarPropertyByAddress(oPropertyBO);
+        }
+        catch
+        {
+            throw;
+        }
+        finally
+        {
+
+        }
+    }
 }

@@ -19,6 +19,12 @@ public partial class Agent_AddProperty : System.Web.UI.Page
         revalPName.ValidationExpression = RegExp.MaxLength(200);
         revalPName.ErrorMessage = ValidationMessages.MaxLength(200);
 
+        revalCity.ValidationExpression = RegExp.MaxLength(200);
+        revalCity.ErrorMessage = ValidationMessages.MaxLength(200);
+
+        revalNeighborhood.ValidationExpression = RegExp.MaxLength(200);
+        revalNeighborhood.ErrorMessage = ValidationMessages.MaxLength(200);
+
         revalAddress.ValidationExpression = RegExp.MaxLength(500);
         revalAddress.ErrorMessage = ValidationMessages.MaxLength(500);
 
@@ -76,9 +82,12 @@ public partial class Agent_AddProperty : System.Web.UI.Page
         try
         {           
             string images = string.Empty;
-            oPropertyBO.name = txtPName.Value;             
-            oPropertyBO.description = txtDetail.Text;
-            oPropertyBO.address = iAddress.Value;
+            oPropertyBO.name = txtPName.Value.Replace(System.Environment.NewLine, "");
+            oPropertyBO.description = txtDetail.Text.Replace(System.Environment.NewLine, "");
+            oPropertyBO.address = iAddress.Value.Replace(System.Environment.NewLine, "");
+            oPropertyBO.city = txtCity.Value.Replace(System.Environment.NewLine, "");
+            oPropertyBO.neighborhood = txtNeighborhood.Value.Replace(System.Environment.NewLine, ""); 
+            
             if (hdLocation.Value.Length == 0)
             {
                 hdLocation.Value = "0.0,0.0";
@@ -87,7 +96,8 @@ public partial class Agent_AddProperty : System.Web.UI.Page
             oPropertyBO.latitude = latLng[0];
             oPropertyBO.longitude = latLng[1]; 
             oPropertyBO.zipCode = txtZipCode.Text;
-            oPropertyBO.type = dropType.SelectedValue.ToString();   
+            oPropertyBO.type = dropType.SelectedValue.ToString();
+            oPropertyBO.buyorrent = dropBuyOrRent.SelectedValue.ToString();  
             oPropertyBO.size = long.Parse(txtArea.Text);
             oPropertyBO.rate = long.Parse(txtRate.Text);         
             oPropertyBO.parkings = int.Parse(txtParkings.Text);
@@ -122,7 +132,7 @@ public partial class Agent_AddProperty : System.Web.UI.Page
             }
             Session["filename"] = string.Empty;
             Clear();
-            Response.Redirect("ListProperty.aspx", false);
+            Response.Redirect("ListProperty.aspx?buyorrent=" + dropBuyOrRent.SelectedValue.ToString() + "&type=" + dropType.SelectedValue.ToString() + "&address=" + iAddress.Value, false);
         }
         catch(Exception ex)
         {
