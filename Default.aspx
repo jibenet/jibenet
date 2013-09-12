@@ -137,7 +137,7 @@
                                 <div class="ddmenu" style="width: 128px; float: right;">
                                     <div class="row demo-row">
                                         <div class="span2" style="width: 128px;">
-                                            <select id="jumpMenu" name="herolist" value="À Venda" class="select-block span3" style="min-height: 75px;">
+                                            <select id="jumpMenu" name="herolist" class="select-block span3" style="min-height: 75px;">
                                                 <option value="À Venda">À Venda</option>
                                                 <option value="Para Alugar">Para Alugar</option>
                                             </select>
@@ -160,7 +160,7 @@
                                 <div class="ddmenu" style="width: 128px; float: right;">
                                     <div class="row demo-row">
                                         <div class="span2" style="width: 128px;">
-                                            <select id="Select2" name="herolist" value="Para Alugar" class="select-block span3">
+                                            <select id="Select2" name="herolist" class="select-block span3" style="min-height: 75px;">
                                                 <option value="À Venda">À Venda</option>
                                                 <option value="Para Alugar">Para Alugar</option>
                                             </select>

@@ -117,7 +117,7 @@
                                     <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
                                         <div class="row demo-row">
                                             <div class="span2" style="width: 128px; min-height: 60px !important;">
-                                                <select id="jumpMenu" name="herolist" value="À Venda" class="select-block span3" style="min-height: 75px;">
+                                                <select id="jumpMenu" name="herolist" class="select-block span3" style="min-height: 75px;">
                                                     <option value="À Venda">À Venda</option>
                                                     <option value="Para Alugar">Para Alugar</option>
                                                 </select>
@@ -135,7 +135,7 @@
                                     <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
                                         <div class="row demo-row">
                                             <div class="span2" style="width: 128px; min-height: 60px !important;">
-                                                <select id="Select1" name="herolist" value="À Venda" class="select-block span3" style="min-height: 75px;">
+                                                <select id="Select1" name="herolist" class="select-block span3" style="min-height: 75px;">
                                                     <option value="À Venda">À Venda</option>
                                                     <option value="Para Alugar">Para Alugar</option>
                                                 </select>
