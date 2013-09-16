@@ -90,7 +90,7 @@
         });
     </script>
 
-    <script type="text/javascript" src="zebra_datepicker.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>zebra_datepicker.js"></script>
     <link rel="stylesheet" href="default.css" type="text/css" />
     <script type="text/javascript">
         $(document).ready(function () {
@@ -281,7 +281,7 @@
                                 <br />
                                 <br />
                                 <label>Fotos</label>
-                                <iframe src="AutoUpload.aspx" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
+                                <iframe src="http://clipas.com.br/agent/AutoUpload.aspx" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
 
                                 <br>
                                 <br>
@@ -335,28 +335,28 @@
                                         <ContentTemplate>
                                             <label>Email</label>
                                             <asp:TextBox ID="txtEmail" runat="server" Style="width: 250px;" size="28" OnTextChanged="txtEmail_TextChanged" CausesValidation="false" AutoPostBack="True" CssClass="formstyle"></asp:TextBox>
-<%--                                            <asp:RequiredFieldValidator ID="rvalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                            <%--                                            <asp:RequiredFieldValidator ID="rvalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
                                             <asp:RegularExpressionValidator ID="revalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property"></asp:RegularExpressionValidator>--%>
                                             <br>
                                             <br>
                                             <label>Nome</label>
                                             <asp:TextBox ID="txtName" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
-<%--                                            <asp:RequiredFieldValidator ID="rvalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                            <%--                                            <asp:RequiredFieldValidator ID="rvalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
                                             <asp:RegularExpressionValidator ID="revalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property"></asp:RegularExpressionValidator>--%>
                                             <br>
                                             <br>
                                             <label>Empresa</label>
                                             <asp:TextBox ID="txtBusiness" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
-<%--                                        <asp:RegularExpressionValidator ID="revalBusiness" runat="server" ErrorMessage="" ControlToValidate="txtBusiness" ValidationGroup="property"></asp:RegularExpressionValidator>--%>
+                                            <%--                                        <asp:RegularExpressionValidator ID="revalBusiness" runat="server" ErrorMessage="" ControlToValidate="txtBusiness" ValidationGroup="property"></asp:RegularExpressionValidator>--%>
 
                                             <br>
                                             <br>
 
                                             <label>Telefone</label>
                                             <asp:TextBox ID="txtPhone" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
-<%--                                        <asp:RegularExpressionValidator ID="revalPhone" runat="server" ErrorMessage="" ControlToValidate="txtPhone" ValidationGroup="property"></asp:RegularExpressionValidator>--%>
+                                            <%--                                        <asp:RegularExpressionValidator ID="revalPhone" runat="server" ErrorMessage="" ControlToValidate="txtPhone" ValidationGroup="property"></asp:RegularExpressionValidator>--%>
 
                                             <br>
                                             <br>
