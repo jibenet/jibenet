@@ -132,7 +132,7 @@ public partial class Agent_AddProperty : System.Web.UI.Page
             }
             Session["filename"] = string.Empty;
             Clear();
-            Response.Redirect("ListProperty.aspx?buyorrent=" + dropBuyOrRent.SelectedValue.ToString() + "&type=" + dropType.SelectedValue.ToString() + "&address=" + iAddress.Value, false);
+            Response.Redirect(dropBuyOrRent.SelectedValue.ToString() + "/Brasil/" + iAddress.Value + "/" + dropType.SelectedValue.ToString() + "_Comercial", false);
         }
         catch(Exception ex)
         {

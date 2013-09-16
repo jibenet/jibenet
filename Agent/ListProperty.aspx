@@ -6,48 +6,34 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
-    <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" />
-    <link href="style/default.css" rel="stylesheet" type="text/css" />
-    <link href="style/defaultASP.css" rel="stylesheet" type="text/css" />
-    <script src="js/tabcontent.js" type="text/javascript"></script>
-    <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
+    <link rel="icon" type="image/png" href="http://clipas.com.br/agent/images/favicon.ico" />
+    <link rel="stylesheet" href="http://clipas.com.br/agent/style/default.css" type="text/css" />
+    <link rel="stylesheet" href="http://clipas.com.br/agent/style/defaultASP.css" type="text/css" />
+    <link rel="stylesheet" href="http://clipas.com.br/agent/style/tabcontent.css" type="text/css" />
+    <link rel="stylesheet" href="http://clipas.com.br/agent/jqtransformplugin/jqtransform.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://clipas.com.br/agent/style/flat-ui.css" type="text/css" />
+    <link rel="stylesheet" href="http://clipas.com.br/agent/style/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://clipas.com.br/agent/jquery-ui.css" />
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/jquery-1.8.3.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap-select.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.jqtransform.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>js/Map.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
 
-    <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
-    <link href="style/bootstrap.css" rel="stylesheet" />
-
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="js/tabcontent.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/application.js"></script>
-
-    <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
-    <script type="text/javascript" src="jqtransformplugin/jquery.jqtransform.js"></script>
     <script type="javascript">
 	    $(function () {
 	        $('#form').jqTransform({ imgPath: 'jqtransformplugin/img/' });
 	    });
     </script>
     <%--GOOGLE API--%>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
-        function initialize() {
-            var inputE = document.getElementById('eSearch');
-            var inputL = document.getElementById('lSearch');
-            var autocompleteE = new google.maps.places.Autocomplete(inputE);
-            var autocompleteL = new google.maps.places.Autocomplete(inputL);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-
-        var options = {
-            types: ['geocode'] //this should work !
-        };
-        var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
-        var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
-
-        function initialize() {
-
+        google.maps.event.addDomListener(window, 'load', Initialize);
+        function Initialize() {
             var options = {
                 types: ['(cities)'],
                 componentRestrictions: { country: "BR" }
@@ -85,14 +71,8 @@
             })
         });
     </script>
-
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="JS/Map.js"></script>
-    <script type="text/javascript" src="JS/Marker.js"></script>
     <script type="text/javascript">
-
         var markersArray = [];
-
     </script>
     <script type="text/javascript">
         function DefaultList(list) {
@@ -121,11 +101,11 @@
                             oJSON.Head[i].rate = 'N/A';
                         }
                         if (oJSON.Head[i].image == '') {
-                            oJSON.Head[i].image = 'http://clipas.venturepact.com/agent/images/365x240.jpg';
+                            oJSON.Head[i].image = '<% =UrlUtil.MyWebUrl %>images/365x240.jpg';
                         }
                         oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
-                                            '<a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
-                                                '<div style="width: 40%;" class="proptxt"><a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                            '<a href="' + $(location).attr('href') + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                                '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href') + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
                                                     '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
                                                            '<p class="listagens-text">' +
                                                                 oJSON.Head[i].description +
@@ -177,11 +157,11 @@
                                 oJSON.Head[i].rate = 'N/A';
                             }
                             if (oJSON.Head[i].image == '') {
-                                oJSON.Head[i].image = 'http://clipas.venturepact.com/agent/images/365x240.jpg';
+                                oJSON.Head[i].image = '<% =UrlUtil.MyWebUrl %>images/365x240.jpg';
                             }
                             oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
-                                                '<a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
-                                                '<div style="width: 40%;" class="proptxt"><a href="PropertyDetail.aspx?pID=' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                                '<a href="' + $(location).attr('href') + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                                '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href') + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
                                                     '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
                                                         '<p class="listagens-text">' +
                                                                 oJSON.Head[i].description +
@@ -226,7 +206,7 @@
                         var oTR = oHTMLTABLE.insertRow(i);
                         var oTD0 = oTR.insertCell(0);
                         oTD0.innerHTML = '<div style="width: 100%; float: left; padding: 12px 0px">' +
-                                            '<img src="images/person.jpg" width="69" height="74" alt="No image" style="float: left; padding-right: 6px;"/>' +
+                                            '<img src="<% =UrlUtil.MyWebUrl %>images/person.jpg" width="69" height="74" alt="No image" style="float: left; padding-right: 6px;"/>' +
                                             oJSON.Head[i].name + '</br></br>' +
                                             oJSON.Head[i].business + '</br>' +
                                             oJSON.Head[i].phone + '</br>' +
@@ -273,7 +253,6 @@
     </script>
 
     <%--SLIDER--%>
-    <link rel="stylesheet" type="text/css" href="jquery-ui.css" />
     <style>
         #area-range {
             width: 92%;
@@ -320,7 +299,7 @@
         }
     </script>
 </head>
-<body class="innerpage" onload="initialize()">
+<body class="innerpage" onload="LoadMap();">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
             <Services>
@@ -332,8 +311,8 @@
             <div id="header">
                 <div class="header">
                     <div class="logo">
-                        <a href="../Default.aspx">
-                            <img src="images/jibenet.png" width="175" height="64"></a>
+                        <a href="<% =UrlUtil.MyWebRootUrl %>Home">
+                            <img src="<% =UrlUtil.MyWebUrl %>images/jibenet.png" width="175" height="64"></a>
                     </div>
                     <div class="header-middle">
                         <div>
@@ -347,7 +326,7 @@
                                         <input id="hdSearch" type="hidden" runat="server" />
                                         <input id="hdType" type="hidden" runat="server" />
                                         <input id="hdBuyOrRent" type="hidden" runat="server" />
-                                        <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
+                                        <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                             <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Bairro" style="padding: 0px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
                                         </div>
 
@@ -365,7 +344,7 @@
                                 </div>
                                 <div id="view2" class="tabcontent">
                                     <div>
-                                        <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
+                                        <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                             <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" name="search" type="text" placeholder="Bairro" style="padding: 0px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
                                         </div>
 
@@ -398,7 +377,7 @@
                             </select>
                         </span>
                         <div class="green-tab">
-                            <p><a href="AddProperty.aspx">Anuncie seu Imóvel</a></p>
+                            <p><a href="<% =UrlUtil.MyWebRootUrl %>PostProperty">Anuncie seu Imóvel</a></p>
                         </div>
                     </div>
                 </div>
@@ -561,91 +540,10 @@
                         </div>
                         <div id="preloader" style="display: none;">
                             <div style="float: left; margin: 30px 0px 0px 50%;">
-                                <img src="images/ajax-loader.gif" alt="Loading..." title="">
+                                <img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" alt="Loading..." title="">
                             </div>
                         </div>
                         <div id="divPropertyList" style="width: 100%; float: left; height: 550px; overflow: scroll;">
-                            <%--<asp:DataList ID="dlstProperty" runat="server" Width="100%" RepeatColumns="1">
-                                <ItemTemplate>
-                                    <div style="width: 100%; float: left; padding-bottom: 20px;">
-                                        <asp:ImageButton ID="ibtnProperty" runat="server" ImageUrl='<%# "uploads/" + Eval("image") %>' alt="Property" Width="382px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" />
-                                        <div style="width: 40%;" class="proptxt">
-                                            <h2>
-                                                <asp:Label ID="lblAddress" runat="server" Text='<%# Eval("address") %>'></asp:Label></h2>
-                                            <br>
-                                            <h4>
-                                                <asp:Label ID="lblArea" runat="server" Text='<%# Eval("size") %>'></asp:Label>
-                                                <asp:Label ID="lblRate" runat="server" Text='<%# Eval("rate") %>'></asp:Label></h4>
-                                            <br>
-                                            <asp:Label ID="lblDescription" runat="server" Text='<%# Eval("description") %>'></asp:Label>
-
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:DataList>--%>
-
-
-
-
-                            <%--    <div style="width: 100%; float: left; padding-bottom: 20px;">
-                            <a href="property.html">
-                                <img src="images/property1.jpg" alt="Property" border="0" style="border: 3px solid #fff; float: left;"></a>
-                            <div style="width: 40%;" class="proptxt">
-                                <h2>Escritoria, Morimbi</h2>
-                                <strong>Rua Frei Galvao, 135</strong><br>
-                                <h4>110 m2 &nbsp;&nbsp;&nbsp;$R: 1700</h4>
-                                <br>
-                                Local: Zasao privileg iada for cradade Jordia Parque de estaciamento, exceientes vistas...
-                            </div>
-                        </div>
-
-                        <div style="width: 100%; float: left; padding-bottom: 20px;">
-                            <a href="property.html">
-                                <img src="images/property1.jpg" alt="Property" border="0" style="border: 3px solid #fff; float: left;"></a>
-                            <div style="width: 40%;" class="proptxt">
-                                <h2>Escritoria, Morimbi</h2>
-                                <strong>Rua Frei Galvao, 135</strong><br>
-                                <h4>110 m2 &nbsp;&nbsp;&nbsp;$R: 1700</h4>
-                                <br>
-                                Local: Zasao privileg iada for cradade Jordia Parque de estaciamento, exceientes vistas...
-                            </div>
-                        </div>
-
-                        <div style="width: 100%; float: left; padding-bottom: 20px;">
-                            <a href="property.html">
-                                <img src="images/property1.jpg" alt="Property" border="0" style="border: 3px solid #fff; float: left;"></a>
-                            <div style="width: 40%;" class="proptxt">
-                                <h2>Escritoria, Morimbi</h2>
-                                <strong>Rua Frei Galvao, 135</strong><br>
-                                <h4>110 m2 &nbsp;&nbsp;&nbsp;$R: 1700</h4>
-                                <br>
-                                Local: Zasao privileg iada for cradade Jordia Parque de estaciamento, exceientes vistas...
-                            </div>
-                        </div>
-
-                        <div style="width: 100%; float: left; padding-bottom: 20px;">
-                            <a href="property.html">
-                                <img src="images/property1.jpg" alt="Property" border="0" style="border: 3px solid #fff; float: left;"></a>
-                            <div style="width: 40%;" class="proptxt">
-                                <h2>Escritoria, Morimbi</h2>
-                                <strong>Rua Frei Galvao, 135</strong><br>
-                                <h4>110 m2 &nbsp;&nbsp;&nbsp;$R: 1700</h4>
-                                <br>
-                                Local: Zasao privileg iada for cradade Jordia Parque de estaciamento, exceientes vistas...
-                            </div>
-                        </div>
-
-                        <div style="width: 100%; float: left; padding-bottom: 20px;">
-                            <a href="property.html">
-                                <img src="images/property1.jpg" alt="Property" border="0" style="border: 3px solid #fff; float: left;"></a>
-                            <div style="width: 40%;" class="proptxt">
-                                <h2>Escritoria, Morimbi</h2>
-                                <strong>Rua Frei Galvao, 135</strong><br>
-                                <h4>110 m2 &nbsp;&nbsp;&nbsp;$R: 1700</h4>
-                                <br>
-                                Local: Zasao privileg iada for cradade Jordia Parque de estaciamento, exceientes vistas...
-                            </div>
-                        </div>--%>
                         </div>
 
                     </div>
@@ -665,8 +563,8 @@
 
                     <div class="right">
                         <a href="#">
-                            <img src="images/fb.png" alt="Facebook"></a> <a href="#">
-                                <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a>
+                            <img src="<% =UrlUtil.MyWebUrl %>images/fb.png" alt="Facebook"></a> <a href="#">
+                                <img src="<% =UrlUtil.MyWebUrl %>images/twitt.png" width="30" height="30" alt="Twitter"></a>
                     </div>
                     <a href="#">Sobre</a> |  <a href="#">FAQ</a> |  <a href="#">Imprensa</a> |  <a href="#">Blog</a> |  <a href="#">Mobile</a> |  <a href="#">Contato.</a><br>
                     © Clipas 2013 Termos de Uso

@@ -6,56 +6,25 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
-    <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" />
-    <link href="style/default.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="http://clipas.com.br/agent/images/favicon.ico" />
+    <link href="http://clipas.com.br/agent/style/default.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://clipas.com.br/agent/flexslider/flexslider.css" type="text/css" media="screen" />
+    <link href="http://clipas.com.br/agent/style/tabcontent.css" rel="stylesheet" type="text/css" />
+    <link href="http://clipas.com.br/agent/style/flat-ui.css" rel="stylesheet" type="text/css" />
+    <link href="http://clipas.com.br/agent/style/bootstrap.css" rel="stylesheet" />
 
-    <!-- Syntax Highlighter -->
-
-    <link rel="stylesheet" href="flexslider/flexslider.css" type="text/css" media="screen" />
-    <script src="flexslider/modernizr.js"></script>
-
-    <!-- Collaspe Div -->
-    <%--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>--%>
-    <%-- <script type="text/javascript" src="js/animatedcollapse.js"></script>
-    <script type="text/javascript">
-
-        animatedcollapse.addDiv('property', 'fade=1,height=80px')
-
-        animatedcollapse.ontoggle = function ($, divobj, state) { //fires each time a DIV is expanded/contracted
-            //$: Access to jQuery
-            //divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
-            //state: "block" or "none", depending on state
-        }
-        animatedcollapse.init()
-    </script>--%>
-
-    <script src="js/tabcontent.js" type="text/javascript"></script>
-    <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
-
-    <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
-    <link href="style/bootstrap.css" rel="stylesheet">
-
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="js/tabcontent.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/application.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>flexslider/modernizr.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/jquery-1.8.3.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap-select.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
-        function initialize() {
-            var inputE = document.getElementById('eSearch');
-            var inputL = document.getElementById('lSearch');
-            var autocompleteE = new google.maps.places.Autocomplete(inputE);
-            var autocompleteL = new google.maps.places.Autocomplete(inputL);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
 
-        var options = {
-            types: ['geocode'] //this should work !
-        };
-        var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
-        var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
+        google.maps.event.addDomListener(window, 'load', initialize);
 
         function initialize() {
 
@@ -79,13 +48,23 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                var url = 'ListProperty.aspx?buyorrent=' + $('#jumpMenu :selected').val() + '&type=Escritório&address=' + $('#eSearch').val();
+                if ($('#eSearch').is(':empty')) {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/São Paulo/Escritório_Comercial';
+                }
+                else {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                }
                 $(location).attr('href', url);
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                var url = 'ListProperty.aspx?buyorrent=' + $('#Select1 :selected').val() + '&type=Loja&address=' + $('#lSearch').val();
+                if ($('#lSearch').is(':empty')) {
+                    var url = $('#Select1 :selected').val() + '/Brasil/São Paulo/Loja_Comercial';
+                }
+                else {
+                    var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
+                }
                 $(location).attr('href', url);
             })
         });
@@ -98,8 +77,8 @@
         <div id="header">
             <div class="header">
                 <div class="logo">
-                    <a href="../Default.aspx">
-                        <img src="images/jibenet.png" width="175" height="64"></a>
+                    <a href="<% =UrlUtil.MyWebRootUrl %>Home">
+                        <img src="<% =UrlUtil.MyWebUrl %>images/jibenet.png" width="175" height="64"></a>
                 </div>
                 <div class="header-middle">
                     <div>
@@ -110,7 +89,7 @@
                         <div class="tabcontents">
                             <div id="view1" class="tabcontent">
                                 <div>
-                                    <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
+                                    <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                         <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
                                     </div>
 
@@ -128,7 +107,7 @@
                             </div>
                             <div id="view2" class="tabcontent">
                                 <div>
-                                    <div style="width: 392px; float: left; background-image: url(images/searchbg-inner.png); background-repeat: no-repeat; height: 26px; padding: 4px;">
+                                    <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                         <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" n name="search" type="text" placeholder="Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
                                     </div>
 
@@ -161,7 +140,7 @@
                         </select>
                     </span>
                     <div class="green-tab">
-                        <p><a href="AddProperty.aspx">Anuncie seu Imóvel</a></p>
+                        <p><a href="<% =UrlUtil.MyWebRootUrl %>PostProperty">Anuncie seu Imóvel</a></p>
                     </div>
                 </div>
             </div>
@@ -181,7 +160,7 @@
                                     m<sup>2</sup>
 
                                 </div>
-                                <img src="images/line.jpg" alt="Line" style="padding: 0px 12px; float: left;">
+                                <img src="<% =UrlUtil.MyWebUrl %>images/line.jpg" alt="Line" style="padding: 0px 12px; float: left;">
                                 <div style="width: 25%; float: left; padding-top: 10px;">
                                     R$
                                 <asp:Label ID="lblRate" runat="server" Text=""></asp:Label>
@@ -308,19 +287,19 @@
                             <h3 style="font-weight: normal;">Recursos</h3>
                             <div style="float: left; width: 69%;">
                                 <div id="divParking" runat="server" style="float: left; width: 100%; padding-bottom: 10px;" visible="false">
-                                    <img id="iParking" runat="server" src="images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
+                                    <img id="iParking" runat="server" src="http://clipas.com.br/agent/images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
                                     <asp:Label ID="lblParking" runat="server" Text="" Visible="false"></asp:Label>
                                 </div>
                                 <div id="divToilet" runat="server" style="float: left; width: 100%; padding-bottom: 10px;" visible="false">
-                                    <img id="iToilet" runat="server" src="images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
+                                    <img id="iToilet" runat="server" src="http://clipas.com.br/agent/images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
                                     <asp:Label ID="lblToilet" runat="server" Text="" Visible="false"></asp:Label>
                                 </div>
                                 <div id="divKitchen" runat="server" style="float: left; width: 100%; padding-bottom: 10px;" visible="false">
-                                    <img id="iKitchen" runat="server" src="images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
+                                    <img id="iKitchen" runat="server" src="http://clipas.com.br/agent/images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
                                     <asp:Label ID="lblKitchen" runat="server" Text="" Visible="false"></asp:Label>
                                 </div>
                                 <div id="divReception" runat="server" style="float: left; width: 100%; padding-bottom: 10px;" visible="false">
-                                    <img id="iReception" runat="server" src="images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
+                                    <img id="iReception" runat="server" src="http://clipas.com.br/agent/images/list.png" alt="Tick" style="text-align: left; padding-right: 10px;" visible="false" />
                                     <asp:Label ID="lblReception" runat="server" Text="" Visible="false"></asp:Label>
                                 </div>
                             </div>
@@ -352,7 +331,7 @@
                         <div id="divN1" runat="server" visible="false">
                             <p align="center" style="width: 100%; font-size: 16px; line-height: 24px;">
 
-                                <asp:ImageButton ID="ibtnImage1" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="images/365x240.jpg" />
+                                <asp:ImageButton ID="ibtnImage1" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
                                 <br />
                                 <asp:Label ID="lblDescription1" runat="server" Text=""></asp:Label><br />
                                 <asp:Label ID="lblArea1" runat="server" Text=""></asp:Label>&nbsp;m<sup>2</sup><br />
@@ -363,7 +342,7 @@
                         <div id="divN2" runat="server" visible="false">
                             <p align="center" style="width: 100%; font-size: 16px; line-height: 24px;">
 
-                                <asp:ImageButton ID="ibtnImage2" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="images/365x240.jpg" />
+                                <asp:ImageButton ID="ibtnImage2" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
                                 <br />
                                 <asp:Label ID="lblDescription2" runat="server" Text=""></asp:Label><br />
                                 <asp:Label ID="lblArea2" runat="server" Text=""></asp:Label>&nbsp;m<sup>2</sup><br />
@@ -390,8 +369,8 @@
 
                 <div class="right">
                     <a href="#">
-                        <img src="images/fb.png" alt="Facebook"></a> <a href="#">
-                            <img src="images/twitt.png" width="30" height="30" alt="Twitter"></a>
+                        <img src="<% =UrlUtil.MyWebUrl %>images/fb.png" alt="Facebook"></a> <a href="#">
+                            <img src="<% =UrlUtil.MyWebUrl %>images/twitt.png" width="30" height="30" alt="Twitter"></a>
                 </div>
                 <a href="#">Sobre</a> |  <a href="#">FAQ</a> |  <a href="#">Imprensa</a> |  <a href="#">Blog</a> |  <a href="#">Mobile</a> |  <a href="#">Contato.</a><br>
                 © Clipas 2013 Termos de Uso
@@ -402,12 +381,9 @@
     </footer>
 
     <!-- Footer Ends -->
-    <!-- jQuery -->
-    <%--    <script src="flexslider/jquery-1.5.2.min.js"></script>--%>
-    <%--    <script>window.jQuery || document.write('<script src="flexslider/jquery-1.7.min.js">\x3C/script>')</script>--%>
 
     <!-- FlexSlider -->
-    <script src="flexslider/jquery.flexslider.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>flexslider/jquery.flexslider.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -439,13 +415,13 @@
 
 
     <!-- Syntax Highlighter -->
-    <script type="text/javascript" src="flexslider/shCore.js"></script>
-    <script type="text/javascript" src="flexslider/shBrushXml.js"></script>
-    <script type="text/javascript" src="flexslider/shBrushJScript.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>flexslider/shCore.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>flexslider/shBrushXml.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>flexslider/shBrushJScript.js"></script>
 
     <!-- Optional FlexSlider Additions -->
-    <script src="flexslider/jquery.easing.js"></script>
-    <script src="flexslider/jquery.mousewheel.js"></script>
-    <script src="flexslider/demo.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>flexslider/jquery.easing.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>flexslider/jquery.mousewheel.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>flexslider/demo.js"></script>
 </body>
 </html>

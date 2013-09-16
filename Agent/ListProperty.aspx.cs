@@ -17,11 +17,11 @@ public partial class Agent_ListProperty : System.Web.UI.Page
         {
             if (Page.IsPostBack == false)
             {
-                if (Request.QueryString["type"] != null)
-                {
-                    hdBuyOrRent.Value = Request.QueryString["buyorrent"].ToString();
-                    hdType.Value = Request.QueryString["type"].ToString();
-                    hdSearch.Value = Request.QueryString["address"].ToString();
+                if (Page.RouteData.Values["type"] != null)
+                {               
+                    hdBuyOrRent.Value = Page.RouteData.Values["buyorrent"].ToString();                             
+                    hdSearch.Value = Page.RouteData.Values["address"].ToString();
+                    hdType.Value = Page.RouteData.Values["type"].ToString();
                 }
                 else
                 {

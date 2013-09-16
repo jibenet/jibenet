@@ -11,15 +11,13 @@
     <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" />
     <link href="style/default.css" rel="stylesheet" type="text/css" />
     <link href="style/defaultASP.css" rel="stylesheet" type="text/css" />
-    <script src="js/tabcontent.js" type="text/javascript"></script>
     <link href="style/tabcontent.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="jqtransformplugin/jqtransform.css" type="text/css" media="all" />
-    <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
-
-
     <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
-    <link href="style/bootstrap.css" rel="stylesheet">
+    <link href="style/bootstrap.css" rel="stylesheet" />
 
+    <script src="js/tabcontent.js" type="text/javascript"></script>
+    <script type="text/javascript" src="jqtransformplugin/jquery.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/tabcontent.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -46,21 +44,9 @@
     <%--GOOGLE MAP--%>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
-        function initialize() {
-            var inputE = document.getElementById('eSearch');
-            var inputL = document.getElementById('lSearch');
-            var autocompleteE = new google.maps.places.Autocomplete(inputE);
-            var autocompleteL = new google.maps.places.Autocomplete(inputL);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addDomListener(window, 'load', Initialize);
 
-        var options = {
-            types: ['geocode'] //this should work !
-        };
-        var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
-        var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
-
-        function initialize() {
+        function Initialize() {
 
             var options = {
                 types: ['(cities)'],
@@ -82,20 +68,30 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                var url = 'ListProperty.aspx?buyorrent=' + $('#jumpMenu :selected').val() + '&type=Escritório&address=' + $('#eSearch').val();
+                if ($('#eSearch').is(':empty')) {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/São Paulo/Escritório_Comercial';
+                }
+                else {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                }
                 $(location).attr('href', url);
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                var url = 'ListProperty.aspx?buyorrent=' + $('#Select1 :selected').val() + '&type=Loja&address=' + $('#lSearch').val();
+                if ($('#lSearch').is(':empty')) {
+                    var url = $('#Select1 :selected').val() + '/Brasil/São Paulo/Loja_Comercial';
+                }
+                else {
+                    var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
+                }
                 $(location).attr('href', url);
             })
         });
     </script>
 
     <script type="text/javascript" src="zebra_datepicker.js"></script>
-    <link rel="stylesheet" href="default.css" type="text/css">
+    <link rel="stylesheet" href="default.css" type="text/css" />
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -116,7 +112,7 @@
         <div id="header">
             <div class="header">
                 <div class="logo">
-                    <a href="../Default.aspx">
+                    <a href="Home">
                         <img src="images/jibenet.png" width="175" height="64"></a>
                 </div>
                 <div class="header-middle">
@@ -179,7 +175,7 @@
                         </select>
                     </span>
                     <div class="green-tab">
-                        <p><a href="AddProperty.aspx">Anuncie seu Imóvel</a></p>
+                        <p><a href="PostProperty">Anuncie seu Imóvel</a></p>
                     </div>
                 </div>
             </div>
@@ -207,42 +203,33 @@
                             <div style="float: left; width: 65%;">
                                 <label>Nome do Imóvel</label>
                                 <input id="txtPName" type="text" runat="server" style="width: 250px;" size="28" class="formstyle" />
-                                <%--                                <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>--%>
                                 <asp:RequiredFieldValidator ID="rvalPName" runat="server" ErrorMessage="" ControlToValidate="txtPName" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revalPName" runat="server" ErrorMessage="" ControlToValidate="txtPName" ValidationGroup="property"></asp:RegularExpressionValidator>
-
-                                <%--<input name="fname" type="text" id="fname"  />--%>
                                 <br />
 
                                 <br />
 
                                 <label>Endereço</label>
                                 <input id="iAddress" type="text" runat="server" style="width: 250px;" size="28" class="formstyle" />
-                                <%--                                <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>--%>
                                 <asp:RequiredFieldValidator ID="rvalAddress" runat="server" ErrorMessage="" ControlToValidate="iAddress" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revalAddress" runat="server" ErrorMessage="" ControlToValidate="iAddress" ValidationGroup="property"></asp:RegularExpressionValidator>
                                 <input id="hdLocation" type="hidden" runat="server" />
 
-                                <%--<input name="fname" type="text" id="fname"  />--%>
-                            &nbsp;<br />
+                                &nbsp;<br />
                                 <span style="padding-left: 16%; color: #FF0000; font-size: 11px">arrastar marcador no mapa para marcar exata localização da propriedade.</span>
                                 <br />
                                 <label>Cidade</label>
                                 <input id="txtCity" type="text" runat="server" style="width: 250px;" size="28" class="formstyle" />
-                                <%--                                <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>--%>
                                 <asp:RequiredFieldValidator ID="rvalCity" runat="server" ErrorMessage="" ControlToValidate="txtCity" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revalCity" runat="server" ErrorMessage="" ControlToValidate="txtCity" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                <%--<input name="fname" type="text" id="fname"  />--%>
                                 <br />
 
                                 <br />
                                 <label>Bairro</label>
                                 <input id="txtNeighborhood" type="text" runat="server" style="width: 250px;" size="28" class="formstyle" />
-                                <%--                                <asp:TextBox ID="txtAddress" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>--%>
                                 <asp:RegularExpressionValidator ID="revalNeighborhood" runat="server" ErrorMessage="" ControlToValidate="txtNeighborhood" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                <%--<input name="fname" type="text" id="fname"  />--%>
                                 <br />
 
                                 <br />
@@ -251,7 +238,6 @@
                                 <asp:TextBox ID="txtZipCode" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
                             <asp:RegularExpressionValidator ID="revalZipCode" runat="server" ErrorMessage="" ControlToValidate="txtZipCode" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                <%--<input name="lname" type="text" id="lname" style="width: 250px;" size="28" placeholder="00000 - 000" />--%>
                                 <br />
                                 <br />
                                 <label>Imóvel</label>
@@ -264,10 +250,7 @@
                                     <asp:ListItem Value="Para Alugar"></asp:ListItem>
                                     <asp:ListItem Value="À Venda"></asp:ListItem>
                                 </asp:DropDownList>
-                                <%--<select name="subject2" id="subject2" style="width: 260px;">
-                                <option value="escritoria">Escritorio</option>
-                                <option value="loja">Loja</option>
-                            </select>--%>
+
                                 <br />
                                 <br />
                                 <label>Disponível a partir de</label>
@@ -276,7 +259,6 @@
 
 
                                 <asp:RegularExpressionValidator ID="revalDate" runat="server" ErrorMessage="" ControlToValidate="txtAvailableDate" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                <%--                            <input name="phone" type="text" id="phone" onkeyup="checkNum(this)" style="width: 250px;" size="28" placeholder="dd / mm / yyyy" />--%>
                                 <br />
                                 <br />
                                 <label>Área</label>
@@ -285,7 +267,6 @@
                                 m<sup>2</sup>
                                 <asp:RegularExpressionValidator ID="revalArea" runat="server" ErrorMessage="" ControlToValidate="txtArea" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                <%--                            <input name="phone2" type="text" id="phone2" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
                                 <asp:RangeValidator ID="rvArea" runat="server" ControlToValidate="txtArea" ErrorMessage="1 e 5000000" Type="Integer" MinimumValue="1" MaximumValue="5000000" ValidationGroup="property"></asp:RangeValidator>
                                 <br />
                                 <br />
@@ -295,15 +276,13 @@
                                 R$
                             <asp:RegularExpressionValidator ID="revalRate" runat="server" ErrorMessage="" ControlToValidate="txtRate" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                <%--                            <input name="phone2" type="text" id="Text1" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
                                 <asp:RangeValidator ID="rvRate" runat="server" ControlToValidate="txtRate" ErrorMessage="0 e 5000000000" Type="Double" MinimumValue="0" MaximumValue="5000000000" ValidationGroup="property"></asp:RangeValidator>
 
                                 <br />
                                 <br />
                                 <label>Fotos</label>
-                                <iframe src="AutoUpload.aspx" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
+                                <iframe src="AutoUpload" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
 
-                                <%--                            <input name="" type="file">--%>
                                 <br>
                                 <br>
                                 <div class="head">
@@ -314,7 +293,6 @@
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revalParkings" runat="server" ErrorMessage="" ControlToValidate="txtParkings" ValidationGroup="property"></asp:RegularExpressionValidator>
                                     <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtParkings" ErrorMessage="Valor entre 0 e 100" Type="Integer" MinimumValue="0" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
-                                    <%--                            <input name="phone2" type="text" id="Text2" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
                                     <br>
                                     <br>
                                     <label>&nbsp;</label>
@@ -325,7 +303,6 @@
                                     <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="txtToilets" ErrorMessage="Valor entre 0 e 100" Type="Integer" MinimumValue="0" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
 
 
-                                    <%--                            <input name="phone3" type="text" id="phone3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
                                     <br>
                                     <br>
                                     <label>&nbsp;</label>
@@ -335,26 +312,22 @@
                                     <asp:RegularExpressionValidator ID="revalKitchen" runat="server" ErrorMessage="" ControlToValidate="txtKitchens" ValidationGroup="property"></asp:RegularExpressionValidator>
                                     <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="txtKitchens" ErrorMessage="Valor entre 0 e 100" Type="Integer" MinimumValue="0" MaximumValue="100" ValidationGroup="property"></asp:RangeValidator>
 
-                                    <%--                            <input name="phone3" type="text" id="Text3" onkeyup="checkNum(this)" style="width: 180px;" size="16" />--%>
                                     <br>
                                     <br>
                                     <label>&nbsp;</label>
                                     <label>Recepção</label>
                                     <asp:CheckBox ID="chkReception" runat="server" size="28" />
-                                    <%--                            <input name="" type="checkbox" value="" size="28">--%>
                                     <br>
                                     <br>
                                     <label>&nbsp;</label>
                                     <label>Mobiliado</label>
                                     <asp:CheckBox ID="chkFurnished" runat="server" size="28" />
-                                    <%--                            <input name="" type="checkbox" value="" size="28">--%>
                                     <br>
                                     <br>
                                     <label>Detalhes</label>
                                     <asp:TextBox ID="txtDetail" runat="server" Style="width: 430px;" Height="116px" TextMode="MultiLine" CssClass="formstyle"></asp:TextBox>&nbsp;
                                 <asp:RegularExpressionValidator ID="revalDetail" runat="server" ErrorMessage="" ControlToValidate="txtDetail" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                    <%--                            <textarea name="phone2" cols="35" rows="3" id="Textarea1" onkeyup="checkNum(this)" style="width: 280px;"></textarea>--%>
                                 </div>
                                 <div style="width: 96%; float: left; border: 1px solid #ccc; border-radius: 10px; padding: 2%; margin-top: 10px;">
                                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -365,7 +338,6 @@
                                             <asp:RequiredFieldValidator ID="rvalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
                                             <asp:RegularExpressionValidator ID="revalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                            <%--                            <input name="phone2" type="text" id="Text6" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
                                             <br>
                                             <br>
                                             <label>Nome</label>
@@ -373,14 +345,12 @@
                                             <asp:RequiredFieldValidator ID="rvalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
                                             <asp:RegularExpressionValidator ID="revalName" runat="server" ErrorMessage="" ControlToValidate="txtName" ValidationGroup="property"></asp:RegularExpressionValidator>
-                                            <%--                            <input name="phone2" type="text" id="Text4" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
                                             <br>
                                             <br>
                                             <label>Empresa</label>
                                             <asp:TextBox ID="txtBusiness" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
                                         <asp:RegularExpressionValidator ID="revalBusiness" runat="server" ErrorMessage="" ControlToValidate="txtBusiness" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                            <%--                            <input name="phone2" type="text" id="Text5" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
                                             <br>
                                             <br>
 
@@ -388,7 +358,6 @@
                                             <asp:TextBox ID="txtPhone" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>&nbsp;
                                         <asp:RegularExpressionValidator ID="revalPhone" runat="server" ErrorMessage="" ControlToValidate="txtPhone" ValidationGroup="property"></asp:RegularExpressionValidator>
 
-                                            <%--                            <input name="phone2" type="text" id="Text7" onkeyup="checkNum(this)" style="width: 250px;" size="28" />--%>
                                             <br>
                                             <br>
                                             <label>&nbsp;</label>
@@ -401,7 +370,6 @@
                                             </a>
                                         </p>
                                     </div>
-                                    <%--                            <input name="submit" type="submit" value="" />--%>
                                 </div>
 
 

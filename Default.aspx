@@ -10,31 +10,19 @@
     <link href="style/default.css" rel="stylesheet" type="text/css" />
     <link href="style/tabcontent-index.css" rel="stylesheet" type="text/css" />
     <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
-    <link href="style/bootstrap.css" rel="stylesheet">
+    <link href="style/bootstrap.css" rel="stylesheet" />
 
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/tabcontent.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-select.js"></script>
     <script src="js/application.js"></script>
-
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
+
     <script type="text/javascript">
-        function initialize() {
-            var inputE = document.getElementById('eSearch');
-            var inputL = document.getElementById('lSearch');
-            var autocompleteE = new google.maps.places.Autocomplete(inputE);
-            var autocompleteL = new google.maps.places.Autocomplete(inputL);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addDomListener(window, 'load', Initialize);
 
-        var options = {
-            types: ['geocode'] //this should work !
-        };
-        var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
-        var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
-
-        function initialize() {
+        function Initialize() {
 
             var options = {
                 types: ['(cities)'],
@@ -69,13 +57,23 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                var url = 'Agent/ListProperty.aspx?buyorrent=' + $('#jumpMenu :selected').val() + '&type=Escritório&address=' + $('#eSearch').val();
+                if ($('#eSearch').is(':empty')) {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/São Paulo/Escritório_Comercial';
+                }
+                else {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                }
                 $(location).attr('href', url);
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                var url = 'Agent/ListProperty.aspx?buyorrent=' + $('#Select2 :selected').val() + '&type=Loja&address=' + $('#lSearch').val();
+                if ($('#lSearch').is(':empty')) {
+                    var url = $('#Select1 :selected').val() + '/Brasil/São Paulo/Loja_Comercial';
+                }
+                else {
+                    var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
+                }
                 $(location).attr('href', url);
             })
         });
@@ -88,7 +86,7 @@
 
             <div class="header-index">
 
-                <a href="Default.aspx">
+                <a href="Home">
                     <img src="images/jibenet.png" alt="Jibenet" border="0" style="float: left;"></a>
                 <div class="right">
                     <div class="list">
@@ -98,13 +96,13 @@
                         </select>
                     </div>
                     <span>
-                        <select name="select" id="select1">
+                        <select name="select" id="select2">
                             <option value="Ajudar">Ajudar</option>
 
                         </select>
                     </span>
                     <div class="green-tab">
-                        <p><a href="Agent/AddProperty.aspx">Anuncie seu Imóvel</a></p>
+                        <p><a href="PostProperty">Anuncie seu Imóvel</a></p>
                     </div>
                 </div>
             </div>
@@ -147,10 +145,10 @@
                                 </div>
                             </form>
                             <h3>
-                                <a href="Agent/ListProperty.aspx?type=Escritório&address=São Paulo">São Paulo</a><br>
-                                <a href="Agent/ListProperty.aspx?type=Escritório&address=Italim Bibi" class="greenselect">Italim Bibi</a><br>
-                                <a href="Agent/ListProperty.aspx?type=Escritório&address=Vila Olimpia" class="greenselect">Vila Olimpia</a><br>
-                                <a href="Agent/ListProperty.aspx?type=Escritório&address=Morumbi" class="greenselect">Morumbi</a></h3>
+                                <a href="À Venda/Brasil/São Paulo/Escritório_Comercial">São Paulo</a><br>
+                                <a href="À Venda/Brasil/Italim Bibi/Escritório_Comercial" class="greenselect">Italim Bibi</a><br>
+                                <a href="À Venda/Brasil/Vila Olimpia/Escritório_Comercial" class="greenselect">Vila Olimpia</a><br>
+                                <a href="À Venda/Brasil/Morumbi/Escritório_Comercial" class="greenselect">Morumbi</a></h3>
                         </div>
                         <div id="view2" class="tabcontent">
                             <form style="margin: 0px; padding: 0px; float: left;">
@@ -160,7 +158,7 @@
                                 <div class="ddmenu" style="width: 128px; float: right;">
                                     <div class="row demo-row">
                                         <div class="span2" style="width: 128px;">
-                                            <select id="Select2" name="herolist" class="select-block span3" style="min-height: 75px;">
+                                            <select id="Select1" name="herolist" class="select-block span3" style="min-height: 75px;">
                                                 <option value="À Venda">À Venda</option>
                                                 <option value="Para Alugar">Para Alugar</option>
                                             </select>
@@ -169,34 +167,15 @@
                                 </div>
                             </form>
                             <h3>
-                                <a href="Agent/ListProperty.aspx?type=Loja&address=São Paulo">São Paulo</a><br>
-                                <a href="Agent/ListProperty.aspx?type=Loja&address=Italim Bibi" class="greenselect">Italim Bibi</a><br>
-                                <a href="Agent/ListProperty.aspx?type=Loja&address=Vila Olimpia" class="greenselect">Vila Olimpia</a><br>
-                                <a href="Agent/ListProperty.aspx?type=Loja&address=Morumbi" class="greenselect">Morumbi </a></h3>
+                                <a href="À Venda/Brasil/São Paulo/Loja_Comercial">São Paulo</a><br>
+                                <a href="À Venda/Brasil/Italim Bibi/Loja_Comercial" class="greenselect">Italim Bibi</a><br>
+                                <a href="À Venda/Brasil/Vila Olimpia/Loja_Comercial" class="greenselect">Vila Olimpia</a><br>
+                                <a href="À Venda/Brasil/Morumbi/Loja_Comercial" class="greenselect">Morumbi</a></h3>
 
                         </div>
                     </div>
                 </div>
-                <!--<form action="inner.html" method="po" style="margin:0px; padding:0px; float:left;">
-  <div style="width:100%; float:left; margin-left:20px; height:31px;"><a href="#"><img src="images/escritoria.png" alt="escritoria"></a><a href="#"><img src="images/loja.png" alt="escritoria"></a></div>
-  <div style="width:612px; float:left; background-image:url(images/searchbg.png); background-repeat:no-repeat; height:44px; padding:4px;">
-  <input name="search" type="submit" value="" class="searchbtn"><input name="search" type="text" placeholder="Bairro" style="padding:4px 4px; width:88%; margin-top:8px; border:0px; background:none;">  </div>
-<div class="ddmenu" style="width:128px; float:right;">
-  <select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" >
-        <option>Alugar</option>
-        <option>Option 1</option>
-         <option>Option 2</option>
-     </select>
- </div>
- 
-</form>
-<br>
-<br>
-<h3>
-<a href="#">Sao Paulo</a><br>
-<a href="#">Italim Bibi</a><br>
-<a href="#">Vila Olimpia</a><br>
-<a href="#">Morumbi </a></h3>-->
+
             </div>
         </div>
         <!-- Search Panel Ends -->

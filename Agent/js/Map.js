@@ -1,10 +1,10 @@
 ﻿var map;
 
-function initialize() 
+function LoadMap() 
 {
     try 
     {
-        geocoder = new google.maps.Geocoder();
+        var geocoder = new google.maps.Geocoder();
         var mapOptions = {
             center: new google.maps.LatLng(-8.640660, -53.146848),
             zoom: 3,
@@ -48,42 +48,9 @@ function initialize()
         });
         google.maps.event.addListener(map, 'dragend', function () {            
             chkfilter();
-        });
+        });     
     }
     catch (e) {
         alert('initialize():' + e);
-    }
-
-    function filter()
-    {
-        try
-        {            
-            var inputs = document.getElementsByTagName('input');
-            var cities = '';
-
-            for (var i = 0; i < inputs.length; i++) {
-                if (inputs[i].type == 'checkbox') {
-                    if (inputs[i].checked) {
-                        cities += inputs[i].value + ',';
-                    }
-                }
-            }
-            if (cities.length != 0) {
-                cities = cities.substring(0, (cities.length - 1));
-            }
-            var buyorrent = document.getElementById("hdBuyOrRent").value;
-            var type = document.getElementById("hdType").value;
-            var address = document.getElementById("hdSearch").value;
-            var startArea = document.getElementById("startArea").innerHTML;
-            var startRate = document.getElementById("startRate").innerHTML;
-            var endArea = document.getElementById("endArea").innerHTML;
-            var endRate = document.getElementById("endRate").innerHTML;
-            $('#preloader').show();
-            WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
-        }
-        catch (e)
-        {
-            alert('filter():' + e);
-        }
     }
 }

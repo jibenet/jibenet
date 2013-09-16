@@ -17,14 +17,14 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
         {
             if (Page.IsPostBack == false)
             {
-                if (Request.QueryString["pID"] != null)
+                if (Page.RouteData.Values["pID"] != null)
                 {
                     try
                     {
-                        oPropertyBO.propertyID = int.Parse(Request.QueryString["pID"].ToString());
+                        oPropertyBO.propertyID = int.Parse(Page.RouteData.Values["pID"].ToString());
                         DataTable dt = new DataTable();
                         dt = oPropertyBAL.FindPropertyByID(oPropertyBO);
-                        if (dt.Rows.Count >= 0)
+                        if (dt.Rows.Count > 0)
                         {
                             lblName.Text = dt.Rows[0]["name"].ToString();
                             lblAddress.Text = dt.Rows[0]["address"].ToString();
@@ -79,14 +79,14 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                 lblReception.Visible = true;
                                 lblReception.Text = "1 Area de Recepcao";
                             }
-                           
-                            oPropertyBO.propertyID = int.Parse(Request.QueryString["pID"].ToString());
+
+                            oPropertyBO.propertyID = int.Parse(Page.RouteData.Values["pID"].ToString());
                             DataTable dtable = new DataTable();
                             dtable = oPropertyBAL.FindImagesByPropertyID(oPropertyBO);
                             string sSlider = "<ul class='slides'>";
                             if (dtable.Rows.Count == 0)
                             {
-                                sSlider += "<li><img src='http://clipas.venturepact.com/agent/images/707x530.jpg' width='707px' height='530px'/></li>";
+                                sSlider += "<li><img src='images/707x530.jpg' width='707px' height='530px'/></li>";
                             }
                             else
                             {
@@ -111,14 +111,14 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                 carousel.Visible = true;
                                 carousel.InnerHtml = sCarousel;
                             }
-                            oPropertyBO.propertyID = int.Parse(Request.QueryString["pID"].ToString());
+                            oPropertyBO.propertyID = int.Parse(Page.RouteData.Values["pID"].ToString());
                             oPropertyBO.address = dt.Rows[0]["address"].ToString().Substring(0, 5);
                             DataTable dtbl = new DataTable();
                             dtbl = oPropertyBAL.FindSimilarPropertyByAddress(oPropertyBO);
                             if (dtbl.Rows.Count == 1)
                             {
                                 divN1.Visible = true;
-                                ibtnImage1.PostBackUrl = "PropertyDetail.aspx?pID=" + dtbl.Rows[0]["propertyID"].ToString();
+                                ibtnImage1.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
                                 ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
                                 lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")
@@ -141,7 +141,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             if (dtbl.Rows.Count == 2)
                             {
                                 divN1.Visible = true;
-                                ibtnImage1.PostBackUrl = "PropertyDetail.aspx?pID=" + dtbl.Rows[0]["propertyID"].ToString();
+                                ibtnImage1.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
                                 ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
                                 lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")
@@ -161,7 +161,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                     lblRate1.Text = dtbl.Rows[0]["rate"].ToString();
                                 } 
                                 divN2.Visible = true;
-                                ibtnImage2.PostBackUrl = "PropertyDetail.aspx?pID=" + dtbl.Rows[0]["propertyID"].ToString();
+                                ibtnImage2.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
                                 ibtnImage2.ImageUrl = dtbl.Rows[1]["image"].ToString();
                                 lblDescription2.Text = dtbl.Rows[1]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")
@@ -180,17 +180,17 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                 {
                                     lblRate2.Text = dtbl.Rows[0]["rate"].ToString();
                                 } 
-                            }
+                            }                           
                         }
                     }
                     catch
                     {
-                        Response.Redirect("ListProperty.aspx", false);  
+                        Response.Redirect(UrlUtil.MyWebRootUrl + "PostProperty", false);  
                     }
                 }
                 else
                 {
-                    Response.Redirect("ListProperty.aspx", false);  
+                    Response.Redirect(UrlUtil.MyWebRootUrl + "PostProperty", false);  
                 }
             }
         }
