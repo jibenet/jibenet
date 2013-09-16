@@ -52,25 +52,25 @@ public partial class Agent_AddProperty : System.Web.UI.Page
         revalDetail.ValidationExpression = RegExp.MaxLength(2000);
         revalDetail.ErrorMessage = ValidationMessages.MaxLength(200);
 
-        revalName.ValidationExpression = RegExp.MaxLength(100);
-        revalName.ErrorMessage = ValidationMessages.MaxLength(100);
-        revalName.ValidationExpression = RegExp.String;
-        revalName.ErrorMessage = ValidationMessages.String;      
+        //revalName.ValidationExpression = RegExp.MaxLength(100);
+        //revalName.ErrorMessage = ValidationMessages.MaxLength(100);
+        //revalName.ValidationExpression = RegExp.String;
+        //revalName.ErrorMessage = ValidationMessages.String;      
 
-        revalBusiness.ValidationExpression = RegExp.MaxLength(100);
-        revalBusiness.ErrorMessage = ValidationMessages.MaxLength(100);
-        revalBusiness.ValidationExpression = RegExp.String;
-        revalBusiness.ErrorMessage = ValidationMessages.String;       
+        //revalBusiness.ValidationExpression = RegExp.MaxLength(100);
+        //revalBusiness.ErrorMessage = ValidationMessages.MaxLength(100);
+        //revalBusiness.ValidationExpression = RegExp.String;
+        //revalBusiness.ErrorMessage = ValidationMessages.String;       
 
-        revalEmail.ValidationExpression = RegExp.MaxLength(100);
-        revalEmail.ErrorMessage = ValidationMessages.MaxLength(100);
-        revalEmail.ValidationExpression = RegExp.Email;
-        revalEmail.ErrorMessage = ValidationMessages.Email;
+        //revalEmail.ValidationExpression = RegExp.MaxLength(100);
+        //revalEmail.ErrorMessage = ValidationMessages.MaxLength(100);
+        //revalEmail.ValidationExpression = RegExp.Email;
+        //revalEmail.ErrorMessage = ValidationMessages.Email;
 
-        revalPhone.ValidationExpression = RegExp.MaxLength(10);
-        revalPhone.ErrorMessage = ValidationMessages.MaxLength(10);
-        revalPhone.ValidationExpression = RegExp.Phone;
-        revalPhone.ErrorMessage = ValidationMessages.Phone;        
+        //revalPhone.ValidationExpression = RegExp.MaxLength(10);
+        //revalPhone.ErrorMessage = ValidationMessages.MaxLength(10);
+        //revalPhone.ValidationExpression = RegExp.Phone;
+        //revalPhone.ErrorMessage = ValidationMessages.Phone;        
 
         if(Page.IsPostBack == false)
         {
