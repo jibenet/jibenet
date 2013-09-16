@@ -281,7 +281,7 @@
                                 <br />
                                 <br />
                                 <label>Fotos</label>
-                                <iframe src="AutoUpload" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
+                                <iframe src="AutoUpload.aspx" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
 
                                 <br>
                                 <br>
