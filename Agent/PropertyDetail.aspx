@@ -4,6 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-44051693-1', 'clipas.com.br');
+        ga('send', 'pageview');
+
+    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
     <link rel="icon" type="image/png" href="http://clipas.com.br/agent/images/favicon.ico" />
@@ -48,24 +60,24 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                if ($('#eSearch').is(':empty')) {
-                    var url = $('#jumpMenu :selected').val() + '/Brasil/São Paulo/Escritório_Comercial';
+                if ($('#eSearch').val() == '') {
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
                 }
                 else {
-                    var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
                 }
-                $(location).attr('href', url);
+                $(location).attr('href', url.replace(' ', '_'));
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                if ($('#lSearch').is(':empty')) {
-                    var url = $('#Select1 :selected').val() + '/Brasil/São Paulo/Loja_Comercial';
+                if ($('#lSearch').val() == '') {
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val() + '/Brasil/São_Paulo/Loja_Comercial';
                 }
                 else {
-                    var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
                 }
-                $(location).attr('href', url);
+                $(location).attr('href', url.replace(' ', '_'));
             })
         });
     </script>
@@ -330,8 +342,7 @@
                         <h2 align="center" style="font-weight: normal; margin-bottom: 8px;">Propriedades Semelhantes</h2>
                         <div id="divN1" runat="server" visible="false">
                             <p align="center" style="width: 100%; font-size: 16px; line-height: 24px;">
-
-                                <asp:ImageButton ID="ibtnImage1" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
+                                <asp:Image ID="ibtnImage1" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
                                 <br />
                                 <asp:Label ID="lblDescription1" runat="server" Text=""></asp:Label><br />
                                 <asp:Label ID="lblArea1" runat="server" Text=""></asp:Label>&nbsp;m<sup>2</sup><br />
@@ -341,8 +352,7 @@
                         </div>
                         <div id="divN2" runat="server" visible="false">
                             <p align="center" style="width: 100%; font-size: 16px; line-height: 24px;">
-
-                                <asp:ImageButton ID="ibtnImage2" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
+                                <asp:Image ID="ibtnImage2" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
                                 <br />
                                 <asp:Label ID="lblDescription2" runat="server" Text=""></asp:Label><br />
                                 <asp:Label ID="lblArea2" runat="server" Text=""></asp:Label>&nbsp;m<sup>2</sup><br />

@@ -16,19 +16,9 @@ function LoadMap()
 
         var buyorrent = document.getElementById("hdBuyOrRent").value;      
              
-        var type = document.getElementById("hdType").value;
+        var type = document.getElementById("hdType").value;      
 
-        if (type == 'Escritório') {
-            document.getElementById('Escritório').className = "selected";
-            document.getElementById('Loja').className = "";            
-        }
-        else
-        {
-            document.getElementById('Loja').className = "selected";
-            document.getElementById('Escritório').className = "";            
-        }
-
-        var address = document.getElementById("hdSearch").value;
+        var address = document.getElementById("hdSearch").value;     
 
         geocoder.geocode({ 'address': address }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {

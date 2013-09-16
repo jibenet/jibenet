@@ -118,7 +118,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             if (dtbl.Rows.Count == 1)
                             {
                                 divN1.Visible = true;
-                                ibtnImage1.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
+                                //ibtnImage1.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
                                 ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
                                 lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")
@@ -141,7 +141,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             if (dtbl.Rows.Count == 2)
                             {
                                 divN1.Visible = true;
-                                ibtnImage1.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
+                                //ibtnImage1.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
                                 ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
                                 lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")
@@ -161,7 +161,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                     lblRate1.Text = dtbl.Rows[0]["rate"].ToString();
                                 } 
                                 divN2.Visible = true;
-                                ibtnImage2.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
+                                //ibtnImage2.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
                                 ibtnImage2.ImageUrl = dtbl.Rows[1]["image"].ToString();
                                 lblDescription2.Text = dtbl.Rows[1]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")

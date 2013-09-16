@@ -6,6 +6,18 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-44051693-1', 'clipas.com.br');
+        ga('send', 'pageview');
+
+    </script>
     <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" />
     <link href="style/default.css" rel="stylesheet" type="text/css" />
     <link href="style/tabcontent-index.css" rel="stylesheet" type="text/css" />
@@ -57,24 +69,24 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                if ($('#eSearch').is(':empty')) {
-                    var url = $('#jumpMenu :selected').val() + '/Brasil/São Paulo/Escritório_Comercial';
+                if ($('#eSearch').val() == '') {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
                 }
                 else {
                     var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
                 }
-                $(location).attr('href', url);
+                $(location).attr('href', url.replace(' ', '_'));
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                if ($('#lSearch').is(':empty')) {
-                    var url = $('#Select1 :selected').val() + '/Brasil/São Paulo/Loja_Comercial';
+                if ($('#lSearch').val() == '') {
+                    var url = $('#Select1 :selected').val() + '/Brasil/São_Paulo/Loja_Comercial';
                 }
                 else {
                     var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
                 }
-                $(location).attr('href', url);
+                $(location).attr('href', url.replace(' ', '_'));
             })
         });
     </script>
@@ -145,10 +157,10 @@
                                 </div>
                             </form>
                             <h3>
-                                <a href="À Venda/Brasil/São Paulo/Escritório_Comercial">São Paulo</a><br>
-                                <a href="À Venda/Brasil/Italim Bibi/Escritório_Comercial" class="greenselect">Italim Bibi</a><br>
-                                <a href="À Venda/Brasil/Vila Olimpia/Escritório_Comercial" class="greenselect">Vila Olimpia</a><br>
-                                <a href="À Venda/Brasil/Morumbi/Escritório_Comercial" class="greenselect">Morumbi</a></h3>
+                                <a href="À_Venda/Brasil/São_Paulo/Escritório_Comercial">São Paulo</a><br>
+                                <a href="À_Venda/Brasil/Italim_Bibi/Escritório_Comercial" class="greenselect">Italim Bibi</a><br>
+                                <a href="À_Venda/Brasil/Vila_Olimpia/Escritório_Comercial" class="greenselect">Vila Olimpia</a><br>
+                                <a href="À_Venda/Brasil/Morumbi/Escritório_Comercial" class="greenselect">Morumbi</a></h3>
                         </div>
                         <div id="view2" class="tabcontent">
                             <form style="margin: 0px; padding: 0px; float: left;">
@@ -167,10 +179,10 @@
                                 </div>
                             </form>
                             <h3>
-                                <a href="À Venda/Brasil/São Paulo/Loja_Comercial">São Paulo</a><br>
-                                <a href="À Venda/Brasil/Italim Bibi/Loja_Comercial" class="greenselect">Italim Bibi</a><br>
-                                <a href="À Venda/Brasil/Vila Olimpia/Loja_Comercial" class="greenselect">Vila Olimpia</a><br>
-                                <a href="À Venda/Brasil/Morumbi/Loja_Comercial" class="greenselect">Morumbi</a></h3>
+                                <a href="À_Venda/Brasil/São_Paulo/Loja_Comercial">São Paulo</a><br>
+                                <a href="À_Venda/Brasil/Italim_Bibi/Loja_Comercial" class="greenselect">Italim Bibi</a><br>
+                                <a href="À_Venda/Brasil/Vila_Olimpia/Loja_Comercial" class="greenselect">Vila Olimpia</a><br>
+                                <a href="À_Venda/Brasil/Morumbi/Loja_Comercial" class="greenselect">Morumbi</a></h3>
 
                         </div>
                     </div>

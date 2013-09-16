@@ -11,40 +11,54 @@ public partial class WebService : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.QueryString["key"] != null)
+        try
         {
-            if (Request.QueryString["key"].ToString() == "pList")
+            if (Request.QueryString["key"] != null)
             {
-                Response.Write(PropertyList(Request.QueryString["buyorrent"].ToString(), Request.QueryString["type"].ToString(), Request.QueryString["address"].ToString()));
+                if (Request.QueryString["key"].ToString() == "pList")
+                {
+                    Response.Write(PropertyList(Request.QueryString["buyorrent"].ToString(), Request.QueryString["type"].ToString(), Request.QueryString["address"].ToString()));
+                }
+            }
+            else
+            {
+                Response.Write("Enter valid parameters.");
             }
         }
-        else
+        catch 
         {
-            Response.Write("Enter valid parameters.");
+
         }
     }
     public string PropertyList(string buyorrent, string type, string address)
     {
-        PropertyBAL oPropertyBAL = new PropertyBAL();
-        PropertyBO oPropertyBO = new PropertyBO();
-        oPropertyBO.buyorrent = buyorrent;        
-        oPropertyBO.type = type;
-        oPropertyBO.address = address;
-        DataTable dt = new DataTable();
-        dt = oPropertyBAL.FindProperty(oPropertyBO);
-        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-        List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
-        Dictionary<string, object> row = null;
-
-        foreach (DataRow dr in dt.Rows)
+        try
         {
-            row = new Dictionary<string, object>();
-            foreach (DataColumn col in dt.Columns)
+            PropertyBAL oPropertyBAL = new PropertyBAL();
+            PropertyBO oPropertyBO = new PropertyBO();
+            oPropertyBO.buyorrent = buyorrent;
+            oPropertyBO.type = type;
+            oPropertyBO.address = address;
+            DataTable dt = new DataTable();
+            dt = oPropertyBAL.FindProperty(oPropertyBO);
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+            Dictionary<string, object> row = null;
+
+            foreach (DataRow dr in dt.Rows)
             {
-                row.Add(col.ColumnName.Trim(), dr[col]);
+                row = new Dictionary<string, object>();
+                foreach (DataColumn col in dt.Columns)
+                {
+                    row.Add(col.ColumnName.Trim(), dr[col]);
+                }
+                rows.Add(row);
             }
-            rows.Add(row);
+            return serializer.Serialize(rows);
         }
-        return serializer.Serialize(rows);
+        catch
+        {
+            return "Time Out";
+        }
     }
 }

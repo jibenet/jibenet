@@ -4,8 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-44051693-1', 'clipas.com.br');
+        ga('send', 'pageview');
+
+    </script>
     <link rel="icon" type="image/png" href="http://clipas.com.br/agent/images/favicon.ico" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/default.css" type="text/css" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/defaultASP.css" type="text/css" />
@@ -22,6 +35,7 @@
     <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
     <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.js"></script>
     <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.jqtransform.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>js/Map.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
 
@@ -43,31 +57,50 @@
             var inputL = document.getElementById('lSearch');
             var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
             var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
+
+            $("#jumpMenu span.filter-option").html($('#hdBuyOrRent').val());
+            $("#Select1 span.filter-option").html($('#hdBuyOrRent').val());
+
+            if ($('#hdType').val() == 'Escritório') {
+                document.getElementById('Escritório').className = "selected";
+                document.getElementById('Loja').className = "";
+            }
+            else {
+                document.getElementById('Loja').className = "selected";
+                document.getElementById('Escritório').className = "";
+            }
+
+            $('#eSearch').val($('#hdSearch').val());
+            $('#lSearch').val($('#hdSearch').val());
         }
+
     </script>
     <style>
         .pac-container:after {
             content: none !important;
         }
     </style>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                var buyorrent = document.getElementById("hdBuyOrRent").value;
-                var type = document.getElementById("hdType").value;
-                var address = document.getElementById("hdSearch").value;
-                $('#preloader').show();
-                WebService.PropertyList(buyorrent, type, address, DefaultList);
+                if ($('#eSearch').val() == '') {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
+                }
+                else {
+                    var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                }
+                $(location).attr('href', url.replace(' ', '_'));
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                var buyorrent = document.getElementById("hdBuyOrRent").value;
-                var type = document.getElementById("hdType").value;
-                var address = document.getElementById("hdSearch").value;
-                $('#preloader').show();
-                WebService.PropertyList(buyorrent, type, address, DefaultList);
+                if ($('#lSearch').val() == '') {
+                    var url = $('#Select1 :selected').val() + '/Brasil/São_Paulo/Loja_Comercial';
+                }
+                else {
+                    var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
+                }
+                $(location).attr('href', url.replace(' ', '_'));
             })
         });
     </script>
