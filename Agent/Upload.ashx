@@ -26,8 +26,15 @@ public class Upload : IHttpHandler,
                 if (!Directory.Exists(savepath))
                     Directory.CreateDirectory(savepath);
            
-                postedFile.SaveAs(savepath + @"\" + filename);                
-                context.Session["filename"] = context.Session["filename"].ToString() + filename + ",";
+                postedFile.SaveAs(savepath + @"\" + filename);
+                if (context.Session["filename"] == null)
+                {
+                    context.Session["filename"] = filename + ",";
+                }                
+                else
+                {
+                    context.Session["filename"] = context.Session["filename"].ToString() + filename + ",";
+                }
                 context.Response.Write(tempPath + "/" + filename);
                 context.Response.StatusCode = 200;
             }

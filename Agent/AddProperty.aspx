@@ -292,8 +292,15 @@
 
                                 <br />
                                 <br />
+                                <label>Fotos URL</label>
+                                <asp:TextBox ID="txtPhotosURL" runat="server" Style="width: 250px;" size="28" CssClass="formstyle"></asp:TextBox>
+
+
+                                &nbsp;(<span id="result_box" class="short_text" lang="pt"><span class="hps">Opcional - URL múltipla seprate por &#39;,&#39;</span></span>)<br />
+                                <br />
                                 <label>Fotos</label>
-                                <iframe src="http://clipas.com.br/agent/AutoUpload.aspx" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
+
+                                <iframe src="agent/AutoUpload.aspx" style="height: auto; overflow: auto; min-height: 40px; top: -9px; position: relative; width: 400px;"></iframe>
 
                                 <br>
                                 <br>

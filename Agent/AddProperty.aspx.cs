@@ -113,6 +113,12 @@ public partial class Agent_AddProperty : System.Web.UI.Page
                 string[] imageCount = images.Split(',');
                 oPropertyBO.totalImages = imageCount.Length;   
             }
+            else if (txtPhotosURL.Text.Length != 0)
+            {             
+                string[] imageCount = txtPhotosURL.Text.Split(',');
+                oPropertyBO.totalImages = imageCount.Length;
+                oPropertyImageBO.image = txtPhotosURL.Text;
+            }
             else
             {
                 oPropertyBO.totalImages = 0;

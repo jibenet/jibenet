@@ -29,9 +29,7 @@
     {
         routes.MapPageRoute("Default", "Home", "~/Default.aspx");
 
-        routes.MapPageRoute("AddProperty", "PostProperty", "~/Agent/AddProperty.aspx");
-
-        //routes.MapPageRoute("AutoUpload", "AutoUpload", "~/Agent/AutoUpload.aspx");
+        routes.MapPageRoute("AddProperty", "PostProperty", "~/Agent/AddProperty.aspx");   
 
         routes.MapPageRoute("ListProperty", "{buyorrent}/Brasil/{address}/{type}_Comercial", "~/Agent/ListProperty.aspx");
 

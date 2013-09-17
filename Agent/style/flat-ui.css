@@ -1352,7 +1352,7 @@ textarea[disabled],
 textarea[readonly] {
   background-color: #f4f6f6;
   border-color: #d5dbdb;
-  color: #d5dbdb;
+  color: #656B6B;
   cursor: default;
 }
 /*input,
