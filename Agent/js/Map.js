@@ -41,6 +41,7 @@ function LoadMap()
         });     
     }
     catch (e) {
-        alert('initialize():' + e);
+        $('#preloader').hide();
+        //alert('initialize():' + e);
     }
 }

@@ -33,11 +33,7 @@ public class AgentBAL
         catch
         {
             throw;
-        }
-        finally
-        {
-
-        }
+        }       
     }    
     public DataTable FindAgent(AgentBO oAgentBO)
     {
@@ -48,10 +44,6 @@ public class AgentBAL
         catch
         {
             throw;
-        }
-        finally
-        {
-
-        }
+        }      
     }    
 }

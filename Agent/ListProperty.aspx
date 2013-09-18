@@ -19,6 +19,114 @@
         ga('send', 'pageview');
 
     </script>
+    <style>
+        #preloader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: grey;
+            opacity: .8;
+        }
+
+        .ajax-loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -32px; /* -1 * image width / 2 */
+            margin-top: -32px; /* -1 * image height / 2 */
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        var pager;
+
+        function Pager(tableName, itemsPerPage) {
+            this.tableName = tableName;
+            this.itemsPerPage = itemsPerPage;
+            this.currentPage = 1;
+            this.pages = 0;
+            this.inited = false;
+
+            this.showRecords = function (from, to) {
+
+                $('#recFrom').empty();
+                $('#recTo').empty();              
+                if (to > $('#recTotal').val()) {
+                    $('#recFrom').html(from + ' to ');
+                    $('#recTo').html($('#recTotal').val() + ' of ');
+                }
+                else {
+                    $('#recFrom').html(from + ' to ');
+                    $('#recTo').html(to + ' of ');
+                }
+
+                var rows = document.getElementById(tableName).rows;
+                // i starts from 1 to skip table header row
+                for (var i = 0; i < rows.length; i++) {
+                    if (i < from || i > to)
+                        rows[i].style.display = 'none';
+                    else
+                        rows[i].style.display = '';
+                }
+            }
+
+            this.showPage = function (pageNumber) {
+                if (!this.inited) {
+                    alert("not inited");
+                    return;
+                }
+
+                var oldPageAnchor = document.getElementById('pg' + this.currentPage);
+                oldPageAnchor.className = 'pg-normal';
+
+                this.currentPage = pageNumber;
+                var newPageAnchor = document.getElementById('pg' + this.currentPage);
+                newPageAnchor.className = 'pg-selected';
+
+                var from = (pageNumber - 1) * itemsPerPage + 1;
+                var to = from + itemsPerPage - 1;
+                this.showRecords(from, to);
+            }
+
+            this.prev = function () {
+                if (this.currentPage > 1)
+                    this.showPage(this.currentPage - 1);
+            }
+
+            this.next = function () {
+                if (this.currentPage < this.pages) {
+                    this.showPage(this.currentPage + 1);
+                }
+            }
+
+            this.init = function () {
+                var rows = document.getElementById(tableName).rows;
+                var records = (rows.length - 1);
+                this.pages = Math.ceil(records / itemsPerPage);
+                this.inited = true;
+            }
+
+            this.showPageNav = function (pagerName, positionId) {
+                if (!this.inited) {
+                    alert("not inited");
+                    return;
+                }
+                var element = document.getElementById(positionId);
+
+                var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> < Previous </span> | ';
+                for (var page = 1; page <= this.pages; page++)
+                    pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> | ';
+                pagerHtml += '<span onclick="' + pagerName + '.next();" class="pg-normal"> Next ></span>';
+
+                element.innerHTML = pagerHtml;
+            }
+        }
+
+
+    </script>
     <link rel="icon" type="image/png" href="http://clipas.com.br/agent/images/favicon.ico" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/default.css" type="text/css" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/defaultASP.css" type="text/css" />
@@ -27,6 +135,7 @@
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/flat-ui.css" type="text/css" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="http://clipas.com.br/agent/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="http://clipas.com.br/agent/simplePagination.css" />
     <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
     <script src="<% =UrlUtil.MyWebUrl %>js/jquery-1.8.3.min.js"></script>
     <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
@@ -38,7 +147,23 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>js/Map.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
+    <style type="text/css">
+        .pg-normal {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            color: black;
+            font-weight: normal;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
+        .pg-selected {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            color: black;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
     <script type="javascript">
 	    $(function () {
 	        $('#form').jqTransform({ imgPath: 'jqtransformplugin/img/' });
@@ -62,12 +187,12 @@
             $("#Select1 span.filter-option").html($('#hdBuyOrRent').val());
 
             if ($('#hdType').val() == 'Escritório') {
-                document.getElementById('Escritório').className = "selected";
-                document.getElementById('Loja').className = "";
+                $('#Escritório').toggleClass('selected', true)
+                $('#Loja').toggleClass('selected', false);          
             }
             else {
-                document.getElementById('Loja').className = "selected";
-                document.getElementById('Escritório').className = "";
+                $('#Escritório').toggleClass('selected', false)
+                $('#Loja').toggleClass('selected', true);             
             }
 
             $('#eSearch').val($('#hdSearch').val());
@@ -91,7 +216,7 @@
                 }
                 $(location).attr('href', url.replace(' ', '_'));
             })
-       });
+        });
         $(function () {
             $("#btnLclick").click(function () {
                 if ($('#lSearch').val() == '') {
@@ -113,6 +238,7 @@
                 if (list != null) {
                     var oJSON = eval("(" + list + ")");
                     var oHTMLTABLE = document.createElement("table");
+                    oHTMLTABLE.id = "tblProperty";
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
                     markersArray = new Array(oJSON.Head.length);
@@ -147,18 +273,27 @@
                         while (document.getElementById('divPropertyList').hasChildNodes()) {
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
+                        $('#recTotal').val(0);
                         document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     }
-                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados';
+                    $('#recTotal').val(oJSON.Head.length - 1);
+                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length - 1 + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                     $('#preloader').hide();
+
+                    pager = new Pager('tblProperty', 50);
+                    pager.init();
+                    pager.showPageNav('pager', 'pageNavPosition');
+                    pager.showPage(1);
                 }
                 else {
+                    $('#recTotal').val(0);
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     $('#preloader').hide();
                 }
             }
             catch (e) {
+                $('#preloader').hide();
                 //alert('DefaultList():' + e);
             }
         }
@@ -167,6 +302,7 @@
                 if (list != null) {
                     var oJSON = eval("(" + list + ")");
                     var oHTMLTABLE = document.createElement("table");
+                    oHTMLTABLE.id = "tblProperty";
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
                     var j = 0;
@@ -201,6 +337,10 @@
                                                 '</p></div>' +
                                                 '</div>';
                             j += 1;
+                            pager = new Pager('tblProperty', 50);
+                            pager.init();
+                            pager.showPageNav('pager', 'pageNavPosition');
+                            pager.showPage(1);
                         }
                         else {
 
@@ -209,7 +349,8 @@
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
                     }
-                    document.getElementById('totalRecords').innerHTML = j + ' registros encontrados';
+                    $('#recTotal').val(j - 1);
+                    document.getElementById('totalRecords').innerHTML = j - 1 + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                     $('#preloader').hide();
                 }
@@ -217,11 +358,13 @@
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
+                    $('#recTotal').val(0);
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     $('#preloader').hide();
                 }
             }
             catch (e) {
+                $('#preloader').hide();
                 //alert('BoundList():' + e);
             }
         }
@@ -253,6 +396,7 @@
                 WebService.AgentList(fAgentListI);
             }
             catch (e) {
+                $('#preloader').hide();
                 //alert('fAgentList():' + e);
             }
         }
@@ -280,6 +424,7 @@
                 }
             }
             catch (e) {
+                $('#preloader').hide();
                 //alert('fAgentListI():' + e);
             }
         }
@@ -327,6 +472,7 @@
                 WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
             }
             catch (e) {
+                $('#preloader').hide();
                 //alert('filter():' + e);
             }
         }
@@ -565,16 +711,22 @@
 
                     <!-- Mid Text -->
                     <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef;">
-
+                        <input id="recTotal" type="hidden" />
                         <div style="width: 90%; float: left; padding: 10px 20px;">
                             <h3 class="list_heading">
+                                <span id="recFrom"></span><span id="recTo"></span>
                                 <span id="totalRecords"></span>
                             </h3>
                         </div>
-                        <div id="preloader" style="display: none;">
-                            <div style="float: left; margin: 30px 0px 0px 50%;">
+                        <div id="pageNavPosition" style="width: 90%; float: left; padding: 10px 20px;">
+
+                        </div>
+
+                        <div id="preloader">
+                            <img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" class="ajax-loader"/>
+                           <%-- <div style="float: left; margin: 30px 0px 0px 50%;">
                                 <img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" alt="Loading..." title="">
-                            </div>
+                            </div>--%>
                         </div>
                         <div id="divPropertyList" style="width: 100%; float: left; height: 550px; overflow: scroll;">
                         </div>
@@ -607,7 +759,20 @@
             </div>
         </footer>
         <!-- Footer Ends -->
+        <script id="_webengage_script_tag" type="text/javascript">
+            var _weq = _weq || {};
+            _weq['webengage.licenseCode'] = '76aa53a';
+            _weq['webengage.widgetVersion'] = "4.0";
 
+            (function (d) {
+                var _we = d.createElement('script');
+                _we.type = 'text/javascript';
+                _we.async = true;
+                _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+                var _sNode = d.getElementById('_webengage_script_tag');
+                _sNode.parentNode.insertBefore(_we, _sNode);
+            })(document);
+</script>
     </form>
 </body>
 </html>

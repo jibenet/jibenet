@@ -31,15 +31,22 @@ public class WebService : System.Web.Services.WebService {
     [ScriptMethod]
     public string PropertyList(string buyorrent, string type, string address)
     {
-        PropertyBAL oPropertyBAL = new PropertyBAL();
-        PropertyBO oPropertyBO = new PropertyBO();
-        oPropertyBO.address = address;
-        oPropertyBO.type = type;
-        oPropertyBO.buyorrent = buyorrent;
-        DataTable dt = new DataTable();
-        dt = oPropertyBAL.FindProperty(oPropertyBO);     
-        JSONClass objJSONClass = new JSONClass();        
-        return objJSONClass.CreateJSONParameters(dt);        
+        try
+        {
+            PropertyBAL oPropertyBAL = new PropertyBAL();
+            PropertyBO oPropertyBO = new PropertyBO();
+            oPropertyBO.address = address;
+            oPropertyBO.type = type;
+            oPropertyBO.buyorrent = buyorrent;
+            DataTable dt = new DataTable();
+            dt = oPropertyBAL.FindProperty(oPropertyBO);
+            JSONClass objJSONClass = new JSONClass();
+            return objJSONClass.CreateJSONParameters(dt);
+        }
+        catch
+        {
+            throw;
+        }
     }
     [WebMethod]
     [ScriptMethod]
@@ -65,17 +72,24 @@ public class WebService : System.Web.Services.WebService {
         }
         catch
         {
-            return string.Empty;
+            throw;
         }
     }    
     [WebMethod]
     [ScriptMethod]
     public string AgentList()
     {
-        AgentBAL oAgentBAL = new AgentBAL();        
-        DataTable dt = new DataTable();
-        dt = oAgentBAL.SelectAgent();
-        JSONClass objJSONClass = new JSONClass();
-        return objJSONClass.CreateJSONParameters(dt);
+        try
+        {
+            AgentBAL oAgentBAL = new AgentBAL();
+            DataTable dt = new DataTable();
+            dt = oAgentBAL.SelectAgent();
+            JSONClass objJSONClass = new JSONClass();
+            return objJSONClass.CreateJSONParameters(dt);
+        }
+        catch
+        {
+            throw;
+        }
     }
 }

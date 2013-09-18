@@ -124,7 +124,6 @@ public partial class Agent_AddProperty : System.Web.UI.Page
                 oPropertyBO.totalImages = 0;
                 oPropertyImageBO.image = images;
             }
-            oPropertyImageBO.image = images;
             oAgentBO.name = txtName.Text;
             oAgentBO.business = txtBusiness.Text;
             oAgentBO.email = txtEmail.Text;

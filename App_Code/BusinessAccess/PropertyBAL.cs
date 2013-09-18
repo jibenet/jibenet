@@ -33,11 +33,7 @@ public class PropertyBAL
         catch
         {
             throw;
-        }
-        finally
-        {
-
-        }
+        }        
     }
     public DataTable FindProperty(PropertyBO oPropertyBO)
     {
@@ -48,12 +44,7 @@ public class PropertyBAL
         catch
         {
             throw;
-        }
-        finally
-        
-        {
-
-        }
+        }      
     }
     public DataTable FindPropertyByID(PropertyBO oPropertyBO)
     {
@@ -64,11 +55,7 @@ public class PropertyBAL
         catch
         {
             throw;
-        }
-        finally
-        {
-
-        }
+        }       
     }
     public DataTable FindImagesByPropertyID(PropertyBO oPropertyBO)
     {
@@ -79,11 +66,7 @@ public class PropertyBAL
         catch
         {
             throw;
-        }
-        finally
-        {
-
-        }
+        }     
     }
     public DataTable FindProperty(PropertyBO oPropertyBO, PropertyBO oIPropertyBO)
     {
@@ -94,11 +77,7 @@ public class PropertyBAL
         catch
         {
             throw;
-        }
-        finally
-        {
-
-        }
+        }      
     }
     public DataTable FindSimilarPropertyByAddress(PropertyBO oPropertyBO)
     {
@@ -109,10 +88,6 @@ public class PropertyBAL
         catch
         {
             throw;
-        }
-        finally
-        {
-
-        }
+        }      
     }
 }
