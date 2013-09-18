@@ -49,6 +49,17 @@
             var inputL = document.getElementById('lSearch');
             var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
             var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
+
+            $('#eSearch').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $('#btnEclick').focus();
+                }
+            });
+            $('#lSearch').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $('#btnLclick').focus();
+                }
+            });
         }
     </script>
     <style>

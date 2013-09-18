@@ -45,6 +45,17 @@
             var inputL = document.getElementById('lSearch');
             var autocompleteE = new google.maps.places.Autocomplete(inputE, options);
             var autocompleteL = new google.maps.places.Autocomplete(inputL, options);
+
+            $('#eSearch').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $('#btnEclick').focus();
+                }
+            });
+            $('#lSearch').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $('#btnLclick').focus();
+                }
+            });
         }
     </script>
     <style>
@@ -75,7 +86,7 @@
                 else {
                     var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
                 }
-                $(location).attr('href', url.replace(' ', '_'));
+                $(location).attr('href', url.replace(' ', '_'));             
             })
         });
         $(function () {
@@ -86,7 +97,7 @@
                 else {
                     var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
                 }
-                $(location).attr('href', url.replace(' ', '_'));
+                $(location).attr('href', url.replace(' ', '_'));                
             })
         });
     </script>

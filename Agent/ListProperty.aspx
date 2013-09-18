@@ -20,25 +20,25 @@
 
     </script>
     <style>
-        #preloader {
+        /*#preloader {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1000;
-            background-color: grey;
-            opacity: .8;
+            background-color: white;
+            opacity: .3;
         }
 
         .ajax-loader {
             position: absolute;
             left: 50%;
             top: 50%;
-            margin-left: -32px; /* -1 * image width / 2 */
-            margin-top: -32px; /* -1 * image height / 2 */
+            margin-left: -32px;
+            margin-top: -32px;
             display: block;
-        }
+        }*/
     </style>
     <script type="text/javascript">
         var pager;
@@ -53,7 +53,7 @@
             this.showRecords = function (from, to) {
 
                 $('#recFrom').empty();
-                $('#recTo').empty();              
+                $('#recTo').empty();
                 if (to > $('#recTotal').val()) {
                     $('#recFrom').html(from + ' to ');
                     $('#recTo').html($('#recTotal').val() + ' of ');
@@ -147,7 +147,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>js/Map.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
-    <style type="text/css">
+    <%--  <style type="text/css">
         .pg-normal {
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
             color: black;
@@ -163,7 +163,7 @@
             text-decoration: underline;
             cursor: pointer;
         }
-    </style>
+    </style>--%>
     <script type="javascript">
 	    $(function () {
 	        $('#form').jqTransform({ imgPath: 'jqtransformplugin/img/' });
@@ -188,15 +188,26 @@
 
             if ($('#hdType').val() == 'Escritório') {
                 $('#Escritório').toggleClass('selected', true)
-                $('#Loja').toggleClass('selected', false);          
+                $('#Loja').toggleClass('selected', false);
             }
             else {
                 $('#Escritório').toggleClass('selected', false)
-                $('#Loja').toggleClass('selected', true);             
+                $('#Loja').toggleClass('selected', true);
             }
 
             $('#eSearch').val($('#hdSearch').val());
             $('#lSearch').val($('#hdSearch').val());
+
+            $('#eSearch').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $('#btnEclick').focus();
+                }
+            });
+            $('#lSearch').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $('#btnLclick').focus();
+                }
+            });
         }
 
     </script>
@@ -208,6 +219,7 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
+                $('#hdType').val('Escritório');
                 if ($('#eSearch').val() == '') {
                     var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
                 }
@@ -219,6 +231,7 @@
         });
         $(function () {
             $("#btnLclick").click(function () {
+                $('#hdType').val('Loja');
                 if ($('#lSearch').val() == '') {
                     var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val() + '/Brasil/São_Paulo/Loja_Comercial';
                 }
@@ -273,6 +286,11 @@
                         while (document.getElementById('divPropertyList').hasChildNodes()) {
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
+                        while (document.getElementById('pageNavPosition').hasChildNodes()) {
+                            document.getElementById('pageNavPosition').removeChild(document.getElementById('pageNavPosition').lastChild);
+                        }
+                        $('#recFrom').empty();
+                        $('#recTo').empty();
                         $('#recTotal').val(0);
                         document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     }
@@ -287,6 +305,8 @@
                     pager.showPage(1);
                 }
                 else {
+                    $('#recFrom').empty();
+                    $('#recTo').empty();
                     $('#recTotal').val(0);
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     $('#preloader').hide();
@@ -313,7 +333,6 @@
                         var myLatLng = new google.maps.LatLng(oJSON.Head[i].latitude, oJSON.Head[i].longitude);
 
                         if (map.getBounds().contains(myLatLng)) {
-                            //code for showing your object, associated with markers[i]
                             var marker = new google.maps.Marker({
                                 map: map,
                                 position: myLatLng
@@ -348,6 +367,11 @@
                         while (document.getElementById('divPropertyList').hasChildNodes()) {
                             document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                         }
+                        while (document.getElementById('pageNavPosition').hasChildNodes()) {
+                            document.getElementById('pageNavPosition').removeChild(document.getElementById('pageNavPosition').lastChild);
+                        }
+                        $('#recFrom').empty();
+                        $('#recTo').empty();
                     }
                     $('#recTotal').val(j - 1);
                     document.getElementById('totalRecords').innerHTML = j - 1 + ' registros encontrados';
@@ -358,6 +382,11 @@
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
+                    while (document.getElementById('pageNavPosition').hasChildNodes()) {
+                        document.getElementById('pageNavPosition').removeChild(document.getElementById('pageNavPosition').lastChild);
+                    }
+                    $('#recFrom').empty();
+                    $('#recTo').empty();
                     $('#recTotal').val(0);
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     $('#preloader').hide();
@@ -496,8 +525,8 @@
                     <div class="header-middle">
                         <div>
                             <ul class="tabs" persist="true">
-                                <li id="Escritório" onclick="$('#hdType').val('Escritório');"><a class="new_active" href="#" rel="view1">Escritório</a></li>
-                                <li id="Loja" onclick="$('#hdType').val('Loja');"><a class="new_active" href="#" rel="view2">Loja</a></li>
+                                <li id="Escritório" onclick="$('#hdType').val('Escritório');"><a class="new_active" href="#" onclick="$('#hdType').val('Escritório');" rel="view1">Escritório</a></li>
+                                <li id="Loja" onclick="$('#hdType').val('Loja');"><a class="new_active" href="#" onclick="$('#hdType').val('Escritório');" rel="view2">Loja</a></li>
                             </ul>
                             <div class="tabcontents">
                                 <div id="view1" class="tabcontent">
@@ -719,14 +748,13 @@
                             </h3>
                         </div>
                         <div id="pageNavPosition" style="width: 90%; float: left; padding: 10px 20px;">
-
                         </div>
 
                         <div id="preloader">
-                            <img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" class="ajax-loader"/>
-                           <%-- <div style="float: left; margin: 30px 0px 0px 50%;">
-                                <img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" alt="Loading..." title="">
-                            </div>--%>
+                            <%--<img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" class="ajax-loader" />--%>
+                            <div style="float: left; margin: 30px 0px 0px 45%;">
+                                <img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" alt="Loading..." title="" />
+                            </div>
                         </div>
                         <div id="divPropertyList" style="width: 100%; float: left; height: 550px; overflow: scroll;">
                         </div>
@@ -772,7 +800,7 @@
                 var _sNode = d.getElementById('_webengage_script_tag');
                 _sNode.parentNode.insertBefore(_we, _sNode);
             })(document);
-</script>
+        </script>
     </form>
 </body>
 </html>
