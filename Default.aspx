@@ -83,10 +83,10 @@
                 var url;
 
                 if ($('#eSearch').val() == '') {
-                    url = $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
+                    url = $('#jumpMenu :selected').val() + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
                 }
                 else {
-                    url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                    url = $('#jumpMenu :selected').val() + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/Escritório_Comercial';
                 }
                 url = url.replace('#', '');
                 $(location).attr('href', url.replace(' ', '_'));
@@ -97,10 +97,10 @@
                 var url;
 
                 if ($('#lSearch').val() == '') {
-                    var url = $('#Select1 :selected').val() + '/Brasil/São_Paulo/Loja_Comercial';
+                    var url = $('#Select1 :selected').val() + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
                 }
                 else {
-                    var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
+                    var url = $('#Select1 :selected').val() + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/Loja_Comercial';
                 }
                 url = url.replace('#', '');
                 $(location).attr('href', url.replace(' ', '_'));
@@ -174,10 +174,10 @@
                                 </div>
                             </form>
                             <h3>
-                                <a href="À_Venda/Brasil/São_Paulo/Escritório_Comercial">São Paulo</a><br>
-                                <a href="À_Venda/Brasil/Italim_Bibi/Escritório_Comercial" class="greenselect">Italim Bibi</a><br>
-                                <a href="À_Venda/Brasil/Vila_Olimpia/Escritório_Comercial" class="greenselect">Vila Olimpia</a><br>
-                                <a href="À_Venda/Brasil/Morumbi/Escritório_Comercial" class="greenselect">Morumbi</a></h3>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial">São Paulo</a><br>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/Italim_Bibi/Escritório_Comercial" class="greenselect">Italim Bibi</a><br>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/Vila_Olimpia/Escritório_Comercial" class="greenselect">Vila Olimpia</a><br>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/Morumbi/Escritório_Comercial" class="greenselect">Morumbi</a></h3>
                         </div>
                         <div id="view2" class="tabcontent" style="display: none">
                             <form style="margin: 0px; padding: 0px; float: left;">
@@ -196,10 +196,10 @@
                                 </div>
                             </form>
                             <h3>
-                                <a href="À_Venda/Brasil/São_Paulo/Loja_Comercial">São Paulo</a><br>
-                                <a href="À_Venda/Brasil/Italim_Bibi/Loja_Comercial" class="greenselect">Italim Bibi</a><br>
-                                <a href="À_Venda/Brasil/Vila_Olimpia/Loja_Comercial" class="greenselect">Vila Olimpia</a><br>
-                                <a href="À_Venda/Brasil/Morumbi/Loja_Comercial" class="greenselect">Morumbi</a></h3>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial">São Paulo</a><br>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/Italim_Bibi/Loja_Comercial" class="greenselect">Italim Bibi</a><br>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/Vila_Olimpia/Loja_Comercial" class="greenselect">Vila Olimpia</a><br>
+                                <a href="À_Venda/Brasil/SP/São_Paulo/Morumbi/Loja_Comercial" class="greenselect">Morumbi</a></h3>
 
                         </div>
                     </div>
