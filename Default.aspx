@@ -80,24 +80,30 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
+                var url;
+
                 if ($('#eSearch').val() == '') {
-                    var url = $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
+                    url = $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
                 }
                 else {
-                    var url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                    url = $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
                 }
+                url = url.replace('#', '');
                 $(location).attr('href', url.replace(' ', '_'));             
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
+                var url;
+
                 if ($('#lSearch').val() == '') {
                     var url = $('#Select1 :selected').val() + '/Brasil/São_Paulo/Loja_Comercial';
                 }
                 else {
                     var url = $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
                 }
-                $(location).attr('href', url.replace(' ', '_'));                
+                url = url.replace('#', '');
+                $(location).attr('href', url.replace(' ', '_'));
             })
         });
     </script>

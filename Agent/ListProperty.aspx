@@ -62,11 +62,11 @@
                     $('#recFrom').html(from + ' to ');
                     $('#recTo').html(to + ' of ');
                 }
-
+                alert
                 var rows = document.getElementById(tableName).rows;
                 // i starts from 1 to skip table header row
                 for (var i = 0; i < rows.length; i++) {
-                    if (i < from || i > to)
+                    if ((i < from || i > to) && i != 0)
                         rows[i].style.display = 'none';
                     else
                         rows[i].style.display = '';
@@ -115,7 +115,6 @@
                     return;
                 }
                 var element = document.getElementById(positionId);
-
                 var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> < Previous </span> | ';
                 for (var page = 1; page <= this.pages; page++)
                     pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> | ';
@@ -147,7 +146,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>js/Map.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
-    <%--  <style type="text/css">
+    <style type="text/css">
         .pg-normal {
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
             color: black;
@@ -163,7 +162,7 @@
             text-decoration: underline;
             cursor: pointer;
         }
-    </style>--%>
+    </style>
     <script type="javascript">
 	    $(function () {
 	        $('#form').jqTransform({ imgPath: 'jqtransformplugin/img/' });
@@ -255,6 +254,16 @@
                     oHTMLTABLE.border = 0;
                     oHTMLTABLE.width = "100%";
                     markersArray = new Array(oJSON.Head.length);
+
+                    while (document.getElementById('divPropertyList').hasChildNodes()) {
+                        document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
+                    }                    
+                    $('#recFrom').empty();
+                    $('#recTo').empty();
+                    $('#recTotal').val(0);
+                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
+                    document.getElementById('pageNavPosition').innerHTML = '';
+                    
                     for (var i = 0; i < oJSON.Head.length; i++) {
                         var oTR = oHTMLTABLE.insertRow(i);
                         var oTD0 = oTR.insertCell(0);
@@ -282,20 +291,10 @@
                                                            '<p class="listagens-text">' +
                                                                 oJSON.Head[i].description +
                                                 '</p></div>' +
-                                            '</div>';
-                        while (document.getElementById('divPropertyList').hasChildNodes()) {
-                            document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
-                        }
-                        while (document.getElementById('pageNavPosition').hasChildNodes()) {
-                            document.getElementById('pageNavPosition').removeChild(document.getElementById('pageNavPosition').lastChild);
-                        }
-                        $('#recFrom').empty();
-                        $('#recTo').empty();
-                        $('#recTotal').val(0);
-                        document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
+                                            '</div>';                       
                     }
-                    $('#recTotal').val(oJSON.Head.length - 1);
-                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length - 1 + ' registros encontrados';
+                    $('#recTotal').val(oJSON.Head.length);
+                    document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                     $('#preloader').hide();
 
@@ -304,7 +303,7 @@
                     pager.showPageNav('pager', 'pageNavPosition');
                     pager.showPage(1);
                 }
-                else {
+                else {                   
                     $('#recFrom').empty();
                     $('#recTo').empty();
                     $('#recTotal').val(0);
@@ -327,12 +326,22 @@
                     oHTMLTABLE.width = "100%";
                     var j = 0;
                     markersArray = new Array(oJSON.Head.length);
-                    for (var i = 0; i < oJSON.Head.length; i++) {
-                        var oTR = oHTMLTABLE.insertRow(i);
-                        var oTD0 = oTR.insertCell(0);
+
+                    while (document.getElementById('divPropertyList').hasChildNodes()) {
+                        document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
+                    }
+                    $('#recFrom').empty();
+                    $('#recTo').empty();
+                    $('#recTotal').val(0);
+                    document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
+                    document.getElementById('pageNavPosition').innerHTML = '';
+
+                    for (var i = 0; i < oJSON.Head.length; i++) {                     
                         var myLatLng = new google.maps.LatLng(oJSON.Head[i].latitude, oJSON.Head[i].longitude);
 
                         if (map.getBounds().contains(myLatLng)) {
+                            var oTR = oHTMLTABLE.insertRow(j);
+                            var oTD0 = oTR.insertCell(0);
                             var marker = new google.maps.Marker({
                                 map: map,
                                 position: myLatLng
@@ -356,39 +365,27 @@
                                                 '</p></div>' +
                                                 '</div>';
                             j += 1;
-                            pager = new Pager('tblProperty', 50);
-                            pager.init();
-                            pager.showPageNav('pager', 'pageNavPosition');
-                            pager.showPage(1);
-                        }
-                        else {
-
-                        }
-                        while (document.getElementById('divPropertyList').hasChildNodes()) {
-                            document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
-                        }
-                        while (document.getElementById('pageNavPosition').hasChildNodes()) {
-                            document.getElementById('pageNavPosition').removeChild(document.getElementById('pageNavPosition').lastChild);
-                        }
-                        $('#recFrom').empty();
-                        $('#recTo').empty();
+                        }                                           
                     }
-                    $('#recTotal').val(j - 1);
-                    document.getElementById('totalRecords').innerHTML = j - 1 + ' registros encontrados';
+                    $('#recTotal').val(j);
+                    document.getElementById('totalRecords').innerHTML = j + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
                     $('#preloader').hide();
+
+                    pager = new Pager('tblProperty', 50);
+                    pager.init();
+                    pager.showPageNav('pager', 'pageNavPosition');
+                    pager.showPage(1);
                 }
                 else {
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
                     }
-                    while (document.getElementById('pageNavPosition').hasChildNodes()) {
-                        document.getElementById('pageNavPosition').removeChild(document.getElementById('pageNavPosition').lastChild);
-                    }
                     $('#recFrom').empty();
                     $('#recTo').empty();
                     $('#recTotal').val(0);
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
+                    document.getElementById('pageNavPosition').innerHTML = '';
                     $('#preloader').hide();
                 }
             }
@@ -611,12 +608,12 @@
 
                         <div style="padding-left: 15px;">
                             <div id="area-range"></div>
-                            <span id="startArea">0</span><span id="endArea" style="float: right; padding-right: 15px;">5000</span>
+                            <span id="startArea">0</span><span style="float: right; padding-right: 15px;"><span id="endArea">5000</span>+</span>
                         </div>
                         <h3>Taxa - <span style="font-size: 14px">R$</span></h3>
                         <div style="padding-left: 15px;">
                             <div id="rate-range"></div>
-                            <span id="startRate">0</span><span id="endRate" style="float: right; padding-right: 15px;">5000000</span>
+                            <span id="startRate">0</span><span style="float: right; padding-right: 15px;"><span id="endRate">5000000</span>+</span>
                         </div>
                         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
                         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -654,7 +651,13 @@
                                     var startArea = document.getElementById("startArea").innerHTML;
                                     var startRate = document.getElementById("startRate").innerHTML;
                                     var endArea = document.getElementById("endArea").innerHTML;
+                                    if (endArea == 5000) {
+                                        endArea = endArea + '0000';
+                                    }
                                     var endRate = document.getElementById("endRate").innerHTML;
+                                    if (endRate == 5000000) {
+                                        endRate = endArea + '0000';
+                                    }
                                     $('#preloader').show();
                                     WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
                                 }
@@ -694,7 +697,13 @@
                                     var startArea = document.getElementById("startArea").innerHTML;
                                     var startRate = document.getElementById("startRate").innerHTML;
                                     var endArea = document.getElementById("endArea").innerHTML;
+                                    if (endArea == 5000) {
+                                        endArea = endArea + '0000';
+                                    }
                                     var endRate = document.getElementById("endRate").innerHTML;
+                                    if (endRate == 5000000) {
+                                        endRate = endArea + '0000';
+                                    }
                                     $('#preloader').show();
                                     WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
                                 }
@@ -741,24 +750,22 @@
                     <!-- Mid Text -->
                     <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef;">
                         <input id="recTotal" type="hidden" />
-                        <div style="width: 90%; float: left; padding: 10px 20px;">
-                            <h3 class="list_heading">
+                        <div style="width: 100%; float: left;">
+                            <h2 class="list_heading">
                                 <span id="recFrom"></span><span id="recTo"></span>
                                 <span id="totalRecords"></span>
-                            </h3>
+                            </h2>
                         </div>
-                        <div id="pageNavPosition" style="width: 90%; float: left; padding: 10px 20px;">
-                        </div>
-
                         <div id="preloader">
                             <%--<img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" class="ajax-loader" />--%>
                             <div style="float: left; margin: 30px 0px 0px 45%;">
                                 <img src="<% =UrlUtil.MyWebUrl %>images/ajax-loader.gif" alt="Loading..." title="" />
                             </div>
                         </div>
-                        <div id="divPropertyList" style="width: 100%; float: left; height: 550px; overflow: scroll;">
+                        <div id="divPropertyList" style="width: 100%; float: left;">
                         </div>
-
+                        <div id="pageNavPosition" style="width: 100%; float: left;">
+                        </div>
                     </div>
                 </div>
 
