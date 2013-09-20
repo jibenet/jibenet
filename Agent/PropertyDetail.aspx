@@ -109,7 +109,7 @@
                             <li><a class="new_active" href="#" rel="view1">Escritório</a></li>
                             <li><a class="new_active" href="#" rel="view2">Loja</a></li>
                         </ul>
-                        <div class="tabcontents">
+                        <div class="tabcontents" style="display:none">
                             <div id="view1" class="tabcontent">
                                 <div>
                                     <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
@@ -128,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="view2" class="tabcontent">
+                            <div id="view2" class="tabcontent" style="display:none">
                                 <div>
                                     <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                         <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" n name="search" type="text" placeholder="Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">

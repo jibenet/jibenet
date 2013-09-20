@@ -257,13 +257,13 @@
 
                     while (document.getElementById('divPropertyList').hasChildNodes()) {
                         document.getElementById('divPropertyList').removeChild(document.getElementById('divPropertyList').lastChild);
-                    }                    
+                    }
                     $('#recFrom').empty();
                     $('#recTo').empty();
                     $('#recTotal').val(0);
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     document.getElementById('pageNavPosition').innerHTML = '';
-                    
+
                     for (var i = 0; i < oJSON.Head.length; i++) {
                         var oTR = oHTMLTABLE.insertRow(i);
                         var oTD0 = oTR.insertCell(0);
@@ -291,7 +291,7 @@
                                                            '<p class="listagens-text">' +
                                                                 oJSON.Head[i].description +
                                                 '</p></div>' +
-                                            '</div>';                       
+                                            '</div>';
                     }
                     $('#recTotal').val(oJSON.Head.length);
                     document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados';
@@ -303,7 +303,7 @@
                     pager.showPageNav('pager', 'pageNavPosition');
                     pager.showPage(1);
                 }
-                else {                   
+                else {
                     $('#recFrom').empty();
                     $('#recTo').empty();
                     $('#recTotal').val(0);
@@ -336,7 +336,7 @@
                     document.getElementById('totalRecords').innerHTML = 0 + ' registros encontrados';
                     document.getElementById('pageNavPosition').innerHTML = '';
 
-                    for (var i = 0; i < oJSON.Head.length; i++) {                     
+                    for (var i = 0; i < oJSON.Head.length; i++) {
                         var myLatLng = new google.maps.LatLng(oJSON.Head[i].latitude, oJSON.Head[i].longitude);
 
                         if (map.getBounds().contains(myLatLng)) {
@@ -365,7 +365,7 @@
                                                 '</p></div>' +
                                                 '</div>';
                             j += 1;
-                        }                                           
+                        }
                     }
                     $('#recTotal').val(j);
                     document.getElementById('totalRecords').innerHTML = j + ' registros encontrados';
@@ -526,7 +526,7 @@
                                 <li id="Loja" onclick="$('#hdType').val('Loja');"><a class="new_active" href="#" onclick="$('#hdType').val('Escritório');" rel="view2">Loja</a></li>
                             </ul>
                             <div class="tabcontents">
-                                <div id="view1" class="tabcontent">
+                                <div id="view1" class="tabcontent" style="display: none">
                                     <div>
                                         <input id="hdSearch" type="hidden" runat="server" />
                                         <input id="hdType" type="hidden" runat="server" />
@@ -547,7 +547,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="view2" class="tabcontent">
+                                <div id="view2" class="tabcontent" style="display: none">
                                     <div>
                                         <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                             <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" name="search" type="text" placeholder="Bairro" style="padding: 0px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
