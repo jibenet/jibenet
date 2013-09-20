@@ -83,13 +83,12 @@
                 var url;
 
                 if ($('#eSearch').val() == '') {
-                    url = $('#jumpMenu :selected').val() + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
+                    url = $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
                 }
                 else {
-                    url = $('#jumpMenu :selected').val() + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/Escritório_Comercial';
+                    url = $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val().replace(' ', '_') + '/Escritório_Comercial';
                 }
-                url = url.replace('#', '');
-                $(location).attr('href', url.replace(' ', '_'));
+                $(location).attr('href', url);
             })
         });
         $(function () {
@@ -97,13 +96,12 @@
                 var url;
 
                 if ($('#lSearch').val() == '') {
-                    var url = $('#Select1 :selected').val() + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
+                    url = $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
                 }
                 else {
-                    var url = $('#Select1 :selected').val() + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/Loja_Comercial';
+                    url = $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val().replace(' ', '_') + '/Loja_Comercial';
                 }
-                url = url.replace('#', '');
-                $(location).attr('href', url.replace(' ', '_'));
+                $(location).attr('href', url);
             })
         });
     </script>
@@ -156,7 +154,7 @@
                         <li><a class="new_active" href="#" rel="view2">Loja</a></li>
                     </ul>
                     <div class="tabcontents">
-                        <div id="view1" class="tabcontent" style="display: none">
+                        <div id="view1" class="tabcontent">
                             <form style="margin: 0px; padding: 0px; float: left;">
                                 <div style="width: 537px; float: left; background-image: url(images/searchbg.png); margin-right: 10px; background-repeat: no-repeat; height: 44px; padding: 4px;">
                                     <input id="btnEclick" type="button" value="" class="searchbtn"><input id="eSearch" name="search" type="text" placeholder="Bairro" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;">
@@ -179,7 +177,7 @@
                                 <a href="À_Venda/Brasil/SP/São_Paulo/Vila_Olimpia/Escritório_Comercial" class="greenselect">Vila Olimpia</a><br>
                                 <a href="À_Venda/Brasil/SP/São_Paulo/Morumbi/Escritório_Comercial" class="greenselect">Morumbi</a></h3>
                         </div>
-                        <div id="view2" class="tabcontent" style="display: none">
+                        <div id="view2" class="tabcontent">
                             <form style="margin: 0px; padding: 0px; float: left;">
                                 <div style="width: 537px; float: left; background-image: url(images/searchbg.png); margin-right: 10px; background-repeat: no-repeat; height: 44px; padding: 4px;">
                                     <input id="btnLclick" type="button" value="" class="searchbtn" /><input id="lSearch" name="search" type="text" placeholder="Bairro" style="padding: 4px 4px; width: 88%; margin-top: 8px; border: 0px; background: none;" />
