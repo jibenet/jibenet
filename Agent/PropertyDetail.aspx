@@ -72,10 +72,10 @@
         $(function () {
             $("#btnEclick").click(function () {
                 if ($('#eSearch').val() == '') {
-                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val() + '/Brasil/São_Paulo/Escritório_Comercial';
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val() + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
                 }
                 else {
-                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val() + '/Brasil/' + $('#eSearch').val() + '/Escritório_Comercial';
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val() + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/Escritório_Comercial';
                 }
                 $(location).attr('href', url.replace(' ', '_'));
             })
@@ -83,10 +83,10 @@
         $(function () {
             $("#btnLclick").click(function () {
                 if ($('#lSearch').val() == '') {
-                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val() + '/Brasil/São_Paulo/Loja_Comercial';
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val() + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
                 }
                 else {
-                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val() + '/Brasil/' + $('#lSearch').val() + '/Loja_Comercial';
+                    var url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val() + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/Loja_Comercial';
                 }
                 $(location).attr('href', url.replace(' ', '_'));
             })
