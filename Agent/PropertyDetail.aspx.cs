@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using System.Data;
 
 public partial class Agent_PropertyDetail : System.Web.UI.Page
@@ -26,6 +27,19 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                         dt = oPropertyBAL.FindPropertyByID(oPropertyBO);
                         if (dt.Rows.Count > 0)
                         {
+                            Page.Title = "Clipas - " + dt.Rows[0]["name"].ToString();
+
+                            HtmlMeta _metaD = new HtmlMeta();
+                            _metaD.Name = "description";
+                            _metaD.Content = dt.Rows[0]["description"].ToString();
+
+                            HtmlMeta _metaK = new HtmlMeta();
+                            _metaK.Name = "keywords";
+                            _metaK.Content = "Brasil, São Paulo, Loja, Escritório, À Venda, Para Alugar";
+
+                            ((Control)Header).Controls.Add(_metaD);
+                            ((Control)Header).Controls.Add(_metaK);
+
                             lblName.Text = dt.Rows[0]["name"].ToString();
                             lblAddress.Text = dt.Rows[0]["address"].ToString();
                             if (dt.Rows[0]["size"].ToString() == "1")
@@ -164,21 +178,21 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                 //ibtnImage2.PostBackUrl = "#"; //Request.UrlReferrer.ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
                                 ibtnImage2.ImageUrl = dtbl.Rows[1]["image"].ToString();
                                 lblDescription2.Text = dtbl.Rows[1]["description"].ToString();
-                                if (dtbl.Rows[0]["size"].ToString() == "1")
+                                if (dtbl.Rows[1]["size"].ToString() == "1")
                                 {
                                     lblArea2.Text = "N/A";
                                 }
                                 else
                                 {
-                                    lblArea2.Text = dtbl.Rows[0]["size"].ToString();
+                                    lblArea2.Text = dtbl.Rows[1]["size"].ToString();
                                 }
-                                if (int.Parse(dtbl.Rows[0]["rate"].ToString()) <= 100)
+                                if (int.Parse(dtbl.Rows[1]["rate"].ToString()) <= 100)
                                 {
                                     lblRate2.Text = "N/A";
                                 }
                                 else
                                 {
-                                    lblRate2.Text = dtbl.Rows[0]["rate"].ToString();
+                                    lblRate2.Text = dtbl.Rows[1]["rate"].ToString();
                                 } 
                             }                           
                         }

@@ -135,16 +135,6 @@
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="http://clipas.com.br/agent/jquery-ui.css" />
     <link type="text/css" rel="stylesheet" href="http://clipas.com.br/agent/simplePagination.css" />
-    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/jquery-1.8.3.min.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap.min.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap-select.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
-    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.js"></script>
-    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.jqtransform.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>js/Map.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <style type="text/css">
         .pg-normal {
@@ -215,6 +205,66 @@
             content: none !important;
         }
     </style>
+
+    <%--SLIDER--%>
+    <style>
+        #area-range {
+            width: 92%;
+        }
+
+        #rate-range {
+            width: 92%;
+        }
+    </style>
+    <style>
+        #preloader {
+            display: none;
+        }
+    </style>
+    <script>
+        function chkfilter() {
+            try {
+                var inputs = document.getElementsByTagName('input');
+                var cities = '';
+
+                for (var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type == 'checkbox') {
+                        if (inputs[i].checked) {
+                            cities += inputs[i].value + ',';
+                        }
+                    }
+                }
+                if (cities.length != 0) {
+                    cities = cities.substring(0, (cities.length - 1));
+                }
+                var buyorrent = document.getElementById("hdBuyOrRent").value;
+                var type = document.getElementById("hdType").value;
+                var address = document.getElementById("hdSearch").value;
+                var startArea = document.getElementById("startArea").innerHTML;
+                var startRate = document.getElementById("startRate").innerHTML;
+                var endArea = document.getElementById("endArea").innerHTML;
+                var endRate = document.getElementById("endRate").innerHTML;
+                $('#preloader').show();
+                WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+            }
+            catch (e) {
+                $('#preloader').hide();
+                //alert('filter():' + e);
+            }
+        }
+    </script>
+</head>
+<body class="innerpage" onload="LoadMap();">
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/jquery-1.8.3.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap-select.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>jqtransformplugin/jquery.jqtransform.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="<% =UrlUtil.MyWebUrl %>js/Map.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
@@ -237,13 +287,13 @@
 
                 if ($('#lSearch').val() == '') {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
-                }
-                else {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val().replace(' ', '_') + '/Loja_Comercial';
-                }
-                $(location).attr('href', url);
-            })
-        });
+                 }
+                 else {
+                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val().replace(' ', '_') + '/Loja_Comercial';
+                 }
+                 $(location).attr('href', url);
+             })
+         });
     </script>
     <script type="text/javascript">
         var markersArray = [];
@@ -399,7 +449,6 @@
             }
         }
     </script>
-
     <script type="text/javascript">
         function fAgentList(list) {
             try {
@@ -459,56 +508,6 @@
             }
         }
     </script>
-
-    <%--SLIDER--%>
-    <style>
-        #area-range {
-            width: 92%;
-        }
-
-        #rate-range {
-            width: 92%;
-        }
-    </style>
-    <style>
-        #preloader {
-            display: none;
-        }
-    </style>
-    <script>
-        function chkfilter() {
-            try {
-                var inputs = document.getElementsByTagName('input');
-                var cities = '';
-
-                for (var i = 0; i < inputs.length; i++) {
-                    if (inputs[i].type == 'checkbox') {
-                        if (inputs[i].checked) {
-                            cities += inputs[i].value + ',';
-                        }
-                    }
-                }
-                if (cities.length != 0) {
-                    cities = cities.substring(0, (cities.length - 1));
-                }
-                var buyorrent = document.getElementById("hdBuyOrRent").value;
-                var type = document.getElementById("hdType").value;
-                var address = document.getElementById("hdSearch").value;
-                var startArea = document.getElementById("startArea").innerHTML;
-                var startRate = document.getElementById("startRate").innerHTML;
-                var endArea = document.getElementById("endArea").innerHTML;
-                var endRate = document.getElementById("endRate").innerHTML;
-                $('#preloader').show();
-                WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
-            }
-            catch (e) {
-                $('#preloader').hide();
-                //alert('filter():' + e);
-            }
-        }
-    </script>
-</head>
-<body class="innerpage" onload="LoadMap();">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
             <Services>

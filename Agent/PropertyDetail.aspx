@@ -24,14 +24,7 @@
     <link href="http://clipas.com.br/agent/style/tabcontent.css" rel="stylesheet" type="text/css" />
     <link href="http://clipas.com.br/agent/style/flat-ui.css" rel="stylesheet" type="text/css" />
     <link href="http://clipas.com.br/agent/style/bootstrap.css" rel="stylesheet" />
-
-    <script src="<% =UrlUtil.MyWebUrl %>flexslider/modernizr.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/jquery-1.8.3.min.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap.min.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap-select.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
     <script type="text/javascript">
@@ -67,7 +60,16 @@
             content: none !important;
         }
     </style>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+
+</head>
+<body class="innerpage">
+    <script src="<% =UrlUtil.MyWebUrl %>flexslider/modernizr.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/jquery-1.8.3.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap.min.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap-select.js"></script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
@@ -96,9 +98,6 @@
             })
         });
     </script>
-</head>
-<body class="innerpage">
-
     <!-- Header Starts -->
     <header>
         <div id="header">
@@ -182,7 +181,7 @@
                     <div style="width: 100%; float: left;">
                         <div style="width: 35%; text-align: center; float: right;">
                             <h2 style="font-size: 16px; padding-top: 10px;">
-                                <div style="width: 25%; float: left; padding-top: 5px;">
+                                <div style="width: 25%; float: left; padding-top: 10px;">
                                     <asp:Label ID="lblArea" runat="server" Text=""></asp:Label>
                                     m<sup>2</sup>
 
