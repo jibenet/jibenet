@@ -62,7 +62,6 @@
                     $('#recFrom').html(from + ' to ');
                     $('#recTo').html(to + ' of ');
                 }
-                alert
                 var rows = document.getElementById(tableName).rows;
                 // i starts from 1 to skip table header row
                 for (var i = 0; i < rows.length; i++) {
@@ -268,32 +267,34 @@
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
-                $('#hdType').val('Escritório');
                 var url;
 
                 if ($('#eSearch').val() == '') {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/' + '/' + $('#hdType').val() + '_Comercial';
                 }
                 else {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val().replace(' ', '_') + '/Escritório_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val().replace(' ', '_') + '/' + $('#hdType').val() + '_Comercial';
                 }
                 $(location).attr('href', url);
             })
         });
         $(function () {
             $("#btnLclick").click(function () {
-                $('#hdType').val('Loja');
                 var url;
 
                 if ($('#lSearch').val() == '') {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
-                 }
-                 else {
-                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val().replace(' ', '_') + '/Loja_Comercial';
-                 }
-                 $(location).attr('href', url);
-             })
-         });
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/' + $('#hdType').val() + '_Comercial';
+                }
+                else {
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val().replace(' ', '_') + '/' + $('#hdType').val() + '_Comercial';
+                }
+                $(location).attr('href', url);
+            })
+        });
+
+        function setSelected(selected) {
+            document.getElementById('hdBuyOrRent').value = selected;
+        }
     </script>
     <script type="text/javascript">
         var markersArray = [];
@@ -525,15 +526,15 @@
                     <div class="header-middle">
                         <div>
                             <ul class="tabs" persist="true">
-                                <li id="Escritório" onclick="$('#hdType').val('Escritório');"><a class="new_active" href="#" onclick="$('#hdType').val('Escritório');" rel="view1">Escritório</a></li>
-                                <li id="Loja" onclick="$('#hdType').val('Loja');"><a class="new_active" href="#" onclick="$('#hdType').val('Escritório');" rel="view2">Loja</a></li>
+                                <li id="Escritório" onclick="$('#hdType').val('Escritório');"><a class="new_active" href="#" rel="view2">Escritório</a></li>
+                                <li id="Loja" onclick="$('#hdType').val('Loja');"><a class="new_active" href="#" rel="view1">Loja</a></li>
                             </ul>
                             <div class="tabcontents">
+                                <input id="hdSearch" type="hidden" runat="server" />
+                                <input id="hdType" type="hidden" runat="server" />
+                                <input id="hdBuyOrRent" type="hidden" runat="server" />
                                 <div id="view1" class="tabcontent">
                                     <div>
-                                        <input id="hdSearch" type="hidden" runat="server" />
-                                        <input id="hdType" type="hidden" runat="server" />
-                                        <input id="hdBuyOrRent" type="hidden" runat="server" />
                                         <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                             <input id="btnEclick" type="button" value="" class="searchbtn-inner"><input id="eSearch" name="search" type="text" placeholder="Bairro" style="padding: 0px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
                                         </div>
@@ -541,7 +542,7 @@
                                         <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
                                             <div class="row demo-row">
                                                 <div class="span2" style="width: 128px; min-height: 60px !important;">
-                                                    <select id="jumpMenu" name="herolist" class="select-block span3" style="min-height: 75px;" onchange="document.getElementById('hdBuyOrRent').value = this.value;">
+                                                    <select id="jumpMenu" name="herolist" class="select-block span3" style="min-height: 75px;" onchange="setSelected(this.value);">
                                                         <option value="À Venda">À Venda</option>
                                                         <option value="Para Alugar">Para Alugar</option>
                                                     </select>
@@ -550,7 +551,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="view2" class="tabcontent">
+                                <div id="view2" class="tabcontent" style="display: none;">
                                     <div>
                                         <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                             <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" name="search" type="text" placeholder="Bairro" style="padding: 0px; width: 88%; margin-top: 2px; border: 0px; background: none;" />
@@ -559,7 +560,7 @@
                                         <div class="ddmenu-inner" style="width: 112px; float: left; margin-left: 4px;">
                                             <div class="row demo-row">
                                                 <div class="span2" style="width: 128px; min-height: 60px !important;">
-                                                    <select id="Select1" name="herolist" class="select-block span3" style="min-height: 75px;" onchange="document.getElementById('hdBuyOrRent').value = this.value;">
+                                                    <select id="Select1" name="herolist" class="select-block span3" style="min-height: 75px;" onchange="setSelected(this.value);">
                                                         <option value="À Venda">À Venda</option>
                                                         <option value="Para Alugar">Para Alugar</option>
                                                     </select>
@@ -797,6 +798,26 @@
             </div>
         </footer>
         <!-- Footer Ends -->
+        <script type="text/javascript">
+            var _usersnapconfig = {
+                apiKey: '85030715-95b2-430b-992d-b79f70fdffdb',
+                valign: 'bottom',
+                halign: 'right',
+                tools: ["pen", "highlight", "note"],
+                lang: 'en',
+                commentBox: true,
+                emailBox: true
+            };
+            (function () {
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = '//api.usersnap.com/usersnap.js';
+                var x = document.getElementsByTagName('head')[0];
+                x.appendChild(s);
+            })();
+        </script>
+
         <script id="_webengage_script_tag" type="text/javascript">
             var _weq = _weq || {};
             _weq['webengage.licenseCode'] = '76aa53a';

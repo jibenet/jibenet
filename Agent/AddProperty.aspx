@@ -480,7 +480,25 @@
     </footer>
     <!-- Footer Ends -->
 
-
+    <script type="text/javascript">
+        var _usersnapconfig = {
+            apiKey: '85030715-95b2-430b-992d-b79f70fdffdb',
+            valign: 'bottom',
+            halign: 'right',
+            tools: ["pen", "highlight", "note"],
+            lang: 'en',
+            commentBox: true,
+            emailBox: true
+        };
+        (function () {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//api.usersnap.com/usersnap.js';
+            var x = document.getElementsByTagName('head')[0];
+            x.appendChild(s);
+        })();
+    </script>
 
     <script id="_webengage_script_tag" type="text/javascript">
         var _weq = _weq || {};
