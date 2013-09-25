@@ -356,7 +356,7 @@
                         <h2 align="center" style="font-weight: normal; margin-bottom: 8px;">Propriedades Semelhantes</h2>
                         <div id="divN1" runat="server" visible="false">
                             <p align="center" style="width: 100%; font-size: 16px; line-height: 24px;">
-                                <asp:Image ID="ibtnImage1" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
+                                <asp:ImageButton ID="ibtnImage1" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
                                 <br />
                                 <asp:Label ID="lblDescription1" runat="server" Text=""></asp:Label><br />
                                 <asp:Label ID="lblArea1" runat="server" Text=""></asp:Label>&nbsp;m<sup>2</sup><br />
@@ -366,7 +366,7 @@
                         </div>
                         <div id="divN2" runat="server" visible="false">
                             <p align="center" style="width: 100%; font-size: 16px; line-height: 24px;">
-                                <asp:Image ID="ibtnImage2" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
+                                <asp:ImageButton ID="ibtnImage2" runat="server" Width="140" Height="90" CssClass="imgbdr" ImageUrl="http://clipas.com.br/agent/images/365x240.jpg" />
                                 <br />
                                 <asp:Label ID="lblDescription2" runat="server" Text=""></asp:Label><br />
                                 <asp:Label ID="lblArea2" runat="server" Text=""></asp:Label>&nbsp;m<sup>2</sup><br />
