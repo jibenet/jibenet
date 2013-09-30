@@ -69,17 +69,17 @@
     <script src="<% =UrlUtil.MyWebUrl %>js/tabcontent.js" type="text/javascript"></script>
     <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap.min.js"></script>
     <script src="<% =UrlUtil.MyWebUrl %>js/bootstrap-select.js"></script>
-    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#btnEclick").click(function () {
                 var url;
+                $('#eSearch').val($('#eSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#eSearch').val() == '') {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
                 }
                 else {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val().replace(' ', '_') + '/Escritório_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/Escritório_Comercial';
                 }
                 $(location).attr('href', url);
             })
@@ -87,12 +87,13 @@
         $(function () {
             $("#btnLclick").click(function () {
                 var url;
+                $('#lSearch').val($('#lSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#lSearch').val() == '') {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
                 }
                 else {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val().replace(' ', '_') + '/Loja_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/Loja_Comercial';
                 }
                 $(location).attr('href', url);
             })
@@ -131,7 +132,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="view2" class="tabcontent">
+                            <div id="view2" class="tabcontent" style="display: none;">
                                 <div>
                                     <div style="width: 392px; float: left; background-image: url('<% =UrlUtil.MyWebUrl %>images/searchbg-inner.png'); background-repeat: no-repeat; height: 26px; padding: 4px;">
                                         <input id="btnLclick" type="button" value="" class="searchbtn-inner"><input id="lSearch" n name="search" type="text" placeholder="Bairro" style="padding: 2px 4px; width: 88%; margin-top: 2px; border: 0px; background: none;">
@@ -482,5 +483,6 @@
             _sNode.parentNode.insertBefore(_we, _sNode);
         })(document);
     </script>
+    <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
 </body>
 </html>

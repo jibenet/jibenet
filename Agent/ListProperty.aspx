@@ -268,12 +268,13 @@
         $(function () {
             $("#btnEclick").click(function () {
                 var url;
+                $('#eSearch').val($('#eSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#eSearch').val() == '') {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/' + '/' + $('#hdType').val() + '_Comercial';
                 }
                 else {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val().replace(' ', '_') + '/' + $('#hdType').val() + '_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/' + $('#hdType').val() + '_Comercial';
                 }
                 $(location).attr('href', url);
             })
@@ -281,12 +282,13 @@
         $(function () {
             $("#btnLclick").click(function () {
                 var url;
+                $('#lSearch').val($('#lSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#lSearch').val() == '') {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/' + $('#hdType').val() + '_Comercial';
                 }
                 else {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val().replace(' ', '_') + '/' + $('#hdType').val() + '_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/' + $('#hdType').val() + '_Comercial';
                 }
                 $(location).attr('href', url);
             })
