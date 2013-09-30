@@ -53,6 +53,7 @@
                     $('#btnLclick').focus();
                 }
             });
+            $('#property').hide();
         }
     </script>
     <style>
@@ -300,9 +301,11 @@
                             </div>
 
 
-                            <input name="enter" type="button" class="grnbtn" value="Telefone do Agente" style="margin-top: 50px;" onclick="javascript: animatedcollapse.toggle('property')">
-                            <div id="property" style="width: 100%; display: none">
-                                <h3 style="color: #000; text-align: center;"></h3>
+                            <input name="enter" type="button" class="grnbtn" value="Telefone do Agente" style="margin-top: 50px;" onclick="$('#property').toggle('slow');">
+                            <div id="property" style="width: 100%;">
+                                <h3 style="color: #000; text-align: center;">
+                                    <asp:Label ID="lblPhone" runat="server" Text=""></asp:Label>
+                                </h3>
                             </div>
                         </div>
 

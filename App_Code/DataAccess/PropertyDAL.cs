@@ -113,7 +113,12 @@ public class PropertyDAL
     {
         try
         {
-            query = "SELECT * FROM Property WHERE propertyID = @propertyID";
+            query = @"SELECT TOP 10 * FROM Property x
+                    INNER JOIN AgentProperty y
+                    ON x.propertyID = y.propertyID 
+                    INNER JOIN Agent z
+                    ON y.agentID = z.agentID WHERE x.propertyID = @propertyID";
+
             cmd = new SqlCommand(query, con);            
             if (con.State == ConnectionState.Closed)
             {

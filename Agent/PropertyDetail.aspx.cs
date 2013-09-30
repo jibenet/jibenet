@@ -61,7 +61,15 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             {
                                 lblRate.Text = dt.Rows[0]["rate"].ToString();
                                 lblRateI.Text = dt.Rows[0]["rate"].ToString();
-                            }                            
+                            }
+                            if (dt.Rows[0]["phone"].ToString() == "")
+                            {
+                                lblPhone.Text = "Not available";                                 
+                            }
+                            else
+                            {
+                                lblPhone.Text = dt.Rows[0]["phone"].ToString();
+                            }           
                             propertyDetail.InnerHtml = dt.Rows[0]["description"].ToString();
                             hdLatitude.Value = dt.Rows[0]["latitude"].ToString();
                             hdLongitude.Value = dt.Rows[0]["longitude"].ToString();
