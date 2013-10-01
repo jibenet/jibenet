@@ -208,7 +208,7 @@ public class PropertyDAL
     {
         try
         {
-            query = @"SELECT TOP 2 [Property].propertyID, SUBSTRING ([Property].description, 0 , 100) + '..' AS description, [Property].size, [Property].rate, RTRIM(LTRIM([PropertyImage].image)) AS image
+            query = @"SELECT TOP 2 [Property].propertyID, SUBSTRING ([Property].description, 0 , 100) + '..' AS description, [Property].address, [Property].size, [Property].rate, RTRIM(LTRIM([PropertyImage].image)) AS image
 	                    FROM [dbo].[Property]
 	                    LEFT JOIN [dbo].[PropertyImage]
 	                    ON [Property].propertyID = [PropertyImage].propertyID	

@@ -23,6 +23,7 @@ public partial class Agent_ListProperty : System.Web.UI.Page
                     hdBuyOrRent.Value = Page.RouteData.Values["buyorrent"].ToString().Replace('_', ' ');
                     hdSearch.Value = Page.RouteData.Values["address"].ToString().Replace('_', ' ');
                     hdType.Value = Page.RouteData.Values["type"].ToString().Replace('_', ' ');
+                    Session["type"] = hdType.Value + "_Comercial";
 
                     Page.Title = "Clipas - " + hdBuyOrRent.Value + "- " + hdType.Value;
 

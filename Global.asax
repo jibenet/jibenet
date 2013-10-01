@@ -33,7 +33,7 @@
 
         routes.MapPageRoute("ListProperty", "{buyorrent}/Brasil/SP/São_Paulo/{address}/{type}_Comercial", "~/Agent/ListProperty.aspx");
 
-        routes.MapPageRoute("PropertyDetail", "{buyorrent}/Brasil/SP/São_Paulo/{address}/{type}_Comercial/{pID}", "~/Agent/PropertyDetail.aspx");
+        routes.MapPageRoute("PropertyDetail", "{buyorrent}/Brasil/SP/São_Paulo/{city}/{address}/{type}/{pID}", "~/Agent/PropertyDetail.aspx");
     }
     
     

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Data;
+using System.Text.RegularExpressions;
 
 public partial class Agent_PropertyDetail : System.Web.UI.Page
 {
@@ -16,8 +17,8 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
     {
         try
         {
-            if (Page.IsPostBack == false)
-            {
+            //if (Page.IsPostBack == false)
+            //{
                 if (Page.RouteData.Values["pID"] != null)
                 {
                     try
@@ -141,7 +142,20 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             {
                                 divN1.Visible = true;
                                 string url = Request.Url.ToString().Substring(0, Request.Url.ToString().LastIndexOf('/'));
-                                ibtnImage1.PostBackUrl = url + "/" + dtbl.Rows[0]["propertyID"].ToString();
+                                url = url.ToString().Substring(0, url.ToString().LastIndexOf('/'));
+                                url = url.ToString().Substring(0, url.ToString().LastIndexOf('/'));
+
+                                string address = dtbl.Rows[0]["address"].ToString();
+
+                                string[,] array = new string[6, 2] { { " ", "_" }, { ",", "_" }, { "#", "" }, { "%", "" }, { "&", "" }, { "\t", "" } };
+                                for (int i = 0; i < 6; i++)
+                                {
+                                    address = Regex.Replace(address, array[i, 0].ToString(), array[i, 1].ToString());
+                                }
+
+                                url = url + "/" + address + "/" + Session["type"].ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
+                                
+                                ibtnImage1.PostBackUrl = url;
                                 ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
                                 lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")
@@ -165,7 +179,20 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             {
                                 divN1.Visible = true;
                                 string url = Request.Url.ToString().Substring(0, Request.Url.ToString().LastIndexOf('/'));
-                                ibtnImage1.PostBackUrl = url + "/" + dtbl.Rows[0]["propertyID"].ToString();
+                                url = url.ToString().Substring(0, url.ToString().LastIndexOf('/'));
+                                url = url.ToString().Substring(0, url.ToString().LastIndexOf('/'));
+
+                                string address = dtbl.Rows[0]["address"].ToString();
+
+                                string[,] array = new string[6, 2] { { " ", "_" }, { ",", "_" }, { "#", "" }, { "%", "" }, { "&", "" }, { "\t", "" } };
+                                for (int i = 0; i < 6; i++)
+                                {
+                                    address = Regex.Replace(address, array[i, 0].ToString(), array[i, 1].ToString());
+                                }
+
+                                url = url + "/" + address + "/" + Session["type"].ToString() + "/" + dtbl.Rows[0]["propertyID"].ToString();
+                                
+                                ibtnImage1.PostBackUrl = url;
                                 ibtnImage1.ImageUrl = dtbl.Rows[0]["image"].ToString();
                                 lblDescription1.Text = dtbl.Rows[0]["description"].ToString();
                                 if (dtbl.Rows[0]["size"].ToString() == "1")
@@ -186,7 +213,20 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                                 } 
                                 divN2.Visible = true;
                                 url = Request.Url.ToString().Substring(0, Request.Url.ToString().LastIndexOf('/'));
-                                ibtnImage2.PostBackUrl = url + "/" + dtbl.Rows[1]["propertyID"].ToString();
+                                url = url.ToString().Substring(0, url.ToString().LastIndexOf('/'));
+                                url = url.ToString().Substring(0, url.ToString().LastIndexOf('/'));
+
+                                address = dtbl.Rows[1]["address"].ToString();
+
+                                array = new string[6, 2] { { " ", "_" }, { ",", "_" }, { "#", "" }, { "%", "" }, { "&", "" }, { "\t", "" } };
+                                for (int i = 0; i < 6; i++)
+                                {
+                                    address = Regex.Replace(address, array[i, 0].ToString(), array[i, 1].ToString());
+                                }
+
+                                url = url + "/" + address + "/" + Session["type"].ToString() + "/" + dtbl.Rows[1]["propertyID"].ToString();
+                                
+                                ibtnImage2.PostBackUrl = url;
                                 ibtnImage2.ImageUrl = dtbl.Rows[1]["image"].ToString();
                                 lblDescription2.Text = dtbl.Rows[1]["description"].ToString();
                                 if (dtbl.Rows[1]["size"].ToString() == "1")
@@ -208,8 +248,9 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             }                           
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Response.Write(ex.Message.ToString());
                         Response.Redirect(UrlUtil.MyWebRootUrl + "PostProperty", false);  
                     }
                 }
@@ -217,7 +258,7 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                 {
                     Response.Redirect(UrlUtil.MyWebRootUrl + "PostProperty", false);  
                 }
-            }
+            //}
         }
         catch (Exception ex)
         {
