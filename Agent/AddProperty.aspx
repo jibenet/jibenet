@@ -371,7 +371,7 @@
                                         <ContentTemplate>
                                             <label>Email</label>
                                             <asp:TextBox ID="txtEmail" runat="server" Style="width: 250px;" size="28" OnTextChanged="txtEmail_TextChanged" CausesValidation="false" AutoPostBack="True" CssClass="formstyle"></asp:TextBox>
-                                                                                        <asp:RequiredFieldValidator ID="rvalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property">*</asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property">*</asp:RequiredFieldValidator>
 
                                             <asp:RegularExpressionValidator ID="revalEmail" runat="server" ErrorMessage="" ControlToValidate="txtEmail" ValidationGroup="property" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                             <br>
@@ -397,15 +397,16 @@
                                             <br>
                                             <br>
                                             <label>&nbsp;</label>
+                                            <div class="green-butt">
+                                                <p>
+                                                    <a>
+                                                        <asp:Button ID="btnsubmit" runat="server" Text="Envie imóvel" BackColor="Transparent" CssClass="text" OnClick="btnsubmit_Click" CausesValidation="true" Enabled="false" ValidationGroup="property" />
+                                                    </a>
+                                                </p>
+                                            </div>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-                                    <div class="green-butt">
-                                        <p>
-                                            <a>
-                                                <asp:Button ID="btnsubmit" runat="server" Text="Envie imóvel" BackColor="Transparent" CssClass="text" OnClick="btnsubmit_Click" CausesValidation="true" Enabled="false" ValidationGroup="property" />
-                                            </a>
-                                        </p>
-                                    </div>
+
                                 </div>
 
 
