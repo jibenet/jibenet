@@ -18,7 +18,7 @@
     </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Clipas</title>
-    <link rel="icon" type="image/png" href="http://clipas.com.br/agent/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="http://clipas.com.br/images/favicon.ico" />
     <link href="http://clipas.com.br/agent/style/default.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/flexslider/flexslider.css" type="text/css" media="screen" />
     <link href="http://clipas.com.br/agent/style/tabcontent.css" rel="stylesheet" type="text/css" />
@@ -77,7 +77,7 @@
                 $('#eSearch').val($('#eSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#eSearch').val() == '') {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/Escritório_Comercial';
                 }
                 else {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/Escritório_Comercial';
@@ -91,7 +91,7 @@
                 $('#lSearch').val($('#lSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#lSearch').val() == '') {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/Loja_Comercial';
                 }
                 else {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/Loja_Comercial';
@@ -470,21 +470,6 @@
             var x = document.getElementsByTagName('head')[0];
             x.appendChild(s);
         })();
-    </script>
-
-    <script id="_webengage_script_tag" type="text/javascript">
-        var _weq = _weq || {};
-        _weq['webengage.licenseCode'] = '76aa53a';
-        _weq['webengage.widgetVersion'] = "4.0";
-
-        (function (d) {
-            var _we = d.createElement('script');
-            _we.type = 'text/javascript';
-            _we.async = true;
-            _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
-            var _sNode = d.getElementById('_webengage_script_tag');
-            _sNode.parentNode.insertBefore(_we, _sNode);
-        })(document);
     </script>
     <script src="<% =UrlUtil.MyWebUrl %>js/application.js"></script>
 </body>

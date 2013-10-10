@@ -29,11 +29,15 @@
     {
         routes.MapPageRoute("Default", "Home", "~/Default.aspx");
 
+        routes.MapPageRoute("Login", "Login", "~/Agent/Login.aspx");
+
         routes.MapPageRoute("AddProperty", "PostProperty", "~/Agent/AddProperty.aspx");
 
-        routes.MapPageRoute("ListProperty", "{buyorrent}/Brasil/SP/São_Paulo/{address}/{type}_Comercial", "~/Agent/ListProperty.aspx");
+        routes.MapPageRoute("ListPropertyAll", "{buyorrent}/Brasil/SP/São_Paulo/{type}_Comercial", "~/Agent/ListProperty.aspx");
 
-        routes.MapPageRoute("PropertyDetail", "{buyorrent}/Brasil/SP/São_Paulo/{city}/{address}/{type}/{pID}", "~/Agent/PropertyDetail.aspx");
+        routes.MapPageRoute("ListProperty", "{buyorrent}/Brasil/SP/São_Paulo/{search}/{type}_Comercial", "~/Agent/ListProperty.aspx");
+
+        routes.MapPageRoute("PropertyDetail", "{buyorrent}/Brasil/SP/São_Paulo/{search}/{address}/{type}/{pID}", "~/Agent/PropertyDetail.aspx");
     }
     
     

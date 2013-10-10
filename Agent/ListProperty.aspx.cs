@@ -21,7 +21,10 @@ public partial class Agent_ListProperty : System.Web.UI.Page
                 if (Page.RouteData.Values["type"] != null)
                 {               
                     hdBuyOrRent.Value = Page.RouteData.Values["buyorrent"].ToString().Replace('_', ' ');
-                    hdSearch.Value = Page.RouteData.Values["address"].ToString().Replace('_', ' ');
+                    if (Page.RouteData.Values["search"] != null)
+                    {
+                        hdSearch.Value = Page.RouteData.Values["search"].ToString().Replace('_', ' ');
+                    }
                     hdType.Value = Page.RouteData.Values["type"].ToString().Replace('_', ' ');
                     Session["type"] = hdType.Value + "_Comercial";
 

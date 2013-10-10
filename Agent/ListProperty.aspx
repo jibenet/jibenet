@@ -125,7 +125,7 @@
 
 
     </script>
-    <link rel="icon" type="image/png" href="http://clipas.com.br/agent/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="http://clipas.com.br/images/favicon.ico" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/default.css" type="text/css" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/defaultASP.css" type="text/css" />
     <link rel="stylesheet" href="http://clipas.com.br/agent/style/tabcontent.css" type="text/css" />
@@ -271,7 +271,7 @@
                 $('#eSearch').val($('#eSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#eSearch').val() == '') {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/' + '/' + $('#hdType').val() + '_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + '/' + $('#hdType').val() + '_Comercial';
                 }
                 else {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/' + $('#hdType').val() + '_Comercial';
@@ -285,7 +285,7 @@
                 $('#lSearch').val($('#lSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#lSearch').val() == '') {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/' + $('#hdType').val() + '_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#hdType').val() + '_Comercial';
                 }
                 else {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/' + $('#hdType').val() + '_Comercial';
@@ -818,21 +818,6 @@
                 var x = document.getElementsByTagName('head')[0];
                 x.appendChild(s);
             })();
-        </script>
-
-        <script id="_webengage_script_tag" type="text/javascript">
-            var _weq = _weq || {};
-            _weq['webengage.licenseCode'] = '76aa53a';
-            _weq['webengage.widgetVersion'] = "4.0";
-
-            (function (d) {
-                var _we = d.createElement('script');
-                _we.type = 'text/javascript';
-                _we.async = true;
-                _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
-                var _sNode = d.getElementById('_webengage_script_tag');
-                _sNode.parentNode.insertBefore(_we, _sNode);
-            })(document);
         </script>
     </form>
 </body>

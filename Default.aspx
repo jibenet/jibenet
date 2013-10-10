@@ -18,7 +18,7 @@
         ga('send', 'pageview');
 
     </script>
-    <link rel="icon" type="image/png" href="http://glosolarbr.com/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="http://clipas.com.br/images/favicon.ico" />
     <link href="style/default.css" rel="stylesheet" type="text/css" />
     <link href="style/tabcontent-index.css" rel="stylesheet" type="text/css" />
     <link href="style/flat-ui.css" rel="stylesheet" type="text/css" />
@@ -84,7 +84,7 @@
                 $('#eSearch').val($('#eSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#eSearch').val() == '') {
-                    url = $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Escritório_Comercial';
+                    url = $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/Escritório_Comercial';
                 }
                 else {
                     url = $('#jumpMenu :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/Escritório_Comercial';
@@ -98,7 +98,7 @@
                 $('#lSearch').val($('#lSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#lSearch').val() == '') {
-                    url = $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/São_Paulo/Loja_Comercial';
+                    url = $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/Loja_Comercial';
                 }
                 else {
                     url = $('#Select1 :selected').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#lSearch').val() + '/Loja_Comercial';
@@ -268,20 +268,6 @@
             var x = document.getElementsByTagName('head')[0];
             x.appendChild(s);
         })();
-    </script>
-    <script id="_webengage_script_tag" type="text/javascript">
-        var _weq = _weq || {};
-        _weq['webengage.licenseCode'] = '76aa53a';
-        _weq['webengage.widgetVersion'] = "4.0";
-
-        (function (d) {
-            var _we = d.createElement('script');
-            _we.type = 'text/javascript';
-            _we.async = true;
-            _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
-            var _sNode = d.getElementById('_webengage_script_tag');
-            _sNode.parentNode.insertBefore(_we, _sNode);
-        })(document);
     </script>
 </body>
 </html>
