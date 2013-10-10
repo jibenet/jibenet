@@ -402,7 +402,7 @@
                                     <div class="green-butt">
                                         <p>
                                             <a>
-                                                <asp:Button ID="btnsubmit" runat="server" Text="Envie imóvel" BackColor="Transparent" CssClass="text" OnClick="btnsubmit_Click" CausesValidation="true" ValidationGroup="property" />
+                                                <asp:Button ID="btnsubmit" runat="server" Text="Envie imóvel" BackColor="Transparent" CssClass="text" OnClick="btnsubmit_Click" CausesValidation="true" Enabled="false" ValidationGroup="property" />
                                             </a>
                                         </p>
                                     </div>

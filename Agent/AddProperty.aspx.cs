@@ -184,7 +184,8 @@ public partial class Agent_AddProperty : System.Web.UI.Page
                 txtBusiness.Enabled = true;
                 txtPhone.Enabled = true;
             }
-            txtName.Focus(); 
+            txtName.Focus();
+            btnsubmit.Enabled = true;
         }
         catch (Exception ex)
         {
