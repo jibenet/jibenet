@@ -754,7 +754,7 @@
                     </div>
 
                     <!-- Mid Text -->
-                    <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef;">
+                    <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef; min-height:500px;">
                         <input id="recTotal" type="hidden" />
                         <div style="width: 100%; float: left;">
                             <h2 class="list_heading">
