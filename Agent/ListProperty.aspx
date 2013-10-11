@@ -271,7 +271,7 @@
                 $('#eSearch').val($('#eSearch').val().replace(/\ /g, '_').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, ''));
 
                 if ($('#eSearch').val() == '') {
-                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + '/' + $('#hdType').val() + '_Comercial';
+                    url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#hdType').val() + '_Comercial';
                 }
                 else {
                     url = '<% =UrlUtil.MyWebRootUrl %>' + $('#hdBuyOrRent').val().replace(' ', '_') + '/Brasil/SP/São_Paulo/' + $('#eSearch').val() + '/' + $('#hdType').val() + '_Comercial';
@@ -348,8 +348,8 @@
                                                            '<p class="listagens-text">' +
                                                                 oJSON.Head[i].description +
                                                 '</p></div>' +
-                                            '</div>';
-                    }
+                                            '</div>';                                           
+                    }                 
                     $('#recTotal').val(oJSON.Head.length);
                     document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);

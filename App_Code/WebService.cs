@@ -66,7 +66,7 @@ public class WebService : System.Web.Services.WebService {
             oIPropertyBO.size = long.Parse(endArea);
             oIPropertyBO.rate = long.Parse(endRate);
             DataTable dt = new DataTable();
-            dt = oPropertyBAL.FindProperty(oPropertyBO, oIPropertyBO);
+            dt = oPropertyBAL.FindProperty(oPropertyBO, oIPropertyBO);   
             JSONClass objJSONClass = new JSONClass();
             return objJSONClass.CreateJSONParameters(dt);
         }

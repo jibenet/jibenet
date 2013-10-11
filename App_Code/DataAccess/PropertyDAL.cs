@@ -84,8 +84,7 @@ public class PropertyDAL
         try
         {
             cmd = new SqlCommand("SearchProperty", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 600;
+            cmd.CommandType = CommandType.StoredProcedure;         
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
@@ -172,7 +171,6 @@ public class PropertyDAL
         {
             cmd = new SqlCommand("SearchPropertyI", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 600;
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
