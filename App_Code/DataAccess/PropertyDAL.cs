@@ -112,7 +112,7 @@ public class PropertyDAL
     {
         try
         {
-            query = @"SELECT TOP 10 * FROM Property x                   
+            query = @"SELECT *, y.name AS agentName FROM Property x                   
                     INNER JOIN Agent y
                     ON x.agentID = y.agentID WHERE x.propertyID = @propertyID";
 

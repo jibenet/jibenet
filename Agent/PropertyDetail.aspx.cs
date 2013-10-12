@@ -70,7 +70,8 @@ public partial class Agent_PropertyDetail : System.Web.UI.Page
                             else
                             {
                                 lblPhone.Text = dt.Rows[0]["phone"].ToString();
-                            }           
+                            }
+                            lblAgentName.Text = dt.Rows[0]["agentName"].ToString();
                             propertyDetail.InnerHtml = dt.Rows[0]["description"].ToString();
                             hdLatitude.Value = dt.Rows[0]["latitude"].ToString();
                             hdLongitude.Value = dt.Rows[0]["longitude"].ToString();

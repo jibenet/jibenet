@@ -303,7 +303,8 @@
 
                             <input name="enter" type="button" class="grnbtn" value="Telefone do Agente" style="margin-top: 50px;" onclick="$('#property').toggle('slow');">
                             <div id="property" style="width: 100%;">
-                                <h3 style="color: #000; text-align: center;">
+                                <h3 style="color: #000; text-align: center; font-size: 13.5px">
+                                    <asp:Label ID="lblAgentName" runat="server" Text=""></asp:Label><br />
                                     <asp:Label ID="lblPhone" runat="server" Text=""></asp:Label>
                                 </h3>
                             </div>
