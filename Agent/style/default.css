@@ -832,3 +832,30 @@ Reset Password Css--> .reset_password {
 #menu ul li a:focus + ul.ff1 {left:122px;}
 
 #menu ul li ul.flyout:hover {left:122px;}
+
+
+ .ribbon-wrapper {
+    height: 100px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100px;
+}
+.ribbon {
+    background: linear-gradient(to bottom, #FFFFFF -200%, #A2BB5D 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+    left: -27px;
+    line-height: 1;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 22px;
+    transform: rotate(-45deg);
+    width: 120px;
+} 

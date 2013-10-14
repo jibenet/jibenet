@@ -50,7 +50,7 @@ public class WebService : System.Web.Services.WebService {
     }
     [WebMethod]
     [ScriptMethod]
-    public string PropertyListI(string buyorrent, string type, string address, string cities, string startArea, string startRate, string endArea, string endRate)
+    public string PropertyListI(string buyorrent, string type, string address, string neighborhood, string startArea, string startRate, string endArea, string endRate)
     {
         try
         {
@@ -59,8 +59,8 @@ public class WebService : System.Web.Services.WebService {
             PropertyBO oIPropertyBO = new PropertyBO();
             oPropertyBO.address = address;
             oPropertyBO.type = type;
-            oPropertyBO.buyorrent = buyorrent;            
-            oIPropertyBO.address = cities;
+            oPropertyBO.buyorrent = buyorrent;
+            oPropertyBO.neighborhood = neighborhood;
             oPropertyBO.size = long.Parse(startArea);
             oPropertyBO.rate = long.Parse(startRate);
             oIPropertyBO.size = long.Parse(endArea);

@@ -51,7 +51,6 @@
             this.inited = false;
 
             this.showRecords = function (from, to) {
-
                 $('#recFrom').empty();
                 $('#recTo').empty();
                 if (to > $('#recTotal').val()) {
@@ -65,14 +64,14 @@
                 var rows = document.getElementById(tableName).rows;
                 // i starts from 1 to skip table header row
                 for (var i = 0; i < rows.length; i++) {
-                    if ((i < from || i > to) && i != 0)
+                    if ((i < from || i > to) && from != 1)
                         rows[i].style.display = 'none';
                     else
                         rows[i].style.display = '';
-                }
+                }              
             }
 
-            this.showPage = function (pageNumber) {
+            this.showPage = function (pageNumber) {              
                 if (!this.inited) {
                     alert("not inited");
                     return;
@@ -114,7 +113,7 @@
                     return;
                 }
                 var element = document.getElementById(positionId);
-                var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> < Previous </span> | ';
+                //////var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> < Previous </span> | ';
                 for (var page = 1; page <= this.pages; page++)
                     pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> | ';
                 pagerHtml += '<span onclick="' + pagerName + '.next();" class="pg-normal"> Next ></span>';
@@ -224,17 +223,17 @@
         function chkfilter() {
             try {
                 var inputs = document.getElementsByTagName('input');
-                var cities = '';
+                var neighborhood = '';
 
                 for (var i = 0; i < inputs.length; i++) {
                     if (inputs[i].type == 'checkbox') {
                         if (inputs[i].checked) {
-                            cities += inputs[i].value + ',';
+                            neighborhood += inputs[i].value + ',';
                         }
                     }
                 }
-                if (cities.length != 0) {
-                    cities = cities.substring(0, (cities.length - 1));
+                if (neighborhood.length != 0) {
+                    neighborhood = neighborhood.substring(0, (neighborhood.length - 1));
                 }
                 var buyorrent = document.getElementById("hdBuyOrRent").value;
                 var type = document.getElementById("hdType").value;
@@ -244,7 +243,7 @@
                 var endArea = document.getElementById("endArea").innerHTML;
                 var endRate = document.getElementById("endRate").innerHTML;
                 $('#preloader').show();
-                WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                WebService.PropertyListI(buyorrent, type, address, neighborhood, startArea, startRate, endArea, endRate, BoundList);
             }
             catch (e) {
                 $('#preloader').hide();
@@ -341,15 +340,27 @@
                         if (oJSON.Head[i].image == '') {
                             oJSON.Head[i].image = '<% =UrlUtil.MyWebUrl %>images/365x240.jpg';
                         }
-                        oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
-                                            '<a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
-                                                '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
-                                                    '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
-                                                           '<p class="listagens-text">' +
-                                                                oJSON.Head[i].description +
-                                                '</p></div>' +
-                                            '</div>';                                           
-                    }                 
+                        if (oJSON.Head[i].isPromoted == 'True') {
+                            oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px; position: relative;"><div class="ribbon-wrapper"><div class="ribbon">Promoted</div></div>' +
+                                           '<a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                               '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                                   '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
+                                                          '<p class="listagens-text">' +
+                                                               oJSON.Head[i].description +
+                                               '</p></div>' +
+                                           '</div>';
+                        }
+                        else {
+                            oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
+                                           '<a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="365px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                               '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                                   '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
+                                                          '<p class="listagens-text">' +
+                                                               oJSON.Head[i].description +
+                                               '</p></div>' +
+                                           '</div>';
+                        }
+                    }
                     $('#recTotal').val(oJSON.Head.length);
                     document.getElementById('totalRecords').innerHTML = oJSON.Head.length + ' registros encontrados';
                     document.getElementById('divPropertyList').appendChild(oHTMLTABLE);
@@ -413,14 +424,26 @@
                             if (oJSON.Head[i].image == '') {
                                 oJSON.Head[i].image = '<% =UrlUtil.MyWebUrl %>images/365x240.jpg';
                             }
-                            oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
-                                                '<a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
-                                                '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
-                                                    '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
-                                                        '<p class="listagens-text">' +
-                                                                oJSON.Head[i].description +
-                                                '</p></div>' +
-                                                '</div>';
+                            if (oJSON.Head[i].isPromoted == 'True') {
+                                oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px; position: relative;"><div class="ribbon-wrapper"><div class="ribbon">Promoted</div></div>' +
+                                             '<a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                             '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                                 '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
+                                                     '<p class="listagens-text">' +
+                                                             oJSON.Head[i].description +
+                                             '</p></div>' +
+                                             '</div>';
+                            }
+                            else {
+                                oTD0.innerHTML = '<div style="width: 100%; float: left; padding-bottom: 20px;">' +
+                                             '<a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><img id="ibtnProperty" src="' + oJSON.Head[i].image + '" alt="' + oJSON.Head[i].name + '" Width="320px" Height="240px" border="0" Style="border: 3px solid #fff; float: left;" /></a>' +
+                                             '<div style="width: 40%;" class="proptxt"><a href="' + $(location).attr('href').substring(0, $(location).attr('href').lastIndexOf('/')) + '/' + oJSON.Head[i].address.replace(/\ /g, '_').replace(/\,/g, '').replace(/\#/g, '').replace(/\%/g, '').replace(/\&/g, '').replace(/\*/g, '') + '/' + $('#hdType').val() + '_Comercial' + '/' + oJSON.Head[i].propertyID + '"><h2>' + oJSON.Head[i].name +
+                                                 '<h2></a><h5>' + oJSON.Head[i].address + '</h5></br><h4><span class="listagens-text-left">' + oJSON.Head[i].size + ' m<sup>2</sup></span> <span class="listagens-text-right">R&#36; ' + oJSON.Head[i].rate + '</span></h4>' +
+                                                     '<p class="listagens-text">' +
+                                                             oJSON.Head[i].description +
+                                             '</p></div>' +
+                                             '</div>';
+                            }
                             j += 1;
                         }
                     }
@@ -639,17 +662,17 @@
 
                                 function slideStop(event, ui) {
                                     var inputs = document.getElementsByTagName('input');
-                                    var cities = '';
+                                    var neighborhood = '';
 
                                     for (var i = 0; i < inputs.length; i++) {
                                         if (inputs[i].type == 'checkbox') {
                                             if (inputs[i].checked) {
-                                                cities += inputs[i].value + ',';
+                                                neighborhood += inputs[i].value + ',';
                                             }
                                         }
                                     }
-                                    if (cities.length != 0) {
-                                        cities = cities.substring(0, (cities.length - 1));
+                                    if (neighborhood.length != 0) {
+                                        neighborhood = neighborhood.substring(0, (neighborhood.length - 1));
                                     }
                                     var buyorrent = document.getElementById("hdBuyOrRent").value;
                                     var type = document.getElementById("hdType").value;
@@ -665,7 +688,7 @@
                                         endRate = endArea + '0000';
                                     }
                                     $('#preloader').show();
-                                    WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                                    WebService.PropertyListI(buyorrent, type, address, neighborhood, startArea, startRate, endArea, endRate, BoundList);
                                 }
                             });
                         </script>
@@ -685,17 +708,17 @@
 
                                 function slideStop(event, ui) {
                                     var inputs = document.getElementsByTagName('input');
-                                    var cities = '';
+                                    var neighborhood = '';
 
                                     for (var i = 0; i < inputs.length; i++) {
                                         if (inputs[i].type == 'checkbox') {
                                             if (inputs[i].checked) {
-                                                cities += inputs[i].value + ',';
+                                                neighborhood += inputs[i].value + ',';
                                             }
                                         }
                                     }
-                                    if (cities.length != 0) {
-                                        cities = cities.substring(0, (cities.length - 1));
+                                    if (neighborhood.length != 0) {
+                                        neighborhood = neighborhood.substring(0, (neighborhood.length - 1));
                                     }
                                     var buyorrent = document.getElementById("hdBuyOrRent").value;
                                     var type = document.getElementById("hdType").value;
@@ -711,7 +734,7 @@
                                         endRate = endArea + '0000';
                                     }
                                     $('#preloader').show();
-                                    WebService.PropertyListI(buyorrent, type, address, cities, startArea, startRate, endArea, endRate, BoundList);
+                                    WebService.PropertyListI(buyorrent, type, address, neighborhood, startArea, startRate, endArea, endRate, BoundList);
                                 }
                             });
                         </script>
@@ -740,21 +763,18 @@
                             <h2>Agentes no Bairro</h2>
                             <div id="divAgentList">
                             </div>
-
-
                         </div>
 
                         <div class="grybox">
                             <h2>Agentes no Bairro</h2>
                             <div id="divAgentListI">
                             </div>
-
                         </div>
 
                     </div>
 
                     <!-- Mid Text -->
-                    <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef; min-height:500px;">
+                    <div style="float: left; width: 58%; margin-left: 1%; background-color: #efefef; min-height: 500px;">
                         <input id="recTotal" type="hidden" />
                         <div style="width: 100%; float: left;">
                             <h2 class="list_heading">

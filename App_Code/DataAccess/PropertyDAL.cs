@@ -178,7 +178,7 @@ public class PropertyDAL
             cmd.Parameters.AddWithValue("@type", oPropertyBO.type);
             cmd.Parameters.AddWithValue("@buyorrent", oPropertyBO.buyorrent);            
             cmd.Parameters.AddWithValue("@address", oPropertyBO.address);
-            cmd.Parameters.AddWithValue("@cities", oIPropertyBO.address);
+            cmd.Parameters.AddWithValue("@neighborhood", oPropertyBO.neighborhood);
             cmd.Parameters.AddWithValue("@startArea", oPropertyBO.size);
             cmd.Parameters.AddWithValue("@startRate", oPropertyBO.rate);
             cmd.Parameters.AddWithValue("@endArea", oIPropertyBO.size);
