@@ -19,6 +19,7 @@
         ga('send', 'pageview');
 
     </script>
+
     <style>
         /*#preloader {
             position: absolute;
@@ -40,6 +41,7 @@
             display: block;
         }*/
     </style>
+
     <script type="text/javascript">
         var pager;
 
@@ -51,6 +53,7 @@
             this.inited = false;
 
             this.showRecords = function (from, to) {
+
                 $('#recFrom').empty();
                 $('#recTo').empty();
                 if (to > $('#recTotal').val()) {
@@ -64,14 +67,14 @@
                 var rows = document.getElementById(tableName).rows;
                 // i starts from 1 to skip table header row
                 for (var i = 0; i < rows.length; i++) {
-                    if ((i < from || i > to) && from != 1)
+                    if ((i < from || i > to) && i != 0)
                         rows[i].style.display = 'none';
                     else
                         rows[i].style.display = '';
-                }              
+                }
             }
 
-            this.showPage = function (pageNumber) {              
+            this.showPage = function (pageNumber) {
                 if (!this.inited) {
                     alert("not inited");
                     return;
@@ -113,7 +116,7 @@
                     return;
                 }
                 var element = document.getElementById(positionId);
-                //////var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> < Previous </span> | ';
+                var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> < Previous </span> | ';
                 for (var page = 1; page <= this.pages; page++)
                     pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> | ';
                 pagerHtml += '<span onclick="' + pagerName + '.next();" class="pg-normal"> Next ></span>';
@@ -121,7 +124,6 @@
                 element.innerHTML = pagerHtml;
             }
         }
-
 
     </script>
     <link rel="icon" type="image/png" href="http://clipas.com.br/images/favicon.ico" />
